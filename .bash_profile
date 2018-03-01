@@ -1,19 +1,22 @@
 # set tabstop=2
 
 # PATH variable
-PATH=/sbin:$PATH
-export PATH
+#PATH=/sbin:$PATH
+#export PATH
 
 # EDITOR variable
 EDITOR=vim
 export EDITOR
 
 # TouchpadSettings
-synclient TapButton1=1
+#synclient TapButton1=1
 
 # Monitor settings
 # Настраивается в rc.lua
 #xrandr --output HDMI1 --auto
 #xrandr --output HDMI1 --right-of eDP1
 
-export PATH="$HOME/.cargo/bin:$PATH"
+#export PATH="$HOME/.cargo/bin:$PATH"
+
+export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\] \[\033[33;1m\]\w\[\033[m\] (\$(git branch 2>/dev/null | grep '^*' | colrm 1 2)) \$  \n| => "
+export PS2="| => "

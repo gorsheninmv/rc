@@ -20,7 +20,7 @@ set secure " Запретить выполнение небезопасных к
 
 " Горячие клавиши
 vmap <C-c> "+y
-nmap <C-v> "*p
+nmap <C-p> "*p
 imap [ []<LEFT>
 imap ( ()<LEFT>
 imap { {}<LEFT>
