@@ -8,7 +8,7 @@ set linebreak
 set dy=lastline " Переносить по словам
 " Копирование в CLIPBOARD
 set laststatus=2 " Всегда показывать строку статуса
-set statusline=%f%m%r%h%w\ %y\ enc:%{&enc}\ ff:%{&ff}\ col:%2c\ line:%2l/%L\ [%2p%%]
+set statusline=%F%m%r%h%w\ %y\ enc:%{&enc}\ ff:%{&ff}\ col:%2c\ line:%2l/%L\ [%2p%%]
 "set showtabline " Показывать строку вкладок всегда
 set t_Co=256 " Использовать больше цветов
 set exrc " Разрешить использование внешних конфигурационных файлов .vimrc
@@ -20,6 +20,7 @@ set secure " Запретить выполнение небезопасных к
 
 " Горячие клавиши
 vmap <C-c> "+y
+nmap <C-v> "*p
 imap [ []<LEFT>
 imap ( ()<LEFT>
 imap { {}<LEFT>

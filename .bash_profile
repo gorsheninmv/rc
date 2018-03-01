@@ -15,3 +15,5 @@ synclient TapButton1=1
 # Настраивается в rc.lua
 #xrandr --output HDMI1 --auto
 #xrandr --output HDMI1 --right-of eDP1
+
+export PATH="$HOME/.cargo/bin:$PATH"

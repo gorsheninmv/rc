@@ -4,6 +4,11 @@ filetype off " Отключить определение файла и уста�
 " Горячие клавиши
 inoremap <c-@> <C-n>
 
+" Отступы
+set tabstop=4
+set shiftwidth=4
+set expandtab
+
 " ================= Vundle =================
 
 " set the runtime path to include Vundle and initialize
@@ -30,9 +35,7 @@ Plugin 'VundleVim/Vundle.vim'
 " Install L9 and avoid a Naming conflict if you've already installed a
 " different version somewhere else.
 " Plugin 'ascenator/L9' , {'name' : 'newL9'}
-Plugin 'xolox/vim-misc'
-Plugin 'xolox/vim-lua-ftplugin'
-Plugin 'tbastos/vim-lua'
+Plugin 'rust-lang/rust.vim'
 
 "All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -52,6 +55,6 @@ filetype plugin indent on    " required
 " ================= End of Vundle =================
 
 
-"set omnifunc
-let g:lua_complete_omni=1
-let g:lua_internal=0
+"set rustfmt
+let g:rustfmt_autosave=1
+let g:rustfmt_options="-f"

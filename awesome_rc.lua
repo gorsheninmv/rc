@@ -15,7 +15,7 @@ local hotkeys_popup = require("awful.hotkeys_popup").widget
 local volume_control = require("volume-control")
 
 -- Battery widget
-local battery_widget = require("battery-widget") 
+-- local battery_widget = require("battery-widget") 
 
 -- Brightness widget
 local brightness = require("brightness")
@@ -68,7 +68,7 @@ editor_cmd = terminal .. " -e " .. editor
 volumecfg = volume_control({step = '1%'})
 
 -- Define battery widget
-battery = battery_widget({adapter = "BAT0"})
+-- battery = battery_widget({adapter = "BAT0"})
 
 -- Define brightness widget
 brightness_ctrl = brightness({})
@@ -255,7 +255,7 @@ awful.screen.connect_for_each_screen(function(s)
 	    volumecfg.widget,
 	    separator,
 	    
-	    battery.widget,
+--	    battery.widget,
 	    separator,
 	    
 	    brightness_ctrl.widget,
