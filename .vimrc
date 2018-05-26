@@ -1,6 +1,6 @@
 set number " Показывать номера строк
 "colorscheme desert " Цветовая схема
-syntax on " Подсвечивать синтаксис
+syntax off " Подсвечивать синтаксис
 set keymap=russian-jcukenwin " Переключаться на русский по команде Ctrl+^
 set iminsert=0 " Латинская раскладка по умолчанию
 set ic " Игнорировать регистр при поиске
@@ -20,7 +20,7 @@ set secure " Запретить выполнение небезопасных к
 
 " Горячие клавиши
 vmap <C-c> "+y
-nmap <C-p> "*p
+vmap <C-p> "+p
 imap [ []<LEFT>
 imap ( ()<LEFT>
 imap { {}<LEFT>
