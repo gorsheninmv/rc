@@ -13,8 +13,8 @@ defaults.encoding = 'UTF-8'
 defaults.wordCharExceptions = '- .,_/'
 --defaults.font = 'Courier 10 Pitch'
 defaults.font = 'FreeMono 12'
-defaults.foregroundColor = '#00FF00'
-defaults.backgroundColor = 'black'
+--defaults.foregroundColor = '#00FF00'
+--defaults.backgroundColor = 'black'
 defaults.showScrollbar = false
 defaults.hideSingleTab = false
 defaults.hideTabbar = false
@@ -40,6 +40,7 @@ defaults.colormap = termit.colormaps.delicate
 defaults.matches = {['http[^ ]+'] = function (url) print('Matching url: '..url) end}
 defaults.tabs = {{workingDir = '~'}}
 setOptions(defaults)
+setColormap(termit.colormaps.dracula)
 
 
 bindKey('AltShift-n', openTab)
