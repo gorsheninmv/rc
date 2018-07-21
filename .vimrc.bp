@@ -1,4 +1,5 @@
 set number " Показывать номера строк
+"colorscheme desert " Цветовая схема
 syntax off " Подсвечивать синтаксис
 set keymap=russian-jcukenwin " Переключаться на русский по команде Ctrl+^
 set iminsert=0 " Латинская раскладка по умолчанию
@@ -16,110 +17,18 @@ set showcmd " Отображать выполняемую команду
 "filetype off " Отключить определение файла и утсановку опций в соответствии с типом этого файла
 set secure " Запретить выполнение небезопасных команд в файле .vimrc проекта
 
-set modelines=5
-set modeline
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
-set expandtab
-set encoding=utf-8
-set scrolloff=3
-set autoindent
-set showmode
-set hidden
-set wildmenu
-set wildmode=list:longest
-set visualbell
-set cursorline
-set ttyfast
-set ruler
-set backspace=indent,eol,start
-set directory=~/.vim/tmp/swap//   " swap files
-
-" Vim 7.3 options
-if version >= 703
-    set colorcolumn=+1
-    set undodir=~/.vim/tmp/undo//     " undo files
-    set undofile
-endif
-
-
-" ================= Vundle ================= 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-" "call vundle#begin('~/some/path/here')
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim' 
-
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-" Plugin 'tpope/vim-fugitive' 
-" plugin from http://vim-scripts.org/vim/scripts.html
-" Plugin 'L9' 
-" Git plugin not hosted on GitHub
-" Plugin 'git://git.wincent.com/command-t.git' 
-" git repos on your local machine (i.e. when working on your own plugin)
-" Plugin 'file:///home/gmarik/path/to/plugin' 
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-" Plugin 'rstacruz/sparkup' , {'rtp' : 'vim/'}
-" Install L9 and avoid a Naming conflict if you've already installed a
-" different version somewhere else.
-" Plugin 'ascenator/L9' , {'name' : 'newL9'}
-Plugin 'scrooloose/nerdtree'
-Plugin 'dracula/vim'
-Plugin 'jlanzarotta/bufexplorer'
-Plugin 'majutsushi/tagbar'
-Plugin 'Yggdroot/indentLine'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-
-"All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-" ================= End of Vundle =================
-
-" NERD Tree {{{
-
-noremap  <F2> :NERDTreeToggle<cr>
-inoremap <F2> <esc>:NERDTreeToggle<cr>
-
-let NERDTreeHighlightCursorline = 1
-let NERDTreeIgnore = ['.vim$', '.*\.pyc$', '.*.pid']
-
-let NERDTreeMinimalUI = 1
-let NERDTreeDirArrows = 1
-let NERDChristmasTree = 1
-let NERDTreeChDirMode = 2
-let NERDTreeMapJumpFirstChild = 'gK'
-
-" }}}
 " Горячие клавиши
 vmap <C-c> "+y
 vmap <C-p> "+p
+imap [ []<LEFT>
+imap ( ()<LEFT>
+imap { {}<LEFT>
+imap < <><LEFT>
 inoremap " ""<LEFT>
 inoremap ' ''<LEFT>
 nmap <C-t> :tabnew<CR>
 nmap <C-h> :tabp<CR>
 nmap <C-l> :tabn<CR>
-
-syntax on
-color dracula
 
 
 " Настройка отступов
