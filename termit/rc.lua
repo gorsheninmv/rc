@@ -36,11 +36,11 @@ defaults.setStatusbar = function (tabInd)
     end
     return ''
 end
-defaults.colormap = termit.colormaps.delicate
+defaults.colormap = termit.colormaps.dracula
 defaults.matches = {['http[^ ]+'] = function (url) print('Matching url: '..url) end}
 defaults.tabs = {{workingDir = '~'}}
 setOptions(defaults)
-setColormap(termit.colormaps.dracula)
+--setColormap(termit.colormaps.dracula)
 
 
 bindKey('AltShift-n', openTab)
