@@ -83,8 +83,7 @@ Plugin 'tpope/vim-surround'
 Plugin 'jpalardy/vim-slime'
 Plugin 'wlangstroth/vim-racket'
 Plugin 'vim-syntastic/syntastic'
-Plugin 'kien/rainbow_parentheses.vim'
-
+Plugin 'junegunn/rainbow_parentheses.vim'
 
 "All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -128,6 +127,14 @@ nnoremap <silent> <F11> :ToggleBufExplorer<CR>
 " Vim-slime {{{
 let g:slime_target = "tmux"
 " }}}
+
+
+" Rainbow Parentheses {{{
+autocmd BufEnter *.scm :RainbowParentheses
+autocmd BufEnter *.scm set lisp
+" }}}
+
+
 " Горячие клавиши
 vmap <C-c> "+y
 vmap <C-p> "+p
