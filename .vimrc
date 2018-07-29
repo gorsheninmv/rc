@@ -15,6 +15,9 @@ set nocompatible " Отключить совместимость с Vi
 set showcmd " Отображать выполняемую команду
 "filetype off " Отключить определение файла и утсановку опций в соответствии с типом этого файла
 set secure " Запретить выполнение небезопасных команд в файле .vimrc проекта
+set confirm " Отключение сообщений об ошибке несохраненных изменений. Вместо
+" этого будет предложение о сохранении
+language messages C
 
 set modelines=5
 set modeline
@@ -76,6 +79,12 @@ Plugin 'majutsushi/tagbar'
 Plugin 'Yggdroot/indentLine'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'tpope/vim-surround'
+Plugin 'jpalardy/vim-slime'
+Plugin 'wlangstroth/vim-racket'
+Plugin 'vim-syntastic/syntastic'
+Plugin 'kien/rainbow_parentheses.vim'
+
 
 "All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -109,11 +118,19 @@ let NERDTreeChDirMode = 2
 let NERDTreeMapJumpFirstChild = 'gK'
 
 " }}}
+
+
+" BufExplorer {{{
+nnoremap <silent> <F11> :ToggleBufExplorer<CR>
+" }}}
+
+
+" Vim-slime {{{
+let g:slime_target = "tmux"
+" }}}
 " Горячие клавиши
 vmap <C-c> "+y
 vmap <C-p> "+p
-inoremap " ""<LEFT>
-inoremap ' ''<LEFT>
 nmap <C-t> :tabnew<CR>
 nmap <C-h> :tabp<CR>
 nmap <C-l> :tabn<CR>
