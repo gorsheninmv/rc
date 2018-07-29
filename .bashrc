@@ -111,11 +111,3 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-
-
-# P1
-parse_git_branch() {
-    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
-}
-yellow_bold='\[\e[1;33;33m\]'
-export PS1="$yellow_bold\u@\h \[\033[32m\]\w\[\e[1;31;31m\]\$(parse_git_branch) $yellow_bold$ \n>>\[\e[0m\] "
