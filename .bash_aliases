@@ -2,6 +2,8 @@
 alias off='shutdown -h now'
 alias rbt='reboot'
 alias c='clear'
+alias t='tmux attach || tmux new'
+alias v='vim'
 
 function mnt {
 	if [ "$1" ]

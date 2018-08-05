@@ -17,4 +17,4 @@ fi
 echo "#source to ex" >> $BASH_PROFILE_PATH
 echo "source '$EX_FILEPATH'" >> $BASH_PROFILE_PATH
 
-echo "script finished"
+echo "script completed!"
