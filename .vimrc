@@ -84,6 +84,8 @@ Plugin 'jpalardy/vim-slime'
 Plugin 'wlangstroth/vim-racket'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'junegunn/rainbow_parentheses.vim'
+Plugin 'wesQ3/vim-windowswap'
+
 
 "All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -135,6 +137,12 @@ autocmd BufEnter *.scm set lisp
 " }}}
 
 
+" WindowSwap {{{
+let g:wisndowswap_map_keys = 0
+nnoremap <silent> <Leader>s :call WindowSwap#EasyWindowSwap()<CR>
+" }}}
+
+
 " Горячие клавиши
 vmap <C-c> "+y
 vmap <C-p> "+p
@@ -148,6 +156,8 @@ inoremap [] []<LEFT>
 inoremap {} {}<LEFT>
 inoremap () ()<LEFT>
 inoremap <> <><LEFT>
+
+nmap <Tab> <C-w>w
 
 syntax on
 color dracula
