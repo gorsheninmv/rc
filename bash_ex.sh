@@ -17,7 +17,8 @@ export EDITOR
 #xrandr --output HDMI1 --right-of eDP1
 
 #export PATH="$HOME/.cargo/bin:$PATH"
+source ~/.bashrc
 
 export PATH="$HOME/.cargo/bin:$PATH"
+export PS1="\[\033[32;1m\][\u@\h \W]\[\033[32;5m\]\$ \[\033[m\]"
 
-source ~/.bashrc

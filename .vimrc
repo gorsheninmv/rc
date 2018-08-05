@@ -142,6 +142,13 @@ nmap <C-t> :tabnew<CR>
 nmap <C-h> :tabp<CR>
 nmap <C-l> :tabn<CR>
 
+inoremap "" ""<LEFT>
+inoremap '' ''<LEFT>
+inoremap [] []<LEFT>
+inoremap {} {}<LEFT>
+inoremap () ()<LEFT>
+inoremap <> <><LEFT>
+
 syntax on
 color dracula
 
