@@ -3,6 +3,7 @@
 	name = Misha Gorshenin
 [core]
 	editor = vim
+	autocrlf = false
 [merge]
 	tool = vimdiff
 [color]
