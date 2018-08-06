@@ -2,6 +2,7 @@ set number " Показывать номера строк
 syntax off " Подсвечивать синтаксис
 set keymap=russian-jcukenwin " Переключаться на русский по команде Ctrl+^
 set iminsert=0 " Латинская раскладка по умолчанию
+set imsearch=0
 set ic " Игнорировать регистр при поиске
 set linebreak
 set dy=lastline " Переносить по словам
@@ -158,6 +159,8 @@ inoremap () ()<LEFT>
 inoremap <> <><LEFT>
 
 nmap <Tab> <C-w>w
+
+inoremap <F6> <C-^>
 
 syntax on
 color dracula
