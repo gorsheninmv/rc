@@ -8,8 +8,8 @@ FILENAME=".gitconfig"
 LINKPATH="$HOME/$FILENAME"
 FILEPATH="$BASEDIR/$FILENAME"
 
-if [ -f "$FULLPATH" ]
-	then rm "$FULLPATH"
+if [ -f "$LINKPATH" ]
+	then rm "$LINKPATH"
 fi
 ln -s "$FILEPATH" "$LINKPATH"
 
