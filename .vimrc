@@ -40,6 +40,10 @@ set ruler
 set backspace=indent,eol,start
 set directory=~/.vim/tmp/swap//   " swap files
 
+set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:•
+set list
+
+
 " Vim 7.3 options
 if version >= 703
     set colorcolumn=+1
@@ -88,6 +92,8 @@ Plugin 'junegunn/rainbow_parentheses.vim'
 Plugin 'wesQ3/vim-windowswap'
 Plugin 'OmniSharp/omnisharp-vim'
 Plugin 'prabirshrestha/asyncomplete.vim'
+Plugin 'ervandew/supertab'
+
 "Plugin 'Shougo/neocomplete.vim'
 
 
@@ -126,7 +132,7 @@ let NERDTreeMapJumpFirstChild = 'gK'
 
 
 " BufExplorer {{{
-nnoremap <silent> <F11> :ToggleBufExplorer<CR>
+nnoremap <silent> <F10> :ToggleBufExplorer<CR>
 " }}}
 
 
@@ -240,6 +246,12 @@ if $OS == "win"
 endif
 " }}}
 
+
+" Scheme {{{
+set omnifunc=syntaxcomplete#Complete
+imap <C-n> <C-x><C-o>
+" }}}
+
 " Горячие клавиши
 vmap <C-c> "+y
 vmap <C-p> "+p
@@ -257,6 +269,8 @@ inoremap <> <><LEFT>
 nmap <Tab> <C-w>w
 
 inoremap <F6> <C-^>
+
+imap <C-r> <RIGHT><SPACE>
 
 syntax on
 color dracula
