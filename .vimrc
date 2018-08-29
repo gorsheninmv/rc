@@ -251,6 +251,15 @@ endif
 set omnifunc=syntaxcomplete#Complete
 imap <C-n> <C-x><C-o>
 " }}}
+"
+"
+function ToggleListChars()
+    if &list
+        set nolist
+    else
+        set list
+    endif
+endfunction
 
 " Горячие клавиши
 vmap <C-c> "+y
@@ -258,6 +267,7 @@ vmap <C-p> "+p
 nmap <C-t> :tabnew<CR>
 nmap <C-h> :tabp<CR>
 nmap <C-l> :tabn<CR>
+nmap <silent> <F3> :call ToggleListChars()<CR>
 
 inoremap "" ""<LEFT>
 inoremap '' ''<LEFT>
