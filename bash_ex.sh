@@ -21,4 +21,5 @@ source ~/.bashrc
 
 export PATH="$HOME/.cargo/bin:$PATH"
 export PS1="\[\033[32;1m\][\u@\h \W]\[\033[32;5m\]\$ \[\033[m\]"
+export PKG_CONFIG_PATH="/usr/lib/x86_64-linux-gnu/pkgconfig"
 
