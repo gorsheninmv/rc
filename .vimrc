@@ -1,121 +1,189 @@
-set number " Показывать номера строк
-syntax off " Подсвечивать синтаксис
-set keymap=russian-jcukenwin " Переключаться на русский по команде Ctrl+^
-set iminsert=0 " Латинская раскладка по умолчанию
-set imsearch=0
-set ic " Игнорировать регистр при поиске
-set linebreak
-set dy=lastline " Переносить по словам
-" Копирование в CLIPBOARD
-set laststatus=2 " Всегда показывать строку статуса
-set statusline=%F%m%r%h%w\ %y\ enc:%{&enc}\ ff:%{&ff}\ col:%2c\ line:%2l/%L\ [%2p%%]
-"set showtabline " Показывать строку вкладок всегда
-set t_Co=256 " Использовать больше цветов
-set exrc " Разрешить использование внешних конфигурационных файлов .vimrc
-set nocompatible " Отключить совместимость с Vi
-set showcmd " Отображать выполняемую команду
-"filetype off " Отключить определение файла и утсановку опций в соответствии с типом этого файла
-set secure " Запретить выполнение небезопасных команд в файле .vimrc проекта
-set confirm " Отключение сообщений об ошибке несохраненных изменений. Вместо
-" этого будет предложение о сохранении
-language messages C
+" Show line numbers {{{
+set number
+" }}}
 
+" Highlight syntax {{{
+syntax on
+" }}}
+
+" Add russian keymap {{{
+set keymap=russian-jcukenwin
+inoremap <F5> <C-^>
+set iminsert=0
+set imsearch=0
+" }}}
+
+" Ignorecase when searching {{{
+set ic
+" }}}
+
+" Wrap lines {{{
+set linebreak
+" }}}
+
+" Carry by words {{{
+set dy=lastline
+" }}}
+
+" Show status line {{{
+set laststatus=2
+set statusline=%F%m%r%h%w\ %y\ enc:%{&enc}\ ff:%{&ff}\ col:%2c\ line:%2l/%L\ [%2p%%]
+" }}}
+
+" Show tab line {{{
+"set showtabline
+" }}}
+
+" Enable 256 colors {{{
+set t_Co=256
+" }}}
+
+" Enable external config files {{{
+set exrc
+set secure
+" }}}
+
+" Disable Vi compability {{{
+set nocompatible
+" }}}
+
+" Show executed command {{{
+set showcmd
+" }}}
+
+" Disable auto detection file type and setting option for this one {{{
+"filetype off
+" }}}
+
+" Disable message about unsaved changing error. {{{
+" Suggest to save instead
+set confirm
+" }}}
+
+" Set UI lang as en {{{
+language messages C
+" }}}
+
+" Set UTF-8 encoding {{{
+set encoding=utf-8
+" }}}
+
+" Enable marker fold and setup it {{{
+set foldmethod=marker
+nnoremap <space> za
+" }}}
+
+" Set formatting {{{
 set modelines=5
 set modeline
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set expandtab
-set encoding=utf-8
-set scrolloff=3
 set autoindent
+" }}}
+
+" Set scrolloffset {{{
+set scrolloff=3
+" }}}
+
+" Show current mode {{{
 set showmode
+" }}}
+
+" Hide buffer if it was abandoned {{{
 set hidden
+" }}}
+
+" Enable wildmenu {{{
 set wildmenu
 set wildmode=list:longest
-set visualbell
-set cursorline
-set ttyfast
-set ruler
-set backspace=indent,eol,start
-set directory=~/.vim/tmp/swap//   " swap files
+" }}}
 
+" Enable visualbell {{{
+set visualbell
+" }}}
+
+" Highlight cursor line {{{
+set cursorline
+" }}}
+
+" Speed up screen redrawing {{{
+set ttyfast
+" }}}
+
+" Show cursor position always {{{
+set ruler
+" }}}
+"
+" Enable symbol deleting using backspace {{{
+set backspace=indent,eol,start
+" }}}
+
+" Set working directory to the current file {{{
+set directory=~/.vim/tmp/swap//   " swap files
+" }}}
+
+" Show/hide formatting symbols {{{
 set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:•
 set list
 
+function ToggleListChars()
+    if &list
+        set nolist
+    else
+        set list
+    endif
+endfunction
 
-" Vim 7.3 options
-if version >= 703
-    set colorcolumn=+1
-    set undodir=~/.vim/tmp/undo//     " undo files
-    set undofile
+nmap <silent> <F3> :call ToggleListChars()<CR>
+" }}}
+
+" Remap LCTRL and CAPSLOCK {{{
+if has('unix')
+    autocmd VimEnter * silent! !setxkbmap -option ctrl:nocaps
+    autocmd VimLeave * silent! !setxkbmap -option
 endif
+" }}}
 
+" Highlight max width {{{
+set colorcolumn=100
+" }}}
 
-" ================= Vundle ================= 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-" "call vundle#begin('~/some/path/here')
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim' 
+" Set undo settings {{{
+set undodir=~/.vim/tmp/undo//
+set undofile
+" }}}
 
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-" Plugin 'tpope/vim-fugitive' 
-" plugin from http://vim-scripts.org/vim/scripts.html
-" Plugin 'L9' 
-" Git plugin not hosted on GitHub
-" Plugin 'git://git.wincent.com/command-t.git' 
-" git repos on your local machine (i.e. when working on your own plugin)
-" Plugin 'file:///home/gmarik/path/to/plugin' 
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-" Plugin 'rstacruz/sparkup' , {'rtp' : 'vim/'}
-" Install L9 and avoid a Naming conflict if you've already installed a
-" different version somewhere else.
-" Plugin 'ascenator/L9' , {'name' : 'newL9'}
-Plugin 'scrooloose/nerdtree'
-Plugin 'dracula/vim'
-Plugin 'jlanzarotta/bufexplorer'
-Plugin 'majutsushi/tagbar'
-Plugin 'Yggdroot/indentLine'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'tpope/vim-surround'
-Plugin 'jpalardy/vim-slime'
-Plugin 'wlangstroth/vim-racket'
-Plugin 'vim-syntastic/syntastic'
-Plugin 'junegunn/rainbow_parentheses.vim'
-Plugin 'wesQ3/vim-windowswap'
-Plugin 'OmniSharp/omnisharp-vim'
-Plugin 'prabirshrestha/asyncomplete.vim'
-Plugin 'ervandew/supertab'
+" Install plugins {{{
+" Specify a directory for plugins
+" - For Neovim: ~/.local/share/nvim/plugged
+" - Avoid using standard Vim directory names like 'plugin'
+call plug#begin('~/.vim/plugged')
 
-"Plugin 'Shougo/neocomplete.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'dracula/vim'
+Plug 'jlanzarotta/bufexplorer'
+Plug 'majutsushi/tagbar'
+Plug 'Yggdroot/indentLine'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'tpope/vim-surround'
+Plug 'jpalardy/vim-slime'
+Plug 'wlangstroth/vim-racket'
+Plug 'vim-syntastic/syntastic'
+Plug 'junegunn/rainbow_parentheses.vim'
+Plug 'wesQ3/vim-windowswap'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'ervandew/supertab'
 
+" Plugin 'Shougo/neocomplete.vim'
 
-"All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-" ================= End of Vundle =================
+" Initialize plugin system
+call plug#end()
+" }}}
 
 " NERD Tree {{{
-
 noremap  <F2> :NERDTreeToggle<cr>
 inoremap <F2> <esc>:NERDTreeToggle<cr>
 
@@ -127,148 +195,62 @@ let NERDTreeDirArrows = 1
 let NERDChristmasTree = 1
 let NERDTreeChDirMode = 2
 let NERDTreeMapJumpFirstChild = 'gK'
-
 " }}}
-
 
 " BufExplorer {{{
 nnoremap <silent> <F10> :ToggleBufExplorer<CR>
 " }}}
 
-
 " Vim-slime {{{
 let g:slime_target = "tmux"
 " }}}
 
-
 " Rainbow Parentheses {{{
 autocmd BufEnter *.scm :RainbowParentheses
-autocmd BufEnter *.scm set lisp
 " }}}
-
 
 " WindowSwap {{{
 let g:wisndowswap_map_keys = 0
 nnoremap <silent> <Leader>s :call WindowSwap#EasyWindowSwap()<CR>
 " }}}
 
-
 " Tagbar {{{
 nnoremap <silent> <F9> :TagbarToggle<CR>
 " }}}
 
-
-" Omnisharp {{{
-
-if $OS == "win"
-
-    let g:OmniSharp_server_path = '/mnt/c/omnisharp-roslyn/artifacts/publish/OmniSharp.Http.Driver/win7-x64/OmniSharp.exe'
-    let g:OmniSharp_translate_cygwin_wsl = 1
-
-
-    " OmniSharp won't work without this setting
-    "filetype plugin on
-    
-    " Set the type lookup function to use the preview window instead of echoing it
-    "let g:OmniSharp_typeLookupInPreview = 1
-    
-    " Timeout in seconds to wait for a response from the server
-    let g:OmniSharp_timeout = 10
-    
-    " Don't autoselect first omnicomplete option, show options even if there is only
-    " one (so the preview documentation is accessible). Remove 'preview' if you
-    " don't want to see any documentation whatsoever.
-    set completeopt=longest,menuone,preview
-    
-    " Fetch full documentation during omnicomplete requests.
-    " There is a performance penalty with this (especially on Mono).
-    " By default, only Type/Method signatures are fetched. Full documentation can
-    " still be fetched when you need it with the :OmniSharpDocumentation command.
-    "let g:omnicomplete_fetch_full_documentation = 1
-    
-    " Set desired preview window height for viewing documentation.
-    " You might also want to look at the echodoc plugin.
-    set previewheight=5
-    
-    augroup omnisharp_commands
-        autocmd!
-    
-        " Automatic syntax check on events (TextChanged requires Vim 7.4)
-        autocmd BufEnter,TextChanged,InsertLeave *.cs SyntasticCheck
-    
-        " Show type information automatically when the cursor stops moving
-        autocmd CursorHold *.cs call OmniSharp#TypeLookupWithoutDocumentation()
-    
-        " The following commands are contextual, based on the cursor position.
-        autocmd FileType cs nnoremap <buffer> gd :OmniSharpGotoDefinition<CR>
-        autocmd FileType cs nnoremap <buffer> <Leader>fi :OmniSharpFindImplementations<CR>
-        autocmd FileType cs nnoremap <buffer> <Leader>fs :OmniSharpFindSymbol<CR>
-        autocmd FileType cs nnoremap <buffer> <Leader>fu :OmniSharpFindUsages<CR>
-    
-        " Finds members in the current buffer
-        autocmd FileType cs nnoremap <buffer> <Leader>fm :OmniSharpFindMembers<CR>
-    
-        autocmd FileType cs nnoremap <buffer> <Leader>fx :OmniSharpFixUsings<CR>
-        autocmd FileType cs nnoremap <buffer> <Leader>tt :OmniSharpTypeLookup<CR>
-        autocmd FileType cs nnoremap <buffer> <Leader>dc :OmniSharpDocumentation<CR>
-        autocmd FileType cs nnoremap <buffer> <C-\> :OmniSharpSignatureHelp<CR>
-        autocmd FileType cs inoremap <buffer> <C-\> <C-o>:OmniSharpSignatureHelp<CR>
-    
-    
-        " Navigate up and down by method/property/field
-        autocmd FileType cs nnoremap <buffer> <C-k> :OmniSharpNavigateUp<CR>
-        autocmd FileType cs nnoremap <buffer> <C-j> :OmniSharpNavigateDown<CR>
-    augroup END
-    
-    " Contextual code actions (uses fzf, CtrlP or unite.vim when available)
-    nnoremap <Leader><Space> :OmniSharpGetCodeActions<CR>
-    " Run code actions with text selected in visual mode to extract method
-    xnoremap <Leader><Space> :call OmniSharp#GetCodeActions('visual')<CR>
-    
-    " Rename with dialog
-    nnoremap <Leader>nm :OmniSharpRename<CR>
-    "nnoremap <F2> :OmniSharpRename<CR>
-    " Rename without dialog - with cursor on the symbol to rename: `:Rename newname`
-    command! -nargs=1 Rename :call OmniSharp#RenameTo("<args>")
-    
-    nnoremap <Leader>cf :OmniSharpCodeFormat<CR>
-    
-    " Start the omnisharp server for the current solution
-    nnoremap <Leader>ss :OmniSharpStartServer<CR>
-    nnoremap <Leader>sp :OmniSharpStopServer<CR>
-    
-    " Add syntax highlighting for types and interfaces
-    nnoremap <Leader>th :OmniSharpHighlightTypes<CR>
-    
-    " Enable snippet completion
-    " let g:OmniSharp_want_snippet=1
-
-endif
-" }}}
-
-
 " Scheme {{{
+autocmd BufEnter *.scm set lisp
 set omnifunc=syntaxcomplete#Complete
 imap <C-n> <C-x><C-o>
 " }}}
-"
-"
-function ToggleListChars()
-    if &list
-        set nolist
-    else
-        set list
-    endif
+
+" Resize splits {{{
+function VInc()
+    vertical resize +5
 endfunction
 
-" Горячие клавиши
+function VDec()
+    vertical resize -5
+endfunction
+
+function HInc()
+    resize +5
+endfunction
+
+function HDec()
+    resize -5
+endfunction
+" }}}
+
+" Copy/paste using OS buffer {{{
 vmap <C-c> "+y
 vmap <C-p> "+p
 nmap <C-t> :tabnew<CR>
 nmap <C-h> :tabp<CR>
 nmap <C-l> :tabn<CR>
-nmap <silent> <F3> :call ToggleListChars()<CR>
+" }}}
 
+" Close bracket/quote {{{
 inoremap "" ""<LEFT>
 inoremap '' ''<LEFT>
 inoremap [] []<LEFT>
@@ -276,14 +258,17 @@ inoremap {} {}<LEFT>
 inoremap () ()<LEFT>
 inoremap <> <><LEFT>
 
-nmap <Tab> <C-w>w
-
-inoremap <F6> <C-^>
-
+" Set cursor after closing symbol
 imap <C-r> <RIGHT><SPACE>
+" }}}
 
-syntax on
+" Switch focus between splits {{{
+nmap <Tab> <C-w>w
+" }}}
+
+" Set colorscheme {{{
 color dracula
+" }}}
 
 
 " Настройка отступов
