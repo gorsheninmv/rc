@@ -238,6 +238,9 @@ endfunction
 " Copy/paste using OS buffer {{{
 vmap <C-c> "+y
 vmap <C-p> "+p
+" }}}
+
+" Manage tabs {{{
 nmap <C-t> :tabnew<CR>
 nmap <C-h> :tabp<CR>
 nmap <C-l> :tabn<CR>
