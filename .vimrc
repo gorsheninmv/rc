@@ -139,13 +139,6 @@ endfunction
 nmap <silent> <F3> :call ToggleListChars()<CR>
 " }}}
 
-" Remap LCTRL and CAPSLOCK {{{
-if has('unix')
-    autocmd VimEnter * silent! !setxkbmap -option ctrl:nocaps
-    autocmd VimLeave * silent! !setxkbmap -option
-endif
-" }}}
-
 " Highlight max width {{{
 set colorcolumn=100
 " }}}
