@@ -266,6 +266,25 @@ nmap <Tab> <C-w>w
 color dracula
 " }}}
 
+" Openning command for gvim {{{
+if has("gui_running")
+    function Open()
+        browse confirm e
+    endfunction
+endif
+
+:command O :call Open()
+" }}}
+
+" Hide widgets in gvim {{{
+if has("gui_running")
+    set guioptions-=m " remove menu bar
+    set guioptions-=T " remove toolbar
+    set guioptions-=r " remove right-hand scroll
+    set guioptions-=L " remove left-hand scroll
+endif
+" }}}
+
 
 " Настройка отступов
 " ==================
