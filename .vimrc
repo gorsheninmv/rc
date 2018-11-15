@@ -141,6 +141,7 @@ nmap <silent> <F3> :call ToggleListChars()<CR>
 
 " Highlight max width {{{
 set colorcolumn=100
+highlight colorcolumn guibg=Red
 " }}}
 
 " Set undo settings {{{
