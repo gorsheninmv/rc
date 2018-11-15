@@ -126,7 +126,7 @@ set directory=~/.vim/tmp/swap//   " swap files
 
 " Show/hide formatting symbols {{{
 set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:•
-set list
+" set list
 
 function ToggleListChars()
     if &list
