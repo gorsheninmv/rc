@@ -126,7 +126,7 @@ set directory=~/.vim/tmp/swap//   " swap files
 
 " Show/hide formatting symbols {{{
 set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:•
-set list
+" set list
 
 function ToggleListChars()
     if &list
@@ -141,6 +141,7 @@ nmap <silent> <F3> :call ToggleListChars()<CR>
 
 " Highlight max width {{{
 set colorcolumn=100
+highlight colorcolumn guibg=Red
 " }}}
 
 " Set undo settings {{{
@@ -264,6 +265,25 @@ nmap <Tab> <C-w>w
 
 " Set colorscheme {{{
 color dracula
+" }}}
+
+" Openning command for gvim {{{
+if has("gui_running")
+    function Open()
+        browse confirm e
+    endfunction
+endif
+
+:command O :call Open()
+" }}}
+
+" Hide widgets in gvim {{{
+if has("gui_running")
+    set guioptions-=m " remove menu bar
+    set guioptions-=T " remove toolbar
+    set guioptions-=r " remove right-hand scroll
+    set guioptions-=L " remove left-hand scroll
+endif
 " }}}
 
 
