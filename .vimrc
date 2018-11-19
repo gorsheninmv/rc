@@ -286,6 +286,38 @@ if has("gui_running")
 endif
 " }}}
 
+" Find and replace {{{
+function SearchAndReplaceWord(f, r)
+    execute ':%s/\<' . a:f . '\>/' . a:r . '/g'
+endfunction
+
+: command -nargs=* SRW call SearchAndReplaceWord(<f-args>)
+
+function SearchAndReplaceSymbols(f, r)
+    execute ':%s/' . a:f . '/' . a:r . '/g'
+endfunction
+
+: command -nargs=* SRS call SearchAndReplaceSymbols(<f-args>)
+
+function FindAndReplaceWithChecking(f, r)
+    %s/\<a:f>/a:r/gc
+endfunction
+
+function SearchAndReplaceWordWithChecking(f, r)
+    execute ':%s/\<' . a:f . '\>/' . a:r . '/gc'
+endfunction
+
+: command -nargs=* SRWC call SearchAndReplaceWordWithChecking(<f-args>)
+
+function SearchAndReplaceSymbolsWithChecking(f, r)
+    execute ':%s/' . a:f . '/' . a:r . '/gc'
+endfunction
+
+: command -nargs=* SRSC call SearchAndReplaceSymbolsWithChecking(<f-args>)
+
+" Find selected expr
+vnoremap // y/<C-R>"<CR>
+" }}}
 
 " Настройка отступов
 " ==================
