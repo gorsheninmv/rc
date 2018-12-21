@@ -51,8 +51,8 @@ set nocompatible
 set showcmd
 " }}}
 
-" Disable auto detection file type and setting option for this one {{{
-"filetype off
+" Enable auto detection file type and setting option for this one {{{
+filetype plugin on
 " }}}
 
 " Disable message about unsaved changing error. {{{
@@ -165,11 +165,27 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-surround'
 Plug 'jpalardy/vim-slime'
 Plug 'wlangstroth/vim-racket'
-Plug 'vim-syntastic/syntastic'
 Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'wesQ3/vim-windowswap'
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'ervandew/supertab'
+Plug 'w0rp/ale'
+
+if has("win64") || has("win32")
+    Plug 'autozimu/LanguageClient-neovim', {
+        \ 'branch': 'next',
+        \ 'do': 'powershell -executionpolicy bypass -File install.ps1',
+        \ }
+else
+    Plug 'autozimu/LanguageClient-neovim', {
+        \ 'branch': 'next',
+        \ 'do': 'bash install.sh',
+        \ }
+endif
+
+if has("win64") || has("win32")
+    Plug 'OmniSharp/omnisharp-vim'
+endif
 
 " Plugin 'Shougo/neocomplete.vim'
 
@@ -189,6 +205,14 @@ let NERDTreeDirArrows = 1
 let NERDChristmasTree = 1
 let NERDTreeChDirMode = 2
 let NERDTreeMapJumpFirstChild = 'gK'
+
+function OpenProFolder()
+    if has("win64") || has("win32")
+        :NERDTree C:\projects\
+    endif
+endfunction
+
+: command Pro :call OpenProFolder()
 " }}}
 
 " BufExplorer {{{
@@ -210,6 +234,10 @@ nnoremap <silent> <Leader>s :call WindowSwap#EasyWindowSwap()<CR>
 
 " Tagbar {{{
 nnoremap <silent> <F9> :TagbarToggle<CR>
+
+if has("win64") || has("win32")
+    let g:tagbar_ctags_bin = 'C:\ctags.exe'
+endif
 " }}}
 
 " Scheme {{{
@@ -234,6 +262,11 @@ endfunction
 function HDec()
     resize -5
 endfunction
+
+nmap <Leader>h :call VInc()<CR>
+nmap <Leader>l :call VDec()<CR>
+nmap <Leader>j :call HInc()<CR>
+nmap <Leader>k :call HDec()<CR>
 " }}}
 
 " Copy/paste using OS buffer {{{
@@ -283,6 +316,94 @@ if has("gui_running")
     set guioptions-=T " remove toolbar
     set guioptions-=r " remove right-hand scroll
     set guioptions-=L " remove left-hand scroll
+endif
+" }}}
+
+" Set font {{{
+if has("gui_running")
+    set guifont=Consolas:h11:cANSI
+endif
+" }}}
+
+" LSP {{{
+"let g:LanguageClient_serverCommands = {
+"    \ 'cs': ['C:\Users\Misha Gorshenin\.omnisharp\OmniSharp.exe -lsp'],
+"    \ }
+
+nnoremap <F7> :call LanguageClient_contextMenu()<CR>
+" Or map each action separately
+nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+nnoremap <silent> gr :call LanguageClient#textDocument_rename()<CR>
+" }}}
+
+" ALE {{{
+    let g:ale_linters = {
+                \ 'cs' : ['OmniSharp']
+                \}
+" }}}
+
+" OmniSharp {{{
+function OmniSharpInit()
+    let g:OmniSharp_server_path = 'C:\omnisharp\OmniSharp.exe'
+    let g:Omnisharp_timeout = 5
+    let g:OmniSharp_highlight_types = 1
+
+    augroup omnisharp_commands
+        autocmd!
+
+        " Show type information automatically when the cursor stops moving
+        autocmd CursorHold *.cs call OmniSharp#TypeLookupWithoutDocumentation()
+
+        " Update the highlighting whenever leaving insert mode
+        autocmd InsertLeave *.cs call OmniSharp#HighlightBuffer()
+
+        " Alternatively, use a mapping to refresh highlighting for the current buffer
+        autocmd FileType cs nnoremap <buffer> <Leader>th :OmniSharpHighlightTypes<CR>
+
+        " The following commands are contextual, based on the cursor position.
+        autocmd FileType cs nnoremap <buffer> gd :OmniSharpGotoDefinition<CR>
+        autocmd FileType cs nnoremap <buffer> <Leader>fi :OmniSharpFindImplementations<CR>
+        autocmd FileType cs nnoremap <buffer> <Leader>fs :OmniSharpFindSymbol<CR>
+        autocmd FileType cs nnoremap <buffer> <Leader>fu :OmniSharpFindUsages<CR>
+
+        " Finds members in the current buffer
+        autocmd FileType cs nnoremap <buffer> <Leader>fm :OmniSharpFindMembers<CR>
+
+        autocmd FileType cs nnoremap <buffer> <Leader>fx :OmniSharpFixUsings<CR>
+        autocmd FileType cs nnoremap <buffer> <Leader>tt :OmniSharpTypeLookup<CR>
+        autocmd FileType cs nnoremap <buffer> <Leader>dc :OmniSharpDocumentation<CR>
+        autocmd FileType cs nnoremap <buffer> <C-\> :OmniSharpSignatureHelp<CR>
+        autocmd FileType cs inoremap <buffer> <C-\> <C-o>:OmniSharpSignatureHelp<CR>
+
+        " Navigate up and down by method/property/field
+        autocmd FileType cs nnoremap <buffer> <C-k> :OmniSharpNavigateUp<CR>
+        autocmd FileType cs nnoremap <buffer> <C-j> :OmniSharpNavigateDown<CR>
+    augroup END
+
+    " Contextual code actions (uses fzf, CtrlP or unite.vim when available)
+    nnoremap <Leader><Space> :OmniSharpGetCodeActions<CR>
+    " Run code actions with text selected in visual mode to extract method
+    xnoremap <Leader><Space> :call OmniSharp#GetCodeActions('visual')<CR>
+
+    " Rename with dialog
+    nnoremap <Leader>nm :OmniSharpRename<CR>
+    "nnoremap <F2> :OmniSharpRename<CR>
+    " Rename without dialog - with cursor on the symbol to rename: `:Rename newname`
+    command! -nargs=1 Rename :call OmniSharp#RenameTo("<args>")
+
+    nnoremap <Leader>cf :OmniSharpCodeFormat<CR>
+
+    " Start the omnisharp server for the current solution
+    nnoremap <Leader>ss :OmniSharpStartServer<CR>
+    nnoremap <Leader>sp :OmniSharpStopServer<CR>
+
+    " Enable snippet completion
+    " let g:OmniSharp_want_snippet=1
+endfunction
+
+if has("win64") || has("win32")
+    call OmniSharpInit()
 endif
 " }}}
 
