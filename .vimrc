@@ -167,9 +167,12 @@ Plug 'jpalardy/vim-slime'
 Plug 'wlangstroth/vim-racket'
 Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'wesQ3/vim-windowswap'
-Plug 'prabirshrestha/asyncomplete.vim'
-Plug 'ervandew/supertab'
+"Plug 'ervandew/supertab'
 Plug 'w0rp/ale'
+Plug 'roxma/vim-hug-neovim-rpc'
+Plug 'roxma/nvim-yarp'
+Plug 'Shougo/deoplete.nvim'
+
 
 if has("win64") || has("win32")
     Plug 'autozimu/LanguageClient-neovim', {
@@ -187,7 +190,6 @@ if has("win64") || has("win32")
     Plug 'OmniSharp/omnisharp-vim'
 endif
 
-" Plugin 'Shougo/neocomplete.vim'
 
 " Initialize plugin system
 call plug#end()
@@ -325,10 +327,15 @@ if has("gui_running")
 endif
 " }}}
 
+" Disable blinking {{{
+autocmd GUIEnter * set vb t_vb=
+" }}}
+
 " LSP {{{
-"let g:LanguageClient_serverCommands = {
-"    \ 'cs': ['C:\Users\Misha Gorshenin\.omnisharp\OmniSharp.exe -lsp'],
-"    \ }
+let g:LanguageClient_serverCommands = {
+    \ 'c' : ['clangd'],
+    \ 'cpp' : ['clangd'],
+    \ }
 
 nnoremap <F7> :call LanguageClient_contextMenu()<CR>
 " Or map each action separately
@@ -338,6 +345,9 @@ nnoremap <silent> gr :call LanguageClient#textDocument_rename()<CR>
 " }}}
 
 " ALE {{{
+    let g:airline#extensions#ale#enabled = 1
+    let g:ale_completion_enabled = 0
+
     let g:ale_linters = {
                 \ 'cs' : ['OmniSharp']
                 \}
@@ -438,6 +448,14 @@ endfunction
 
 " Find selected expr
 vnoremap // y/<C-R>"<CR>
+" }}}
+
+" Nvim-yarp {{{
+let g:python3_host_prog = 'C:\Users\Misha Gorshenin\AppData\Local\Programs\Python\Python36-32\python.exe'
+" }}}
+
+" Deoplete {{{
+let g:deoplete#enable_at_startup = 1
 " }}}
 
 " Настройка отступов
