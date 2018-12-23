@@ -451,7 +451,9 @@ vnoremap // y/<C-R>"<CR>
 " }}}
 
 " Nvim-yarp {{{
-let g:python3_host_prog = 'C:\Users\Misha Gorshenin\AppData\Local\Programs\Python\Python36-32\python.exe'
+if has("win64") || has("win32")
+    let g:python3_host_prog = 'C:\Users\Misha Gorshenin\AppData\Local\Programs\Python\Python36-32\python.exe'
+endif
 " }}}
 
 " Deoplete {{{
