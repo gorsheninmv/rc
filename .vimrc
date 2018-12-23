@@ -460,6 +460,10 @@ endif
 let g:deoplete#enable_at_startup = 1
 " }}}
 
+" Set cursor at the end of a line {{{
+imap <C-e> <C-o>$
+" }}}
+
 " Настройка отступов
 " ==================
 
