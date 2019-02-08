@@ -172,6 +172,7 @@ Plug 'w0rp/ale'
 Plug 'roxma/vim-hug-neovim-rpc'
 Plug 'roxma/nvim-yarp'
 Plug 'Shougo/deoplete.nvim'
+Plug 'vim-scripts/TagHighlight'
 
 
 if has("win64") || has("win32")
@@ -195,11 +196,25 @@ endif
 call plug#end()
 " }}}
 
-" NERD Tree {{{
-noremap  <F2> :NERDTreeToggle<cr>
-inoremap <F2> <esc>:NERDTreeToggle<cr>
+" Set colorscheme {{{
+color dracula
+" }}}
 
-let NERDTreeHighlightCursorline = 1
+" NERD Tree {{{
+let s:nerdTreeStatus = 0
+
+function MyNerdTreeToggle()
+    exec 'NERDTreeToggle'
+    if s:nerdTreeStatus == 0
+        let s:nerdTreeStatus = 1
+        exec 'hi NERDTreeFile ctermfg=none'
+    endif
+endf
+
+noremap  <F2> :call MyNerdTreeToggle()<CR>
+inoremap <F2> <ESC>:call MyNerdTreeToggle()<CR>
+
+let NERDTreeHighlightCursorline = 0
 let NERDTreeIgnore = ['.vim$', '.*\.pyc$', '.*.pid']
 
 let NERDTreeMinimalUI = 1
@@ -207,14 +222,6 @@ let NERDTreeDirArrows = 1
 let NERDChristmasTree = 1
 let NERDTreeChDirMode = 2
 let NERDTreeMapJumpFirstChild = 'gK'
-
-function OpenProFolder()
-    if has("win64") || has("win32")
-        :NERDTree C:\projects\
-    endif
-endfunction
-
-: command Pro :call OpenProFolder()
 " }}}
 
 " BufExplorer {{{
@@ -296,10 +303,6 @@ imap <C-r> <RIGHT><SPACE>
 
 " Switch focus between splits {{{
 nmap <Tab> <C-w>w
-" }}}
-
-" Set colorscheme {{{
-color dracula
 " }}}
 
 " Openning command for gvim {{{
@@ -462,6 +465,13 @@ let g:deoplete#enable_at_startup = 1
 
 " Set cursor at the end of a line {{{
 imap <C-e> <C-o>$
+" }}}
+
+" Set listchars colors (Neovim only) {{{
+if has('nvim')
+    hi NonText ctermfg=242
+    hi Whitespace ctermfg=242
+endif
 " }}}
 
 " Настройка отступов
