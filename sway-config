@@ -27,11 +27,10 @@ output HDMI-A-2 position 0,0
 
 
 # Idle configuration
-exec swayidle -w \
-         timeout 300 'lock' \
-         timeout 600 'swaymsg "output * dpms off"' \
-              resume 'swaymsg "output * dpms on"' \
-
+exec swayidle \
+    timeout 300 'lock' \
+    timeout 600 'swaymsg "output * dpms off"' \
+        resume 'swaymsg "output * dpms on"'
 
 # Input devices configuration
 #input "2:8:AlpsPS\/2_ALPS_DualPoint_TouchPad" {
@@ -40,7 +39,7 @@ exec swayidle -w \
 
 input "1:1:AT_Translated_Set_2_keyboard" {
 	xkb_layout us,ru
-	xkb_options "grp:win_space_toggle"
+	xkb_options "grp:win_space_toggle, caps:ctrl_modifier"
 }
 
 input * tap enabled
@@ -48,7 +47,7 @@ input * tap enabled
 
 # Key bindings
     # start a terminal
-    bindsym $mod+Return exec $term
+    bindsym $mod+t exec DRI_PRIME=1 $term
 
     # kill focused window
     bindsym $mod+Shift+q kill
@@ -90,10 +89,10 @@ input * tap enabled
     bindsym $mod+Shift+Right move right
 
     # switch to workspace
-    bindsym $mod+1 workspace 1
-    bindsym $mod+2 workspace 2
-    bindsym $mod+3 workspace 3
-    bindsym $mod+4 workspace 4
+    bindsym $mod+1 workspace 1:term
+    bindsym $mod+2 workspace 2:browser
+    bindsym $mod+3 workspace 3:chat
+    bindsym $mod+4 workspace 4:mail
     bindsym $mod+5 workspace 5
     bindsym $mod+6 workspace 6
     bindsym $mod+7 workspace 7
@@ -102,16 +101,20 @@ input * tap enabled
     bindsym $mod+0 workspace 10
 
     # move focused container to workspace
-    bindsym $mod+Shift+1 move container to workspace 1
-    bindsym $mod+Shift+2 move container to workspace 2
-    bindsym $mod+Shift+3 move container to workspace 3
-    bindsym $mod+Shift+4 move container to workspace 4
+    bindsym $mod+Shift+1 move container to workspace 1:term
+    bindsym $mod+Shift+2 move container to workspace 2:browser
+    bindsym $mod+Shift+3 move container to workspace 3:chat
+    bindsym $mod+Shift+4 move container to workspace 4:mail
     bindsym $mod+Shift+5 move container to workspace 5
     bindsym $mod+Shift+6 move container to workspace 6
     bindsym $mod+Shift+7 move container to workspace 7
     bindsym $mod+Shift+8 move container to workspace 8
     bindsym $mod+Shift+9 move container to workspace 9
     bindsym $mod+Shift+0 move container to workspace 10
+
+    #move focused workspace between monitors
+    bindsym $mod+Ctrl+j move workspace to output down
+    bindsym $mod+Ctrl+k move workspace to output up
 
     # You can "split" the current object of your focus with
     # $mod+b or $mod+v, for horizontal and vertical splits
@@ -179,22 +182,30 @@ input * tap enabled
 
 
 # Status bar
+#bar {
+#    position top
+#
+#    status_command while ~/.config/sway/status.sh; do sleep 1; done
+#
+#    colors {
+#        statusline #ffffff
+#        background #32323280
+#        inactive_workspace #32323280 #32323280 #ffffff
+#    }
+#}
+
 bar {
-    position top
-
-    status_command while ~/.config/sway/status.sh; do sleep 1; done
-
-    colors {
-        statusline #ffffff
-        background #32323280
-        inactive_workspace #32323280 #32323280 #5c5c5c
-    }
+    swaybar_command waybar
 }
 
 
+
 # Border
-default_border pixel
-client.focused #ff0000 #ff0000 #ff0000 #ff0000 #ff0000 
+default_border pixel 5px
+client.focused #000000ff #000000b0 #ffffff #00000000 #00000000
+
+# Exec notification server
+exec mako --default-timeout 4000
 
 
 include /etc/sway/config.d/*
