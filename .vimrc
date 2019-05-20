@@ -474,6 +474,16 @@ if has('nvim')
 endif
 " }}}
 
+" Disable putting comment symbols automatically {{{
+au BufEnter * set fo-=r fo-=o
+" }}}
+
+" Create and go to newline in normal mode {{{
+nmap <Leader>o o<ESC>
+nmap <Leader>O O<ESC>
+" }}}
+
+
 " Настройка отступов
 " ==================
 
