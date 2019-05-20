@@ -12,15 +12,4 @@ if [ -f "$LINKPATH" ]
 fi
 ln -s "$FILEPATH" "$LINKPATH"
 
-
-FILENAME=".tmux.conf.local"
-LINKPATH="$HOME/$FILENAME"
-FILEPATH="$BASEDIR/$FILENAME"
-
-
-if [ -f "$LINKPATH" ]
-	then rm "$LINKPATH"
-fi
-ln -s "$FILEPATH" "$LINKPATH"
-
 echo "script completed!"
