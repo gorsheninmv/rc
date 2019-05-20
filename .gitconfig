@@ -4,6 +4,7 @@
 [core]
 	editor = vim
 	autocrlf = input
+	hooksPath = .githooks
 [merge]
 	tool = vimdiff
 [color]
