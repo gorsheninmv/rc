@@ -153,7 +153,7 @@ set undofile
 " Specify a directory for plugins
 " - For Neovim: ~/.local/share/nvim/plugged
 " - Avoid using standard Vim directory names like 'plugin'
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'scrooloose/nerdtree'
 Plug 'dracula/vim'
@@ -173,6 +173,7 @@ Plug 'roxma/vim-hug-neovim-rpc'
 Plug 'roxma/nvim-yarp'
 Plug 'Shougo/deoplete.nvim'
 Plug 'vim-scripts/TagHighlight'
+Plug 'NLKNguyen/papercolor-theme'
 
 
 if has("win64") || has("win32")
@@ -197,7 +198,8 @@ call plug#end()
 " }}}
 
 " Set colorscheme {{{
-color dracula
+set background=light
+color PaperColor
 " }}}
 
 " NERD Tree {{{
@@ -482,6 +484,8 @@ au BufEnter * set fo-=r fo-=o
 nmap <Leader>o o<ESC>
 nmap <Leader>O O<ESC>
 " }}}
+
+let g:airline_theme='papercolor'
 
 
 " Настройка отступов
