@@ -18,12 +18,13 @@ set $menu rofi -show run
 
 
 # Background
-output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+#output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+#output * bg ~/my-photos/_MG_0688.jpg fill
 
 
 # Monitors configuration
-output eDP-1 position 0,1080
-output HDMI-A-2 position 0,0
+output eDP-1 position 0,1080 bg ~/my-photos/_MG_0688.jpg stretch
+output HDMI-A-2 position 0,0 bg ~/my-photos/_MG_0688.jpg stretch
 
 
 # Idle configuration
