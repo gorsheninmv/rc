@@ -20,9 +20,4 @@ export EDITOR
 source ~/.bashrc
 
 export PATH="$HOME/.cargo/bin:/usr/lib/llvm-6.0/bin:$PATH"
-export PS1="\[\033[32;1m\][\u@\h \W]\[\033[32;5m\]\$ \[\033[m\]"
 export PKG_CONFIG_PATH="/usr/lib/x86_64-linux-gnu/pkgconfig"
-
-if [ "$OS" == "win" ]; then
-    export LS_COLORS="ow=01;35;40"
-fi

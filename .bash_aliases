@@ -21,3 +21,11 @@ function unmnt {
 		 echo "Device name is not defined"
 	fi
 }
+
+function add-wsl-aliases {
+    alias pro='cd /mnt/c/projects'
+}
+
+if grep -q Microsoft /proc/version; then
+    add-wsl-aliases
+fi

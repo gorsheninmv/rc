@@ -489,8 +489,7 @@ nmap <Leader>O O<ESC>
 " }}}
 
 let g:airline_theme='papercolor'
-
-
+let g:airline#extensions#keymap#enabled = 0
 " Настройка отступов
 " ==================
 
