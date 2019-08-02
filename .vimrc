@@ -171,14 +171,13 @@ Plug 'jpalardy/vim-slime'
 Plug 'wlangstroth/vim-racket'
 Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'wesQ3/vim-windowswap'
-"Plug 'ervandew/supertab'
-"Plug 'w0rp/ale'
-"Plug 'roxma/vim-hug-neovim-rpc'
-"Plug 'roxma/nvim-yarp'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'vim-scripts/TagHighlight'
 Plug 'NLKNguyen/papercolor-theme'
 
+Plug 'wincent/command-t', {
+    \   'do': 'cd ruby/command-t/ext/command-t && ruby extconf.rb && make'
+    \ }
 
 if has("win64") || has("win32")
     Plug 'autozimu/LanguageClient-neovim', {
@@ -191,11 +190,6 @@ else
         \ 'do': 'bash install.sh',
         \ }
 endif
-
-"if has("win64") || has("win32")
-"    Plug 'OmniSharp/omnisharp-vim'
-"endif
-
 
 " Initialize plugin system
 call plug#end()
@@ -356,15 +350,6 @@ nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
 nnoremap <silent> gr :call LanguageClient#textDocument_rename()<CR>
 " }}}
 
-" ALE {{{
-    let g:airline#extensions#ale#enabled = 1
-    let g:ale_completion_enabled = 0
-
-    let g:ale_linters = {
-                \ 'cs' : ['OmniSharp']
-                \}
-" }}}
-
 " OmniSharp {{{
 function OmniSharpInit()
     let g:OmniSharp_server_path = 'C:\omnisharp\OmniSharp.exe'
@@ -493,8 +478,10 @@ nmap <Leader>O O<ESC>
 " }}}
 
 let g:indentLine_setConceal = 0
+" Set airline options {{{
 let g:airline_theme='papercolor'
 let g:airline#extensions#keymap#enabled = 0
+" }}}
 
 " Настройка отступов
 " ==================
