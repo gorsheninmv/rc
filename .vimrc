@@ -172,10 +172,10 @@ Plug 'wlangstroth/vim-racket'
 Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'wesQ3/vim-windowswap'
 "Plug 'ervandew/supertab'
-Plug 'w0rp/ale'
-Plug 'roxma/vim-hug-neovim-rpc'
-Plug 'roxma/nvim-yarp'
-Plug 'Shougo/deoplete.nvim'
+"Plug 'w0rp/ale'
+"Plug 'roxma/vim-hug-neovim-rpc'
+"Plug 'roxma/nvim-yarp'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'vim-scripts/TagHighlight'
 Plug 'NLKNguyen/papercolor-theme'
 
@@ -192,9 +192,9 @@ else
         \ }
 endif
 
-if has("win64") || has("win32")
-    Plug 'OmniSharp/omnisharp-vim'
-endif
+"if has("win64") || has("win32")
+"    Plug 'OmniSharp/omnisharp-vim'
+"endif
 
 
 " Initialize plugin system
