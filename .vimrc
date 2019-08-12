@@ -492,8 +492,10 @@ nmap <Leader>o o<ESC>
 nmap <Leader>O O<ESC>
 " }}}
 
+let g:indentLine_setConceal = 0
 let g:airline_theme='papercolor'
 let g:airline#extensions#keymap#enabled = 0
+
 " Настройка отступов
 " ==================
 
