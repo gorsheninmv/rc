@@ -2,6 +2,10 @@
 set number
 " }}}
 
+" Read changes automatically {{{
+set autoread
+" }}}
+
 " Highlight syntax {{{
 syntax on
 " }}}
