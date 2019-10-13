@@ -420,6 +420,14 @@ let g:airline#extensions#keymap#enabled = 0
 " }}}
 
 let g:ruby_host_prog = '~/.gem/ruby/2.6.0/bin/neovim-ruby-host'
+
+" C features {{{
+augroup c_features
+    au!
+    au FileType c inoremap {<CR> {<CR>}<ESC>O
+augroup end
+" }}}
+
 " Настройка отступов
 " ==================
 
