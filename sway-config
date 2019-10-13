@@ -161,9 +161,6 @@ bindsym --to-code {
     # Screen lock
     $mod+Ctrl+l exec lock
 
-    # Changing layout info
-    $mod+space exec ~/change-layout-info.sh
-
     # Hiding/showing waybar
     $mod+x exec killall -SIGUSR1 waybar
  }
