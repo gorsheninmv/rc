@@ -162,7 +162,8 @@ bindsym --to-code {
     $mod+Ctrl+l exec lock
 
     # Hiding/showing waybar
-    $mod+x exec killall -SIGUSR1 waybar
+    #$mod+x exec killall -SIGUSR1 waybar
+    $mod+x exec ~/tmp/bar-toggle
  }
 
 # mouse button for dragging.
