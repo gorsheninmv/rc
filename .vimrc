@@ -335,6 +335,7 @@ autocmd GUIEnter * set vb t_vb=
 " }}}
 
 " LSP {{{
+let g:LanguageClient_loggingFile='/home/mg/lsp.log'
 let g:LanguageClient_settingsPath='.vim/language-client.json'
 let g:LanguageClient_serverCommands = {
     \ 'c' : ['clangd'],
