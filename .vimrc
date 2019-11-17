@@ -421,6 +421,7 @@ let g:airline#extensions#keymap#enabled = 0
 " }}}
 
 let g:ruby_host_prog = '~/.gem/ruby/2.6.0/bin/neovim-ruby-host'
+let g:python3_host_prog = '/usr/bin/python3'
 
 " C features {{{
 augroup c_features
