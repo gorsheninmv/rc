@@ -95,7 +95,7 @@ bindsym --to-code {
     $mod+1 workspace 1:term
     $mod+2 workspace 2:browser
     $mod+3 workspace 3:chat
-    $mod+4 workspace 4:mail
+    $mod+4 workspace 4
     $mod+5 workspace 5
     $mod+6 workspace 6
     $mod+7 workspace 7
