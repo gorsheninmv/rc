@@ -340,7 +340,7 @@ let g:LanguageClient_settingsPath='.vim/language-client.json'
 let g:LanguageClient_serverCommands = {
     \ 'c' : ['clangd'],
     \ 'cpp' : ['clangd'],
-    \ 'python' : ['dotnet', 'exec', '/home/mg/pls/output/bin/Debug/Microsoft.Python.LanguageServer.dll'],
+    \ 'python' : ['dotnet', 'exec', '/usr/lib/microsoft-python-language-server/Microsoft.Python.LanguageServer.dll'],
     \ }
 
 nnoremap <F7> :call LanguageClient_contextMenu()<CR>
