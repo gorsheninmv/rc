@@ -430,6 +430,9 @@ augroup c_features
 augroup end
 " }}}
 
+" Greeting
+echo "(>^.^<)"
+
 " Настройка отступов
 " ==================
 
