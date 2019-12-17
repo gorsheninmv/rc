@@ -2,7 +2,7 @@
 	email = gorshenin.mv@gmail.com
 	name = Misha Gorshenin
 [core]
-	editor = nvim
+	editor = nvim -u NONE
 	autocrlf = input
 	hooksPath = .githooks
 [merge]
