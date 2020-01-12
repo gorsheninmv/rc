@@ -5,6 +5,7 @@ alias c='clear'
 alias t='tmux attach || tmux new'
 alias v='vim'
 alias notes='vim /home/mg/Dropbox/Блокнот'
+alias cal='cal -m -w -3'
 
 function mnt {
 	if [ "$1" ]
