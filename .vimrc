@@ -343,6 +343,9 @@ let g:LanguageClient_serverCommands = {
     \ 'cpp' : ['clangd'],
     \ 'python' : ['dotnet', 'exec', '/usr/lib/microsoft-python-language-server/Microsoft.Python.LanguageServer.dll'],
     \ }
+let g:LanguageClient_rootMarkers = {
+     \ 'python' : ['pyproject.toml'],
+     \ }
 
 nnoremap <F7> :call LanguageClient_contextMenu()<CR>
 
