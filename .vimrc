@@ -12,7 +12,7 @@ syntax on
 
 " Add russian keymap {{{
 set keymap=russian-jcukenwin
-inoremap <F5> <C-^>
+inoremap <C-f> <C-^>
 set iminsert=0
 set imsearch=0
 " }}}
