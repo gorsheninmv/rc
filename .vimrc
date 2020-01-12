@@ -293,9 +293,13 @@ inoremap [] []<LEFT>
 inoremap {} {}<LEFT>
 inoremap () ()<LEFT>
 inoremap <> <><LEFT>
+" }}}
 
-" Set cursor after closing symbol
-imap <C-r> <RIGHT><SPACE>
+" Map arrow buttons {{{
+inoremap <C-h> <LEFT>
+inoremap <C-j> <DOWN>
+inoremap <C-k> <UP>
+inoremap <C-l> <RIGHT>
 " }}}
 
 " Switch focus between splits {{{
