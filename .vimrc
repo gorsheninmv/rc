@@ -174,10 +174,7 @@ Plug 'wesQ3/vim-windowswap'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'vim-scripts/TagHighlight'
 Plug 'NLKNguyen/papercolor-theme'
-
-Plug 'wincent/command-t', {
-    \   'do': 'cd ruby/command-t/ext/command-t && ruby extconf.rb && make'
-    \ }
+Plug 'kien/ctrlp.vim'
 
 if has("win64") || has("win32")
     Plug 'autozimu/LanguageClient-neovim', {
@@ -420,7 +417,6 @@ let g:airline_theme='papercolor'
 let g:airline#extensions#keymap#enabled = 0
 " }}}
 
-let g:ruby_host_prog = '~/.gem/ruby/2.6.0/bin/neovim-ruby-host'
 let g:python3_host_prog = '/usr/bin/python3'
 
 " C features {{{
