@@ -15,10 +15,14 @@ set $right l
 #set $term ~/tmp/alacritty-debug
 set $term alacritty
 
+# Scripts directory
+set $scripts ~/.local/bin/sway/scripts
+
 
 # Menu
-set $menu exec alacritty --class launcher --dimensions 30 20 --command ~/tmp/sway-launcher
+set $menu exec alacritty --class launcher --dimensions 30 20 --command $scripts/launcher.sh
 for_window [app_id="launcher"] floating enable, border none
+for_window [class="zoom"] floating enable, border none, focus, resize set width 30 ppt height 70 ppt
 
 # }}}
 
@@ -107,7 +111,7 @@ bindsym --to-code {
     $mod+Shift+1 move container to workspace 1:term
     $mod+Shift+2 move container to workspace 2:browser
     $mod+Shift+3 move container to workspace 3:chat
-    $mod+Shift+4 move container to workspace 4:mail
+    $mod+Shift+4 move container to workspace 4
     $mod+Shift+5 move container to workspace 5
     $mod+Shift+6 move container to workspace 6
     $mod+Shift+7 move container to workspace 7
@@ -137,7 +141,7 @@ bindsym --to-code {
     $mod+Shift+space floating toggle
 
     # Swap focus between the tiling area and the floating area
-    # $mod+space focus mode_toggle
+    $mod+t focus mode_toggle
 
     # move focus to the parent container
     $mod+a focus parent
@@ -166,8 +170,7 @@ bindsym --to-code {
     $mod+Ctrl+l exec lock
 
     # Hiding/showing waybar
-    #$mod+x exec killall -SIGUSR1 waybar
-    $mod+x exec ~/tmp/bar-toggle
+    $mod+x exec ~/.local/bin/sway/scripts/bar-toggle
  }
 
 # mouse button for dragging.
@@ -196,6 +199,9 @@ mode "resize" {
         Escape mode "default"
     }
 }
+
+bindsym Mod1+tab exec $scripts/alttab.py next
+bindsym Mod1+shift+tab $scripts/alttab.py prev
 
 # }}}
 
