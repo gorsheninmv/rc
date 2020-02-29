@@ -49,9 +49,6 @@ def focused(temp_win):
     
     return 9;
 
-with open('log', 'w+') as file:
-    file.write('begin\n')
-    file.write(repr(temp))
 
 makelist(temp)
 focus = focused(windows)
