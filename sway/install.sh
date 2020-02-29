@@ -14,7 +14,7 @@ fi
 LINKFULLPATH="$CONFIGPATH/config"
 FILEFULLPATH="$BASEDIR/config"
 
-if [ -e $LINKFULLPATH ]
+if [ -f $LINKFULLPATH ]
     then rm $LINKFULLPATH
 fi
 
@@ -40,7 +40,28 @@ ln -s $FOLDERFULLPATH $LINKFULLPATH
 LINKFULLPATH="$BINPATH/start.sh"
 FILEFULLPATH="$BASEDIR/start.sh"
 
+if [ -f $LINKFULLPATH ]
+    then rm $LINKFULLPATH
+fi
+
 ln -s $FILEFULLPATH $LINKFULLPATH
+
+
+# Waybar configuration
+CONFIGPATH="$HOME/.config"
+
+if [ ! -d $CONFIGPATH ]
+    then mkdir -p $CONFIGPATH
+fi
+
+LINKFULLPATH="$CONFIGPATH/waybar"
+FOLDERFULLPATH="$BASEDIR/waybar"
+
+if [ -d $LINKFULLPATH ]
+    then rm -rf $LINKFULLPATH
+fi
+
+ln -s $FOLDERFULLPATH $LINKFULLPATH
 
 
 echo "script completed"

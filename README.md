@@ -5,4 +5,4 @@ This is my collection of rc files. You are free to use it how you want.
 To install run *install.sh*. Read it wisely before installing.
 
 ## sway
-To install run *install.sh*. Read it wisely before installing.
+To install run *install.sh*. Read it wisely before installing. It contains *waybar* config inside.
