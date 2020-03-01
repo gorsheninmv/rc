@@ -5,8 +5,13 @@ This is my collection of rc files. You are free to use it how you want.
 To install run *install.sh*. Read it wisely before installing.
 
 ## sway
-To install run *install.sh*. Read it wisely before installing. It contains *waybar* config inside.
+To install run *install.sh*. Read it wisely before installing.
 
-## control
-To install run *install.sh*. Read it wisely before installing. These sripts are used for system control in swaywm.
+### waybar
+Contains configuration for Waybar.
 
+### scripts
+Contains scripts which are used inside of sway configuration.
+
+### control
+Conteins scripts which are used to control the system.
