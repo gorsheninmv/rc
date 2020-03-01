@@ -3,6 +3,18 @@
 SCRIPT=$(realpath -e "$0")
 BASEDIR=$(dirname "$SCRIPT")
 
+# Install scripts for Sway
+"$BASEDIR/scripts/install.sh"
+echo "scripts for Sway installed"
+
+# Set Waybar configuration
+"$BASEDIR/waybar/install.sh"
+echo "Waybar configuration installed"
+
+# Install system control scripts
+"$BASEDIR/control/install.sh"
+echo "system control installed"
+
 
 # Configuration
 CONFIGPATH="$HOME/.config/sway"
@@ -12,56 +24,19 @@ if [ ! -d "$CONFIGPATH" ]
 fi
 
 LINKFULLPATH="$CONFIGPATH/config"
-FILEFULLPATH="$BASEDIR/config"
+FILEFULLPATH="$BASEDIR/src/config"
 
-if [ -f $LINKFULLPATH ]
-    then rm $LINKFULLPATH
-fi
-
-ln -s $FILEFULLPATH $LINKFULLPATH 
+echo "ln -s -f $FILEFULLPATH $LINKFULLPATH"
+ln -s -f $FILEFULLPATH $LINKFULLPATH 
 
 
-# Bin
+# Start script
 BINPATH="$HOME/.local/bin/sway"
-
-if [ ! -d $BINPATH ]
-    then mkdir -p $BINPATH
-fi
-
-LINKFULLPATH="$BINPATH/scripts"
-FOLDERFULLPATH="$BASEDIR/scripts"
-
-if [ -d $LINKFULLPATH ]
-    then rm -rf $LINKFULLPATH
-fi
-
-ln -s $FOLDERFULLPATH $LINKFULLPATH
-
 LINKFULLPATH="$BINPATH/start.sh"
-FILEFULLPATH="$BASEDIR/start.sh"
+FILEFULLPATH="$BASEDIR/src/start.sh"
 
-if [ -f $LINKFULLPATH ]
-    then rm $LINKFULLPATH
-fi
-
-ln -s $FILEFULLPATH $LINKFULLPATH
+echo "ln -s -f $FILEFULLPATH $LINKFULLPATH"
+ln -s -f $FILEFULLPATH $LINKFULLPATH
 
 
-# Waybar configuration
-CONFIGPATH="$HOME/.config"
-
-if [ ! -d $CONFIGPATH ]
-    then mkdir -p $CONFIGPATH
-fi
-
-LINKFULLPATH="$CONFIGPATH/waybar"
-FOLDERFULLPATH="$BASEDIR/waybar"
-
-if [ -d $LINKFULLPATH ]
-    then rm -rf $LINKFULLPATH
-fi
-
-ln -s $FOLDERFULLPATH $LINKFULLPATH
-
-
-echo "script completed"
+echo "script completed!"

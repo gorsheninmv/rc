@@ -8,7 +8,6 @@ BINPATH="$HOME/.local/bin"
 
 for item in ${COMMANDS[@]}
 do
-    ln -sf $BASEDIR/$item $BINPATH/$item
+    echo "ln -s -f "$BASEDIR/src/$item" "$BINPATH/$item""
+    ln -s -f "$BASEDIR/src/$item" "$BINPATH/$item"
 done
-
-echo "script completed!"
