@@ -15,3 +15,6 @@ Contains scripts which are used inside of sway configuration.
 
 ### control
 Conteins scripts which are used to control the system.
+
+## vifm
+To install run *install.sh*. Read it wisely before installing.
