@@ -1,0 +1,3 @@
+#!/bin/bash
+
+swaymsg -t command exec "systemctl poweroff"
