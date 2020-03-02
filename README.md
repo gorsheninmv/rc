@@ -18,3 +18,11 @@ Conteins scripts which are used to control the system.
 
 ## vifm
 To install run *install.sh*. Read it wisely before installing.
+
+## git
+To install run *install.sh*. Read it wisely before installing.
+
+## tmux
+To install run *install.sh*. Read it wisely before installing.
+Note this config works only with *ohmyzsh* tmux plugin enabled.
+Also it needs to set some env variables to work this properly (see *.zshenv*).
