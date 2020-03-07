@@ -168,7 +168,11 @@ bindsym --to-code {
 
     # Hiding/showing waybar
     $mod+x exec ~/.local/bin/sway/scripts/bar-toggle
- }
+
+    # Screenshot (experimental feature)
+    $mod+p exec $scripts/screenshot.sh
+    $mod+shift+p exec $scripts/screenshot.sh win
+}
 
 # mouse button for dragging.
 floating_modifier $mod normal
