@@ -167,7 +167,7 @@ bindsym --to-code {
     $mod+Ctrl+l exec lock
 
     # Hiding/showing waybar
-    $mod+x exec ~/.local/bin/sway/scripts/bar-toggle
+    $mod+x exec $scripts/bar-toggle.sh
 
     # Screenshot (experimental feature)
     $mod+p exec $scripts/screenshot.sh
