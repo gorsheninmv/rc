@@ -226,7 +226,7 @@ exec mako --default-timeout 7000
 
 exec dropbox
 #exec sway-inact-win-transparency
-#exec blueman-applet
+exec blueman-applet
 # }}}
 
 include /etc/sway/config.d/*
