@@ -15,6 +15,9 @@ augroup scheme_features
     au FileType BufEnter *.scm :RainbowParentheses setlocal lisp
 augroup end
 
+" Trim end lines
+au BufWritePre * call TrimEndLines()
+
 let g:python3_host_prog = '/usr/bin/python3'
 
 " Greeting

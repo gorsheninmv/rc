@@ -21,3 +21,10 @@ function! Funcs_NerdTreeToggle()
         exec 'hi NERDTreeFile ctermfg=none'
     endif
 endf
+
+
+function! TrimEndLines()
+    let save_cursor = getpos(".")
+    silent! %s#\($\n\s*\)\+\%$##
+    call setpos('.', save_cursor)
+endfunction
