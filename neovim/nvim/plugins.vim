@@ -74,8 +74,3 @@ let g:deoplete#enable_at_startup = 1
 " Airline
 let g:airline_theme='papercolor'
 let g:airline#extensions#keymap#enabled = 0
-
-
-" Indentline
-let g:indentLine_setConceal = 0
-
