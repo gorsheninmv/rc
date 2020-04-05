@@ -209,9 +209,10 @@ bindsym Mod1+shift+tab $scripts/alttab.py prev
 
 # UI configuration {{{
 
-default_border none
-client.focused #000000FF #0087AF #FFFFFF #00000000 #00000000
+default_border pixel 5px
+client.focused #0087AF #0087AF #FFFFFF #00000000 #0087AF
 client.unfocused #000000EE #EEEEEE #000000 #00000000 #00000000
+smart_borders on
 
 # }}}
 
