@@ -26,7 +26,6 @@ fi
 LINKFULLPATH="$CONFIGPATH/config"
 FILEFULLPATH="$BASEDIR/src/config"
 
-echo "ln -s -f $FILEFULLPATH $LINKFULLPATH"
 ln -s -f $FILEFULLPATH $LINKFULLPATH 
 
 
@@ -35,8 +34,6 @@ BINPATH="$HOME/.local/bin/sway"
 LINKFULLPATH="$BINPATH/start.sh"
 FILEFULLPATH="$BASEDIR/src/start.sh"
 
-echo "ln -s -f $FILEFULLPATH $LINKFULLPATH"
 ln -s -f $FILEFULLPATH $LINKFULLPATH
-
 
 echo "script completed!"
