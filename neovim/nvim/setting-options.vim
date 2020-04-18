@@ -17,6 +17,7 @@ set visualbell                  " enable visualbell
 set cursorline                  " highlight current line
 set ruler                       " show cursor position always
 set colorcolumn=100             " highlight max width
+set relativenumber              " show relative line numbers
 set wildmenu                    " enable command-line completion
 set wildmode=list:longest       " show matches in list
 set undodir=~/.vim/tmp/undo//   " use undo directory
