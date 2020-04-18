@@ -45,9 +45,6 @@ inoremap <C-j> <DOWN>
 inoremap <C-k> <UP>
 inoremap <C-l> <RIGHT>
 
-" Switch focus between splits
-nmap <Tab> <C-w>w
-
 " Grep mappings
 nnoremap <silent><leader>g :set operatorfunc=Funcs_Grep<cr>g@
 vnoremap <silent><leader>g :<c-u>silent call Funcs_Grep(visualmode())<cr>
