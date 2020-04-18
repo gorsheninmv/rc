@@ -19,6 +19,7 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'vim-scripts/TagHighlight'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'kien/ctrlp.vim'
+Plug 'lervag/vimtex'
 " Plug 'neovim/nvim-lsp' since v0.5
 
 if has("win64") || has("win32")
@@ -74,3 +75,7 @@ let g:deoplete#enable_at_startup = 1
 " Airline
 let g:airline_theme='papercolor'
 let g:airline#extensions#keymap#enabled = 0
+
+" Vimtex
+let g:tex_flavor = 'latex'
+let g:vimtex_view_method = 'mupdf'
