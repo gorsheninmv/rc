@@ -94,7 +94,7 @@ bindsym --to-code {
 
     # switch to workspace
     $mod+1 workspace 1:term
-    $mod+2 workspace 2:browser
+    $mod+2 workspace 2:www
     $mod+3 workspace 3:chat
     $mod+4 workspace 4
     $mod+5 workspace 5
@@ -106,7 +106,7 @@ bindsym --to-code {
 
     # move focused container to workspace
     $mod+Shift+1 move container to workspace 1:term
-    $mod+Shift+2 move container to workspace 2:browser
+    $mod+Shift+2 move container to workspace 2:www
     $mod+Shift+3 move container to workspace 3:chat
     $mod+Shift+4 move container to workspace 4
     $mod+Shift+5 move container to workspace 5
