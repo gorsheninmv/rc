@@ -1,3 +1,8 @@
+" Transparent background
+au ColorScheme * hi NonText ctermbg=none
+au ColorScheme * hi Normal ctermbg=none
+au ColorScheme * hi LineNr ctermbg=none
+
 runtime plugins.vim
 runtime functions.vim
 runtime setting-options.vim
