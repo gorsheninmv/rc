@@ -9,6 +9,7 @@ if [ -n $DISPLAY ]; then
     export CLUTTER_BACKEND=wayland
     export SDL_VIDEODRIVER=wayland
     export BEMENU_BACKEND=wayland
+    export MOZ_DBUS_REMOTE=1
     #export DISPLAY=:0
     #export WAYLAND_DISPLAY=wayland-0
 fi
