@@ -3,9 +3,8 @@ alias off='shutdown -h now'
 alias rbt='reboot'
 alias c='clear'
 alias t='tmux attach || tmux new'
-alias v='vim'
-alias notes='vim /home/mg/Dropbox/Блокнот'
 alias cal='cal -m -w -3'
+alias mpv='mpv --geometry=40%'
 
 function mnt {
 	if [ "$1" ]
