@@ -21,9 +21,6 @@ set $scripts ~/.local/bin/sway/scripts
 
 # Menu
 set $menu exec alacritty --class launcher --dimensions 30 20 --command $scripts/launcher.sh
-for_window [app_id="launcher"] floating enable, border none
-for_window [class="zoom"] floating enable, border none, focus, resize set width 30 ppt height 70 ppt
-for_window [title="countdown"] floating enable
 # }}}
 
 
@@ -49,6 +46,14 @@ exec swayidle \
     timeout 600 'swaymsg "output * dpms off"' \
         resume 'swaymsg "output * dpms on"'
 
+# }}}
+
+
+# For window event handlers {{{
+for_window [app_id="launcher"] floating enable, border none
+for_window [class="zoom"] floating enable, border none, focus, resize set width 30 ppt height 70 ppt
+for_window [title="countdown"] floating enable
+for_window [title="mpv"] floating enable, border none
 # }}}
 
 
