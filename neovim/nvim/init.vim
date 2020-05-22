@@ -23,6 +23,11 @@ augroup end
 " Trim end lines
 au BufWritePre * call TrimEndLines()
 
+augroup tex_settings
+    au!
+    au BufRead,BufNewFile *.tex setlocal textwidth=100
+augroup end
+
 let g:python3_host_prog = '/usr/bin/python3'
 
 " Greeting
