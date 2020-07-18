@@ -28,6 +28,11 @@ augroup tex_settings
     au BufRead,BufNewFile *.tex setlocal textwidth=100
 augroup end
 
+augroup makefiles
+    au!
+    au! FileType make set noexpandtab shiftwidth=8 softtabstop=0
+augroup end
+
 let g:python3_host_prog = '/usr/bin/python3'
 
 " Greeting
