@@ -16,6 +16,7 @@ Plug 'wlangstroth/vim-racket'
 Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'wesQ3/vim-windowswap'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'Shougo/echodoc.vim'
 Plug 'vim-scripts/TagHighlight'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'lervag/vimtex'
@@ -70,6 +71,12 @@ let g:LanguageClient_rootMarkers = {
 
 " Deoplete
 let g:deoplete#enable_at_startup = 1
+
+
+" Echodoc
+let g:echodoc#enable_at_startup = 1
+let g:echodoc#type = 'floating'
+highlight link EchoDocFloat Pmenu
 
 
 " Airline
