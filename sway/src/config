@@ -21,6 +21,7 @@ set $scripts ~/.local/bin/sway/scripts
 
 # Menu
 set $menu exec alacritty --class launcher --dimensions 30 20 --command $scripts/launcher.sh
+# set $menu bemenu-run --list=10 -m all
 # }}}
 
 
