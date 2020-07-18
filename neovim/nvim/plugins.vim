@@ -58,6 +58,8 @@ let g:wisndowswap_map_keys = 0
 
 
 " LSP
+let g:LanguageClient_selectionUI = "quickfix"
+let g:LanguageClient_useFloatingHover = 1
 let g:LanguageClient_settingsPath='.vim/language-client.json'
 let g:LanguageClient_serverCommands = {
     \ 'c' : ['clangd'],
