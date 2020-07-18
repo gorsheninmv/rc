@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 # terminal application launcher for sway, using fzf
 # original command:
 # Based on: https://github.com/swaywm/sway/issues/1367
@@ -60,4 +60,3 @@ printf "%s\n" "${update_line}" "${command_history}" | \
 # execute command
 echo "$command_str"
 swaymsg -t command exec "$command_str"
-
