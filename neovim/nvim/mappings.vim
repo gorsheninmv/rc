@@ -63,6 +63,9 @@ nnoremap <silent><leader>s :call WindowSwap#EasyWindowSwap()<CR>
 " Tagbar
 nnoremap <silent><F9> :TagbarToggle<CR>
 
+" fzf
+nnoremap <silent> <leader>F :FZF<CR>
+
 " LSP
 nnoremap <F7> :call LanguageClient_contextMenu()<CR>
 nnoremap <silent>K :call LanguageClient#textDocument_hover()<CR>

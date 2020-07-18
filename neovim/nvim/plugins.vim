@@ -18,8 +18,8 @@ Plug 'wesQ3/vim-windowswap'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'vim-scripts/TagHighlight'
 Plug 'NLKNguyen/papercolor-theme'
-Plug 'kien/ctrlp.vim'
 Plug 'lervag/vimtex'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 " Plug 'neovim/nvim-lsp' since v0.5
 
 if has("win64") || has("win32")
