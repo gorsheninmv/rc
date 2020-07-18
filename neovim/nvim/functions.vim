@@ -28,3 +28,12 @@ function! TrimEndLines()
     silent! %s#\($\n\s*\)\+\%$##
     call setpos('.', save_cursor)
 endfunction
+
+
+function! GrepPrompt()
+    call inputsave()
+    let word = input('->: ')
+    call inputrestore()
+    silent execute "grep! -r -i " . word . " ."
+    silent copen 20
+endfunction

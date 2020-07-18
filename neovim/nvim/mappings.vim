@@ -46,8 +46,9 @@ inoremap <C-k> <UP>
 inoremap <C-l> <RIGHT>
 
 " Grep mappings
-nnoremap <silent><leader>g :set operatorfunc=Funcs_Grep<cr>g@
-vnoremap <silent><leader>g :<c-u>silent call Funcs_Grep(visualmode())<cr>
+nnoremap <silent><leader>g :set operatorfunc=Funcs_Grep<CR>g@
+vnoremap <silent><leader>g :<c-u>silent call Funcs_Grep(visualmode())<CR>
+nnoremap <silent><leader>gp :silent call GrepPrompt()<CR>
 
 " Nerd Tree
 noremap  <silent><F2> :call Funcs_NerdTreeToggle()<CR>
