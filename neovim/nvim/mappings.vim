@@ -12,6 +12,7 @@ nnoremap <leader>h :vertical resize +5<CR>
 nnoremap <leader>l :vertical resize -5<CR>
 nnoremap <leader>j :resize +5<CR>
 nnoremap <leader>k :resize -5<CR>
+nnoremap <leader>= <C-w>=
 
 " Close bracket/quote
 inoremap "" ""<LEFT>
