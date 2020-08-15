@@ -51,6 +51,7 @@ language messages C             " set UI lang as en
 set background=light
 color PaperColor
 syntax on
+highlight ColorColumn ctermbg=red
 
 if has('nvim')
     hi NonText ctermfg=242
