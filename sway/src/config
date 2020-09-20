@@ -175,9 +175,13 @@ bindsym --to-code {
     # Hiding/showing waybar
     $mod+x exec $scripts/bar-toggle.sh
 
+    $mod+g exec $scripts/win-swap.py
+
     # Screenshot (experimental feature)
     $mod+p exec $scripts/screenshot.sh
     $mod+shift+p exec $scripts/screenshot.sh win
+
+    $mod+u nop swapped
 }
 
 # mouse button for dragging.

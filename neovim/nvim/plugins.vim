@@ -67,6 +67,7 @@ let g:LanguageClient_serverCommands = {
     \ 'python' : ['dotnet', 'exec', '/usr/lib/microsoft-python-language-server/Microsoft.Python.LanguageServer.dll'],
     \ }
 let g:LanguageClient_rootMarkers = {
+     \ 'c' : ['.root'],
      \ 'python' : ['.root'],
      \ }
 
