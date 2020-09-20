@@ -72,3 +72,7 @@ nnoremap <F7> :call LanguageClient_contextMenu()<CR>
 nnoremap <silent>K :call LanguageClient#textDocument_hover()<CR>
 nnoremap <silent>gd :call LanguageClient#textDocument_definition()<CR>
 nnoremap <silent>gr :call LanguageClient#textDocument_rename()<CR>
+
+" Line over movement
+nnoremap <leader>b ^
+nnoremap <leader>e g_
