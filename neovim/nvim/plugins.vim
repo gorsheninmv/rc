@@ -24,17 +24,10 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'tpope/vim-commentary'
 " Plug 'neovim/nvim-lsp' since v0.5
 
-if has("win64") || has("win32")
-    Plug 'autozimu/LanguageClient-neovim', {
-        \ 'branch': 'next',
-        \ 'do': 'powershell -executionpolicy bypass -File install.ps1',
-        \ }
-else
-    Plug 'autozimu/LanguageClient-neovim', {
-        \ 'branch': 'next',
-        \ 'do': 'bash install.sh',
-        \ }
-endif
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
 
 " Initialize plugin system
 call plug#end()
@@ -65,8 +58,9 @@ let g:LanguageClient_settingsPath='.vim/language-client.json'
 let g:LanguageClient_serverCommands = {
     \ 'c' : ['clangd'],
     \ 'cpp' : ['clangd'],
-    \ 'python' : ['dotnet', 'exec', '/usr/lib/microsoft-python-language-server/Microsoft.Python.LanguageServer.dll'],
+    \ 'python' : ['pyls'],
     \ }
+
 let g:LanguageClient_rootMarkers = {
      \ 'c' : ['.root'],
      \ 'python' : ['.root'],
@@ -86,6 +80,7 @@ highlight link EchoDocFloat Pmenu
 " Airline
 let g:airline_theme='papercolor'
 let g:airline#extensions#keymap#enabled = 0
+
 
 " Vimtex
 let g:tex_flavor = 'latex'
