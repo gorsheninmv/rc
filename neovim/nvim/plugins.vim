@@ -21,6 +21,7 @@ Plug 'vim-scripts/TagHighlight'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'lervag/vimtex'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'tpope/vim-commentary'
 " Plug 'neovim/nvim-lsp' since v0.5
 
 if has("win64") || has("win32")
