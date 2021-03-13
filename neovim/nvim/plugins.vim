@@ -15,19 +15,14 @@ Plug 'jpalardy/vim-slime'
 Plug 'wlangstroth/vim-racket'
 Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'wesQ3/vim-windowswap'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'Shougo/echodoc.vim'
+" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" Plug 'Shougo/echodoc.vim'
 Plug 'vim-scripts/TagHighlight'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'lervag/vimtex'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'tpope/vim-commentary'
-" Plug 'neovim/nvim-lsp' since v0.5
-
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
+Plug 'neovim/nvim-lsp'
 
 " Initialize plugin system
 call plug#end()
@@ -49,26 +44,6 @@ let g:slime_target = "tmux"
 
 " WindowSwap
 let g:wisndowswap_map_keys = 0
-
-
-" LSP
-let g:LanguageClient_selectionUI = "quickfix"
-let g:LanguageClient_useFloatingHover = 1
-let g:LanguageClient_settingsPath='.vim/language-client.json'
-let g:LanguageClient_serverCommands = {
-    \ 'c' : ['clangd'],
-    \ 'cpp' : ['clangd'],
-    \ 'python' : ['pyls'],
-    \ }
-
-let g:LanguageClient_rootMarkers = {
-     \ 'c' : ['.root'],
-     \ 'python' : ['.root'],
-     \ }
-
-
-" Deoplete
-let g:deoplete#enable_at_startup = 1
 
 
 " Echodoc
