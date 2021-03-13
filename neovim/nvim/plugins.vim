@@ -15,14 +15,13 @@ Plug 'jpalardy/vim-slime'
 Plug 'wlangstroth/vim-racket'
 Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'wesQ3/vim-windowswap'
-" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-" Plug 'Shougo/echodoc.vim'
 Plug 'vim-scripts/TagHighlight'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'lervag/vimtex'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'tpope/vim-commentary'
 Plug 'neovim/nvim-lsp'
+Plug 'hrsh7th/nvim-compe'
 
 " Initialize plugin system
 call plug#end()
@@ -36,6 +35,12 @@ let NERDTreeDirArrows = 1
 let NERDChristmasTree = 1
 let NERDTreeChDirMode = 2
 let NERDTreeMapJumpFirstChild = 'gK'
+
+
+" LSP
+lua << EOF
+require'lspconfig'.pyright.setup{}
+EOF
 
 
 " Vim-slime
@@ -60,3 +65,34 @@ let g:airline#extensions#keymap#enabled = 0
 " Vimtex
 let g:tex_flavor = 'latex'
 let g:vimtex_view_method = 'mupdf'
+
+" Nvim-compe
+lua << EOF
+require'compe'.setup {
+  enabled = true;
+  autocomplete = true;
+  debug = false;
+  min_length = 1;
+  preselect = 'enable';
+  throttle_time = 80;
+  source_timeout = 200;
+  incomplete_delay = 400;
+  max_abbr_width = 100;
+  max_kind_width = 100;
+  max_menu_width = 100;
+  documentation = true;
+
+  source = {
+    path = true;
+    buffer = true;
+    calc = true;
+    vsnip = true;
+    nvim_lsp = true;
+    nvim_lua = true;
+    spell = true;
+    tags = true;
+    snippets_nvim = true;
+    treesitter = true;
+  };
+}
+EOF

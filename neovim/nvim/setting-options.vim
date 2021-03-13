@@ -1,29 +1,30 @@
-set number                      " show line numbers
-set autoread                    " read changes automatically
-set ic                          " ignorecase when searching
-set linebreak                   " wrap lines
-set dy=lastline                 " carry by words
-set laststatus=2                " show statusline
-set showtabline=1               " show tabline if more than one tabs
-set exrc                        " enable external config files
-set showcmd                     " show executed command
-set encoding=utf-8              " use utf-8 as encoding
-set confirm                     " ask for saving file when quit
-set scrolloff=3                 " scrolloffset
-set showmode                    " show current mode
-set foldmethod=marker           " use marker as foldmethod
-set hidden                      " hide buffer if it was abandoned
-set visualbell                  " enable visualbell
-set cursorline                  " highlight current line
-set ruler                       " show cursor position always
-set colorcolumn=100             " highlight max width
-set relativenumber              " show relative line numbers
-set wildmenu                    " enable command-line completion
-set wildmode=list:longest       " show matches in list
-set undodir=~/.vim/tmp/undo//   " use undo directory
-set undofile                    " enable undofile
-set backspace=indent,eol,start  " use backspace to delete symbols
-set directory=~/.vim/tmp/swap// " swap files locate there
+set number                       " show line numbers
+set autoread                     " read changes automatically
+set ic                           " ignorecase when searching
+set linebreak                    " wrap lines
+set dy=lastline                  " carry by words
+set laststatus=2                 " show statusline
+set showtabline=1                " show tabline if more than one tabs
+set exrc                         " enable external config files
+set showcmd                      " show executed command
+set encoding=utf-8               " use utf-8 as encoding
+set confirm                      " ask for saving file when quit
+set scrolloff=3                  " scrolloffset
+set showmode                     " show current mode
+set foldmethod=marker            " use marker as foldmethod
+set hidden                       " hide buffer if it was abandoned
+set visualbell                   " enable visualbell
+set cursorline                   " highlight current line
+set ruler                        " show cursor position always
+set colorcolumn=100              " highlight max width
+set relativenumber               " show relative line numbers
+set wildmenu                     " enable command-line completion
+set wildmode=list:longest        " show matches in list
+set undodir=~/.vim/tmp/undo//    " use undo directory
+set undofile                     " enable undofile
+set backspace=indent,eol,start   " use backspace to delete symbols
+set directory=~/.vim/tmp/swap//  " swap files locate there
+set completeopt=menuone,noselect " completion menu settings
 
 " Text formatting
 set modelines=5
