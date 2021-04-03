@@ -22,6 +22,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'tpope/vim-commentary'
 Plug 'neovim/nvim-lsp'
 Plug 'hrsh7th/nvim-compe'
+Plug 'alec-gibson/nvim-tetris'
 
 " Initialize plugin system
 call plug#end()
@@ -40,6 +41,33 @@ let NERDTreeMapJumpFirstChild = 'gK'
 " LSP
 lua << EOF
 require'lspconfig'.pyright.setup{}
+EOF
+
+lua << EOF
+USER = vim.fn.expand('$USER')
+local sumneko_root_path = '/home/' .. USER .. '/.local/neovim/share/lua-language-server'
+local sumneko_binary = sumneko_root_path .. '/bin/Linux/lua-language-server'
+require'lspconfig'.sumneko_lua.setup {
+    cmd = {sumneko_binary, '-E', sumneko_root_path .. '/main.lua'},
+    settings = {
+        Lua = {
+            runtime = {
+                -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+                version = 'Lua 5.4',
+                -- Setup your lua path
+                path = '/usr/bin/lua'
+            },
+            diagnostics = {
+                -- Get the language server to recognize the `vim` global
+                globals = {'vim'}
+            },
+            workspace = {
+                -- Make the server aware of Neovim runtime files
+                library = {[vim.fn.expand('$VIMRUNTIME/lua')] = true, [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true}
+            }
+        }
+    }
+}
 EOF
 
 
