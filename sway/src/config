@@ -21,7 +21,7 @@ set $scripts ~/.local/bin/sway/scripts
 
 # Menu
 set $menu exec alacritty --class launcher --option window.dimensions.columns=30 \\
-    window.dimensions.lines=20 --command $scripts/launcher.sh 
+    window.dimensions.lines=20 --command $scripts/launcher.sh
 # set $menu bemenu-run --list=10 -m all
 # }}}
 
@@ -32,8 +32,8 @@ output eDP-1 position 0,1080 bg ~/pictures/bg.jpg stretch
 output HDMI-A-2 position 0,0 bg ~/pictures/bg.jpg stretch
 
 input "1:1:AT_Translated_Set_2_keyboard" {
-	xkb_layout us,ru
-	xkb_options "grp:win_space_toggle, caps:ctrl_modifier"
+    xkb_layout us,ru
+    xkb_options "grp:win_space_toggle, caps:ctrl_modifier"
 }
 
 input * tap enabled
@@ -144,6 +144,9 @@ bindsym --to-code {
     # Toggle the current focus between tiling and floating mode
     $mod+Shift+space floating toggle
 
+    # Toggle the current window sticky
+    $mod+Ctrl+space sticky toggle
+
     # Swap focus between the tiling area and the floating area
     $mod+t focus mode_toggle
 
@@ -190,7 +193,7 @@ floating_modifier $mod normal
 
 mode "resize" {
     bindsym --to-code {
-    
+
         # left will shrink the containers width
         # right will grow the containers width
         # up will shrink the containers height
@@ -199,13 +202,13 @@ mode "resize" {
         $down resize grow height 10px
         $up resize shrink height 10px
         $right resize grow width 10px
-    
+
         # ditto, with arrow keys
         Left resize shrink width 10px
         Down resize grow height 10px
         Up resize shrink height 10px
         Right resize grow width 10px
-    
+
         # return to default mode
         Return mode "default"
         Escape mode "default"
