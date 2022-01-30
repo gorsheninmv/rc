@@ -31,7 +31,7 @@ call plug#end()
 
 " NERDTree settings
 let NERDTreeHighlightCursorline = 0
-let NERDTreeIgnore = ['.vim$', '.*\.pyc$', '.*.pid']
+let NERDTreeIgnore = ['.*\.pyc$', '.*.pid']
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 let NERDChristmasTree = 1
