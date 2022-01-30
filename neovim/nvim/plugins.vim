@@ -23,6 +23,7 @@ Plug 'tpope/vim-commentary'
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-compe'
 Plug 'alec-gibson/nvim-tetris'
+Plug 'PhilT/vim-fsharp'
 
 " Initialize plugin system
 call plug#end()
@@ -74,9 +75,18 @@ local on_attach = function(client, bufnr)
 
 end
 
-nvim_lsp.pyright.setup{on_attach = on_attach}
-nvim_lsp.rls.setup{on_attach = on_attach}
-nvim_lsp.tsserver.setup {on_attach = on_attach}
+nvim_lsp.pyright.setup { on_attach = on_attach }
+nvim_lsp.rls.setup { on_attach = on_attach }
+nvim_lsp.tsserver.setup { on_attach = on_attach }
+nvim_lsp.texlab.setup { on_attach = on_attach }
+nvim_lsp.fsautocomplete.setup{
+    cmd = { "fsautocomplete", "--background-service-enabled" },
+    settings = {
+      FSharp = {
+        keywordsAutocomplete = true,
+      },
+    },
+}
 
 USER = vim.fn.expand('$USER')
 local sumneko_binary = '/usr/bin/lua-language-server'
