@@ -14,6 +14,12 @@ augroup c_features
     au FileType c inoremap {<CR> {<CR>}<ESC>O
 augroup end
 
+" C features
+augroup ts_features
+    au!
+    au FileType typescript inoremap {<CR> {<CR>}<ESC>O
+augroup end
+
 " Scheme features
 augroup scheme_features
     au!
