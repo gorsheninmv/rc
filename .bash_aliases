@@ -22,6 +22,10 @@ function unmnt {
 	fi
 }
 
+function vpn {
+  wg-quick $1 wg
+}
+
 function add-wsl-aliases {
     alias pro='cd /mnt/c/projects'
 }
