@@ -24,6 +24,8 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-compe'
 Plug 'alec-gibson/nvim-tetris'
 Plug 'PhilT/vim-fsharp'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'sindrets/diffview.nvim'
 
 " Initialize plugin system
 call plug#end()
