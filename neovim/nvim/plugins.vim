@@ -3,9 +3,8 @@
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.local/share/nvim/plugged')
 
-Plug 'scrooloose/nerdtree'
-Plug 'dracula/vim'
 Plug 'jlanzarotta/bufexplorer'
+Plug 'preservim/nerdtree'
 Plug 'majutsushi/tagbar'
 Plug 'Yggdroot/indentLine'
 Plug 'vim-airline/vim-airline'
@@ -18,7 +17,6 @@ Plug 'wesQ3/vim-windowswap'
 Plug 'vim-scripts/TagHighlight'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'lervag/vimtex'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'tpope/vim-commentary'
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-compe'
@@ -26,6 +24,10 @@ Plug 'alec-gibson/nvim-tetris'
 Plug 'PhilT/vim-fsharp'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'sindrets/diffview.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.x' }
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+Plug '~/tmp/whid'
 
 " Initialize plugin system
 call plug#end()
@@ -63,7 +65,7 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
   buf_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
   buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-  buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+  buf_set_keymap('n', '<leader>ed', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
   buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
   buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
   buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
@@ -93,6 +95,7 @@ nvim_lsp.fsautocomplete.setup{
 USER = vim.fn.expand('$USER')
 local sumneko_binary = '/usr/bin/lua-language-server'
 nvim_lsp.sumneko_lua.setup {
+    on_attach = on_attach,
     cmd = {sumneko_binary, '-E', '/usr/share/lua-language-server/main.lua'},
     settings = {
         Lua = {
@@ -168,4 +171,16 @@ require'compe'.setup {
     treesitter = true;
   };
 }
+EOF
+
+" Telescope
+lua << EOF
+require('telescope').load_extension('fzf')
+vim.keymap.set('n', '<leader>ff', function() return require('telescope.builtin').find_files() end)
+vim.keymap.set('n', '<leader>gf', function() return require('telescope.builtin').live_grep() end)
+EOF
+
+" NerdTree
+lua << EOF
+vim.keymap.set('n', '<leader>nt', ':NERDTreeToggle<CR>')
 EOF

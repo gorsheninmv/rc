@@ -62,5 +62,3 @@ endif
 filetype plugin on              " enable filetype detection
 
 au BufEnter * set fo-=r fo-=o   " disable putting comment symbols automatically
-
-let mapleader = ","             " set leader key

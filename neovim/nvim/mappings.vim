@@ -51,10 +51,6 @@ nnoremap <silent><leader>g :set operatorfunc=Funcs_Grep<CR>g@
 vnoremap <silent><leader>g :<c-u>silent call Funcs_Grep(visualmode())<CR>
 nnoremap <silent><leader>gp :silent call GrepPrompt()<CR>
 
-" Nerd Tree
-noremap  <silent><F2> :call Funcs_NerdTreeToggle()<CR>
-inoremap <silent><F2> <ESC>:call Funcs_NerdTreeToggle()<CR>
-
 " Buf Explorer
 nnoremap <silent><F10> :ToggleBufExplorer<CR>
 
@@ -63,9 +59,6 @@ nnoremap <silent><leader>s :call WindowSwap#EasyWindowSwap()<CR>
 
 " Tagbar
 nnoremap <silent><F9> :TagbarToggle<CR>
-
-" fzf
-nnoremap <silent> <leader>F :FZF<CR>
 
 " Line over movement
 nnoremap <leader>b ^

@@ -3,9 +3,10 @@ au ColorScheme * hi NonText ctermbg=none
 au ColorScheme * hi Normal ctermbg=none
 au ColorScheme * hi LineNr ctermbg=none
 
+let mapleader = ","             " set leader key
 runtime plugins.vim
 runtime functions.vim
-runtime setting-options.vim
+runtime options.vim
 runtime mappings.vim
 
 " C features
