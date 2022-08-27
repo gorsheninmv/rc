@@ -7,9 +7,8 @@
 }
 
 window#waybar {
-    background-color: #EEEEEE;
-    border-bottom: 3px solid #000000;
     color: #000000;
+    background-color: transparent;
 }
 
 window#waybar.hidden {
@@ -21,13 +20,11 @@ window#waybar.hidden {
     padding: 0 5px;
     background-color: transparent;
     color: #000000;
-    border-bottom: 3px solid #000000;
 }
 
 #workspaces button.focused {
-    background-color: #0087AF;
-    color: #EEEEEE;
-    border-bottom: 3px solid #000000;
+    color: #0087AF;
+    font-weight: bold;
 }
 
 #workspaces button.urgent {
@@ -37,12 +34,10 @@ window#waybar.hidden {
 #workspaces button:hover {
     background-color: #0087AF;
     color: #000000;
-    border-bottom: 3px solid #000000;
 }
 
 #mode {
     background-color: #64727D;
-    border-bottom: 3px solid #000000;
 }
 
 #window {

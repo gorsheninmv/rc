@@ -1,13 +1,18 @@
 " Transparent background
 au ColorScheme * hi NonText ctermbg=none
 au ColorScheme * hi Normal ctermbg=none
-au ColorScheme * hi LineNr ctermbg=none
+au ColorScheme * hi CursorLine ctermbg=none ctermfg=none
+au ColorScheme * hi CursorLineNR cterm=none
 
 let mapleader = ","             " set leader key
 runtime plugins.vim
 runtime functions.vim
 runtime options.vim
 runtime mappings.vim
+
+" TODO: separate file for such situations, kind of 'after'.
+" Another option is to setup plugins after all.
+hi NvimTreeCursorLine cterm=bold
 
 " C features
 augroup c_features
