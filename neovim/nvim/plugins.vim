@@ -4,7 +4,6 @@
 call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'jlanzarotta/bufexplorer'
-Plug 'preservim/nerdtree'
 Plug 'majutsushi/tagbar'
 Plug 'Yggdroot/indentLine'
 Plug 'vim-airline/vim-airline'
@@ -28,20 +27,11 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.x' }
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug '~/tmp/whid'
+Plug 'kyazdani42/nvim-web-devicons' " optional, for file icons
+Plug 'kyazdani42/nvim-tree.lua'
 
 " Initialize plugin system
 call plug#end()
-
-
-" NERDTree settings
-let NERDTreeHighlightCursorline = 0
-let NERDTreeIgnore = ['.*\.pyc$', '.*.pid']
-let NERDTreeMinimalUI = 1
-let NERDTreeDirArrows = 1
-let NERDChristmasTree = 1
-let NERDTreeChDirMode = 2
-let NERDTreeMapJumpFirstChild = 'gK'
-
 
 " LSP
 lua << EOF
@@ -180,7 +170,13 @@ vim.keymap.set('n', '<leader>ff', function() return require('telescope.builtin')
 vim.keymap.set('n', '<leader>gf', function() return require('telescope.builtin').live_grep() end)
 EOF
 
-" NerdTree
+" NvimTree
 lua << EOF
-vim.keymap.set('n', '<leader>nt', ':NERDTreeToggle<CR>')
+require('nvim-tree').setup()
+vim.keymap.set('n', '<leader>nt', ':NvimTreeToggle<CR>')
+EOF
+
+" Diffview
+lua << EOF
+require('diffview').setup()
 EOF
