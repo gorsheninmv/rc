@@ -28,8 +28,9 @@ set $menu exec alacritty --class launcher --option window.dimensions.columns=30 
 
 # IO configuration {{{
 
-output eDP-1 position 0,1080 bg ~/pictures/bg.jpg stretch
-output HDMI-A-2 position 0,0 bg ~/pictures/bg.jpg stretch
+set $wallpaper_full_path = $XDG_DATA_HOME/sway/bg.jpg
+output eDP-1 position 0,1080 bg $wallpaper_full_path stretch
+output HDMI-A-2 position 0,0 bg $wallpaper_full_path stretch
 
 input "1:1:AT_Translated_Set_2_keyboard" {
     xkb_layout us,ru

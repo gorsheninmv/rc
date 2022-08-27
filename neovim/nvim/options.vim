@@ -22,10 +22,8 @@ local options = {
   relativenumber = true,
   wildmenu = true,
   wildmode = 'list:longest',
-  undodir = '~/.vim/tmp/undo//',
   undofile = true,
   backspace = 'indent,eol,start',
-  directory = '~/.vim/tmp/swap//',
   completeopt = 'menuone,noselect',
 
   -- text formatting
@@ -37,17 +35,20 @@ local options = {
   expandtab = true,
   autoindent = true,
 
-  -- keyboard layout
-  keymap = 'russian-jcukenwin',
-  iminsert = 0,
-  imsearch = 0,
-
   listchars = 'eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:•',
 }
 
 for k, v in pairs(options) do
   vim.o[k] = v
 end
+
+-- keyboard layout
+-- TODO: There are problems with initialization option through
+-- the table traverse. It seems, there is data race since sometimes
+-- iminsert and imsearch are set to 1. Need to open issue.
+vim.o.keymap = 'russian-jcukenwin'
+vim.o.iminsert = 0
+vim.o.imsearch = 0
 
 vim.api.nvim_exec([=[
   language messages C             " set UI lang as en
@@ -57,8 +58,6 @@ vim.api.nvim_exec([=[
   color PaperColor
   syntax on
   highlight ColorColumn ctermbg=red
-  hi NonText ctermfg=242
-  hi Whitespace ctermfg=242
 
   filetype plugin on              " enable filetype detection
 
