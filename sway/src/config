@@ -28,7 +28,7 @@ set $menu exec alacritty --class launcher --option window.dimensions.columns=30 
 
 # IO configuration {{{
 
-set $wallpaper_full_path = $XDG_DATA_HOME/sway/bg.jpg
+set $wallpaper_full_path $XDG_DATA_HOME/sway/bg.jpg
 output eDP-1 position 0,1080 bg $wallpaper_full_path stretch
 output HDMI-A-2 position 0,0 bg $wallpaper_full_path stretch
 
