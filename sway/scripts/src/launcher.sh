@@ -28,7 +28,6 @@ command_str=$(printf "%s\n" "${command_history}" "${command_list}" | \
 if [ "$command_str" = "" ]; then
     exit 1
 fi
-# echo "Command: $command_str"
 
 # using \E flag from perl regex
 test "${command_str#*\\E}" != "$command_str" && echo "command can't contain '\E'"
