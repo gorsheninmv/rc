@@ -1,23 +1,25 @@
-vim.api.nvim_exec([[
-" Transparent background
-au ColorScheme * hi NonText ctermbg=none
-au ColorScheme * hi Normal ctermbg=none
-au ColorScheme * hi CursorLine ctermbg=none ctermfg=none
-au ColorScheme * hi CursorLineNR cterm=none
+-- tutorial about lua config:
+-- https://vonheikemen.github.io/devlog/tools/configuring-neovim-using-lua/
+-- type gx to open url
 
-let mapleader = ","             " set leader key
-]], true)
+vim.g.mapleader = ','
 
 require'plugins'
+require'colors'
 require'functions'
 require'options'
 require'mappings'
 
-vim.api.nvim_exec([[
-" TODO: separate file for such situations, kind of 'after'.
-" Another option is to setup plugins after all.
-hi NvimTreeCursorLine cterm=bold gui=bold
+local auto_trim_end_group = vim.api.nvim_create_augroup('auto_trim_end', { clear = true })
+vim.api.nvim_create_autocmd('BufWritePre', {
+  pattern = '*',
+  group = auto_trim_end_group,
+  callback = function()
+    vim.fn.TrimEndLines()
+  end
+})
 
+vim.api.nvim_exec([[
 " C features
 augroup c_features
     au!
@@ -35,9 +37,6 @@ augroup scheme_features
     au!
     au FileType BufEnter *.scm :RainbowParentheses setlocal lisp
 augroup end
-
-" Trim end lines
-au BufWritePre * call TrimEndLines()
 
 augroup tex_settings
     au!

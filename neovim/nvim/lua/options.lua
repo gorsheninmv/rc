@@ -33,7 +33,12 @@ local options = {
   softtabstop = 2,
   expandtab = true,
   autoindent = true,
+
+  -- font
   guifont = 'FuraCode Nerd Font:h12',
+
+  -- background
+  background = 'light',
 
   listchars = 'eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:•',
 }
@@ -50,14 +55,11 @@ vim.o.keymap = 'russian-jcukenwin'
 vim.o.iminsert = 0
 vim.o.imsearch = 0
 
+
 vim.api.nvim_exec([=[
   language messages C             " set UI lang as en
 
-  " Colorscheme
-  set background=light
-  color PaperColor
   syntax on
-  highlight ColorColumn ctermbg=red
 
   filetype plugin on              " enable filetype detection
 

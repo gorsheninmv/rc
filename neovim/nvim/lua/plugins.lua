@@ -109,7 +109,7 @@ vim.keymap.set('n', '<leader>gf', function() return require'telescope.builtin'.l
 
 -- NvimTree
 require'nvim-tree'.setup()
-vim.keymap.set('n', '<leader>nt', ':NvimTreeToggle<CR>')
+vim.keymap.set('n', '<leader>nt', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
 
 -- Diffview
 require'diffview'.setup()

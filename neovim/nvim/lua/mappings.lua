@@ -39,7 +39,7 @@ setkmp('n', '<leader>b', '^', nopts)
 setkmp('n', '<leader>f', '<C-*>', nopts)
 
 -- insert mode movements
-setkmp('i', 'C-h', '<LEFT>', iopts)
-setkmp('i', 'C-j', '<DOWN>', iopts)
-setkmp('i', 'C-k', '<UP>', iopts)
-setkmp('i', 'C-l', '<RIGHT>', iopts)
+setkmp('i', '<C-h>', '<LEFT>', iopts)
+setkmp('i', '<C-j>', '<DOWN>', iopts)
+setkmp('i', '<C-k>', '<UP>', iopts)
+setkmp('i', '<C-l>', '<RIGHT>', iopts)
