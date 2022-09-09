@@ -63,9 +63,6 @@ let g:vimtex_view_method = 'mupdf'
 
 vim.api.nvim_exec([[
 
-" Buf Explorer
-nnoremap <silent><F10> :ToggleBufExplorer<CR>
-
 " Window Swap
 nnoremap <silent><leader>s :call WindowSwap#EasyWindowSwap()<CR>
 
@@ -74,7 +71,11 @@ nnoremap <silent><F9> :TagbarToggle<CR>
 
 ]], true)
 
--- Nvim-compe
+-- bufexplorer {{{
+vim.keymap.set('n', '<F10>', ':ToggleBufExplorer<CR>', { noremap = true, silent = true })
+-- }}}
+
+-- nvim-compe {{{
 require'compe'.setup {
   enabled = true;
   autocomplete = true;
@@ -102,27 +103,32 @@ require'compe'.setup {
     treesitter = true;
   };
 }
+-- }}}
 
--- Telescope
+-- telescope {{{
 vim.keymap.set('n', '<leader>ff', function() return require'telescope.builtin'.find_files() end)
 vim.keymap.set('n', '<leader>gf', function() return require'telescope.builtin'.live_grep() end)
+-- }}}
 
--- NvimTree
+-- nvim-tree {{{
 require'nvim-tree'.setup()
 vim.keymap.set('n', '<leader>nt', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
+-- }}}
 
--- Diffview
+-- diffview {{{
 require'diffview'.setup()
+-- }}}
 
--- LSP
+-- lsp {{{
 local nvim_lsp = require('lspconfig')
+
 local on_attach = function(client, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
   buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-  -- Mappings.
+  -- mappings {{{
   local opts = { noremap=true, silent=true }
   buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
   buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
@@ -146,9 +152,11 @@ local on_attach = function(client, bufnr)
   elseif client.resolved_capabilities.document_range_formatting then
     buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.range_formatting()<CR>', opts)
   end
+  -- }}}
 
 end
 
+-- others lsp {{{
 nvim_lsp.pyright.setup { on_attach = on_attach }
 nvim_lsp.rls.setup { on_attach = on_attach }
 nvim_lsp.tsserver.setup { on_attach = on_attach }
@@ -161,7 +169,9 @@ nvim_lsp.fsautocomplete.setup {
       },
     },
 }
+-- }}}
 
+-- lua {{{
 USER = vim.fn.expand('$USER')
 local sumneko_binary = '/usr/bin/lua-language-server'
 nvim_lsp.sumneko_lua.setup {
@@ -186,3 +196,5 @@ nvim_lsp.sumneko_lua.setup {
         }
     }
 }
+-- }}}
+-- }}}

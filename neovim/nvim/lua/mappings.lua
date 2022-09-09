@@ -8,9 +8,6 @@ setkmp('i', '<C-f>', '<C-^>', iopts)
 -- toggle formatting symbols
 setkmp('n', '<F3>', ':set list!<CR>', nopts)
 
--- open/close folder
-setkmp('n', '<space>', 'za', nopts)
-
 -- resize splits
 setkmp('n', '<leader>h', ':vertical resize +5<CR>', nopts)
 setkmp('n', '<leader>l', ':vertical resize -5<CR>', nopts)
