@@ -1,18 +1,24 @@
-" Change keyboard layout
-inoremap <C-f> <C-^>
+local setkmp = vim.api.nvim_set_keymap
+local opts = { noremap = true, silent = true }
 
-" Enable/disable formatting symbols
-nnoremap <silent> <F3> :set list!<CR>
+-- change keyboard layout
+setkmp('i', '<C-f>', '<C-^>', opts)
 
-" Open/close folder
-nnoremap <space> za
+-- toggle formatting symbols
+setkmp('n', '<F3>', ':set list!<CR>', opts)
 
-" Resize splits
-nnoremap <leader>h :vertical resize +5<CR>
-nnoremap <leader>l :vertical resize -5<CR>
-nnoremap <leader>j :resize +5<CR>
-nnoremap <leader>k :resize -5<CR>
-nnoremap <leader>= <C-w>=
+-- open/close folder
+setkmp('n', '<space>', 'za', opts)
+
+-- resize splits
+setkmp('n', '<leader>h', ':vertical resize +5<CR>', opts)
+setkmp('n', '<leader>l', ':vertical resize -5<CR>', opts)
+setkmp('n', '<leader>j', ':resize +5<CR>', opts)
+setkmp('n', '<leader>k', ':resize -5<CR>', opts)
+setkmp('n', '<leader>=', '<C-w>=', opts)
+
+
+vim.api.nvim_exec([[
 
 " Close bracket/quote
 inoremap "" ""<LEFT>
@@ -63,3 +69,4 @@ nnoremap <silent><F9> :TagbarToggle<CR>
 " Line over movement
 nnoremap <leader>b ^
 nnoremap <leader>e g_
+]], true)

@@ -1,4 +1,3 @@
-lua << EOF
 local options = {
   number = true,
   autoread = true,
@@ -34,6 +33,7 @@ local options = {
   softtabstop = 2,
   expandtab = true,
   autoindent = true,
+  guifont = 'FuraCode Nerd Font:h12',
 
   listchars = 'eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:•',
 }
@@ -65,4 +65,3 @@ vim.api.nvim_exec([=[
 
   set statusline=%F%m%r%h%w\ %y\ enc:%{&enc}\ ff:%{&ff}\ col:%2c\ line:%2l/%L\ [%2p%%]
 ]=], true)
-EOF

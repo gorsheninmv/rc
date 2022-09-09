@@ -1,3 +1,4 @@
+vim.api.nvim_exec([=[
 " Specify a directory for plugins
 " - For Neovim: ~/.local/share/nvim/plugged
 " - Avoid using standard Vim directory names like 'plugin'
@@ -180,3 +181,4 @@ EOF
 lua << EOF
 require('diffview').setup()
 EOF
+]=], true)

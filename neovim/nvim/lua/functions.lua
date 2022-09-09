@@ -1,3 +1,4 @@
+vim.api.nvim_exec([[
 function! TrimEndLines()
     let save_cursor = getpos(".")
     silent! %s#\($\n\s*\)\+\%$##
@@ -92,3 +93,4 @@ function! AutoSource()
 
     call FindExecuteCommand()
 endfunction
+]], true)

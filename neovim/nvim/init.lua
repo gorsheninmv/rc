@@ -1,3 +1,4 @@
+vim.api.nvim_exec([[
 " Transparent background
 au ColorScheme * hi NonText ctermbg=none
 au ColorScheme * hi Normal ctermbg=none
@@ -5,14 +6,17 @@ au ColorScheme * hi CursorLine ctermbg=none ctermfg=none
 au ColorScheme * hi CursorLineNR cterm=none
 
 let mapleader = ","             " set leader key
-runtime plugins.vim
-runtime functions.vim
-runtime options.vim
-runtime mappings.vim
+]], true)
 
+require 'plugins'
+require 'functions'
+require 'options'
+require 'mappings'
+
+vim.api.nvim_exec([[
 " TODO: separate file for such situations, kind of 'after'.
 " Another option is to setup plugins after all.
-hi NvimTreeCursorLine cterm=bold
+hi NvimTreeCursorLine cterm=bold gui=bold
 
 " C features
 augroup c_features
@@ -49,3 +53,4 @@ let g:python3_host_prog = '/usr/bin/python3'
 
 " Greeting
 echo "(>^.^<)"
+]], true)
