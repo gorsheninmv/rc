@@ -8,10 +8,10 @@ au ColorScheme * hi CursorLineNR cterm=none
 let mapleader = ","             " set leader key
 ]], true)
 
-require 'plugins'
-require 'functions'
-require 'options'
-require 'mappings'
+require'plugins'
+require'functions'
+require'options'
+require'mappings'
 
 vim.api.nvim_exec([[
 " TODO: separate file for such situations, kind of 'after'.

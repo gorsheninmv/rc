@@ -34,8 +34,87 @@ Plug 'kyazdani42/nvim-tree.lua'
 " Initialize plugin system
 call plug#end()
 
-" LSP
-lua << EOF
+
+
+" Vim-slime
+let g:slime_target = "tmux"
+
+
+" WindowSwap
+let g:wisndowswap_map_keys = 0
+
+
+" Echodoc
+let g:echodoc#enable_at_startup = 1
+let g:echodoc#type = 'floating'
+highlight link EchoDocFloat Pmenu
+
+
+" Airline
+let g:airline_theme='papercolor'
+let g:airline#extensions#keymap#enabled = 0
+
+
+" Vimtex
+let g:tex_flavor = 'latex'
+let g:vimtex_view_method = 'mupdf'
+
+]=], true)
+
+vim.api.nvim_exec([[
+
+" Buf Explorer
+nnoremap <silent><F10> :ToggleBufExplorer<CR>
+
+" Window Swap
+nnoremap <silent><leader>s :call WindowSwap#EasyWindowSwap()<CR>
+
+" Tagbar
+nnoremap <silent><F9> :TagbarToggle<CR>
+
+]], true)
+
+-- Nvim-compe
+require'compe'.setup {
+  enabled = true;
+  autocomplete = true;
+  debug = false;
+  min_length = 1;
+  preselect = 'enable';
+  throttle_time = 80;
+  source_timeout = 200;
+  incomplete_delay = 400;
+  max_abbr_width = 100;
+  max_kind_width = 100;
+  max_menu_width = 100;
+  documentation = true;
+
+  source = {
+    path = true;
+    buffer = true;
+    calc = true;
+    vsnip = true;
+    nvim_lsp = true;
+    nvim_lua = true;
+    spell = true;
+    tags = true;
+    snippets_nvim = true;
+    treesitter = true;
+  };
+}
+
+-- Telescope
+vim.keymap.set('n', '<leader>ff', function() return require'telescope.builtin'.find_files() end)
+vim.keymap.set('n', '<leader>gf', function() return require'telescope.builtin'.live_grep() end)
+
+-- NvimTree
+require'nvim-tree'.setup()
+vim.keymap.set('n', '<leader>nt', ':NvimTreeToggle<CR>')
+
+-- Diffview
+require'diffview'.setup()
+
+-- LSP
 local nvim_lsp = require('lspconfig')
 local on_attach = function(client, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
@@ -74,7 +153,7 @@ nvim_lsp.pyright.setup { on_attach = on_attach }
 nvim_lsp.rls.setup { on_attach = on_attach }
 nvim_lsp.tsserver.setup { on_attach = on_attach }
 nvim_lsp.texlab.setup { on_attach = on_attach }
-nvim_lsp.fsautocomplete.setup{
+nvim_lsp.fsautocomplete.setup {
     cmd = { "fsautocomplete", "--background-service-enabled" },
     settings = {
       FSharp = {
@@ -87,7 +166,7 @@ USER = vim.fn.expand('$USER')
 local sumneko_binary = '/usr/bin/lua-language-server'
 nvim_lsp.sumneko_lua.setup {
     on_attach = on_attach,
-    cmd = {sumneko_binary, '-E', '/usr/share/lua-language-server/main.lua'},
+    cmd = { sumneko_binary, '-E', '/usr/share/lua-language-server/main.lua' },
     settings = {
         Lua = {
             runtime = {
@@ -98,87 +177,12 @@ nvim_lsp.sumneko_lua.setup {
             },
             diagnostics = {
                 -- Get the language server to recognize the `vim` global
-                globals = {'vim'}
+                globals = { 'vim' }
             },
             workspace = {
                 -- Make the server aware of Neovim runtime files
-                library = {[vim.fn.expand('$VIMRUNTIME/lua')] = true, [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true}
+                library = { [vim.fn.expand('$VIMRUNTIME/lua')] = true, [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true }
             }
         }
     }
 }
-EOF
-
-
-" Vim-slime
-let g:slime_target = "tmux"
-
-
-" WindowSwap
-let g:wisndowswap_map_keys = 0
-
-
-" Echodoc
-let g:echodoc#enable_at_startup = 1
-let g:echodoc#type = 'floating'
-highlight link EchoDocFloat Pmenu
-
-
-" Airline
-let g:airline_theme='papercolor'
-let g:airline#extensions#keymap#enabled = 0
-
-
-" Vimtex
-let g:tex_flavor = 'latex'
-let g:vimtex_view_method = 'mupdf'
-
-" Nvim-compe
-lua << EOF
-require'compe'.setup {
-  enabled = true;
-  autocomplete = true;
-  debug = false;
-  min_length = 1;
-  preselect = 'enable';
-  throttle_time = 80;
-  source_timeout = 200;
-  incomplete_delay = 400;
-  max_abbr_width = 100;
-  max_kind_width = 100;
-  max_menu_width = 100;
-  documentation = true;
-
-  source = {
-    path = true;
-    buffer = true;
-    calc = true;
-    vsnip = true;
-    nvim_lsp = true;
-    nvim_lua = true;
-    spell = true;
-    tags = true;
-    snippets_nvim = true;
-    treesitter = true;
-  };
-}
-EOF
-
-" Telescope
-lua << EOF
-require('telescope').load_extension('fzf')
-vim.keymap.set('n', '<leader>ff', function() return require('telescope.builtin').find_files() end)
-vim.keymap.set('n', '<leader>gf', function() return require('telescope.builtin').live_grep() end)
-EOF
-
-" NvimTree
-lua << EOF
-require('nvim-tree').setup()
-vim.keymap.set('n', '<leader>nt', ':NvimTreeToggle<CR>')
-EOF
-
-" Diffview
-lua << EOF
-require('diffview').setup()
-EOF
-]=], true)
