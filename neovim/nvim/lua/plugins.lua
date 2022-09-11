@@ -71,8 +71,15 @@ nnoremap <silent><F9> :TagbarToggle<CR>
 
 ]], true)
 
+local utils = require 'utils'
+local execcmd = utils.execcmd
+
 -- bufexplorer {{{
-vim.keymap.set('n', '<F10>', ':ToggleBufExplorer<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<F10>',
+  function()
+    execcmd('ToggleBufExplorer')
+  end,
+  { noremap = true, silent = true })
 -- }}}
 
 -- nvim-compe {{{

@@ -63,7 +63,5 @@ vim.api.nvim_exec([=[
 
   filetype plugin on              " enable filetype detection
 
-  au BufEnter * set fo-=r fo-=o   " disable putting comment symbols automatically
-
   set statusline=%F%m%r%h%w\ %y\ enc:%{&enc}\ ff:%{&ff}\ col:%2c\ line:%2l/%L\ [%2p%%]
 ]=], true)
