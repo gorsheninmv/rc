@@ -7,7 +7,7 @@ augroup colors
   au ColorScheme * hi CursorLine ctermbg=none ctermfg=none
   au ColorScheme * hi CursorLineNR cterm=none
   au ColorScheme * hi NvimTreeCursorLine cterm=bold gui=bold
-  au ColorScheme * hi ColorColumn ctermfg=red guifg=red
+  au ColorScheme * hi ColorColumn ctermbg=red guibg=red
 augroup end
 color PaperColor
 ]]
