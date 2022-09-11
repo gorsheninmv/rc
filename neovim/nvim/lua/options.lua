@@ -4,7 +4,7 @@ local options = {
   ic = true,
   linebreak = true,
   dy = 'lastline',
-  laststatus = 2,
+  laststatus = 3,
   showtabline = 1,
   exrc = true,
   showcmd = true,
@@ -35,7 +35,7 @@ local options = {
   autoindent = true,
 
   -- font
-  guifont = 'FuraCode Nerd Font:h12',
+  guifont = 'FuraCode Nerd Font:h11',
 
   -- background
   background = 'light',
@@ -63,5 +63,5 @@ vim.api.nvim_exec([=[
 
   filetype plugin on              " enable filetype detection
 
-  set statusline=%F%m%r%h%w\ %y\ enc:%{&enc}\ ff:%{&ff}\ col:%2c\ line:%2l/%L\ [%2p%%]
+  " set statusline=%F%m%r%h%w\ %y\ enc:%{&enc}\ ff:%{&ff}\ col:%2c\ line:%2l/%L\ [%2p%%]
 ]=], true)

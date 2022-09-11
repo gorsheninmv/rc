@@ -7,8 +7,6 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'jlanzarotta/bufexplorer'
 Plug 'majutsushi/tagbar'
 Plug 'Yggdroot/indentLine'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-surround'
 Plug 'jpalardy/vim-slime'
 Plug 'wlangstroth/vim-racket'
@@ -30,6 +28,7 @@ Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug '~/tmp/whid'
 Plug 'kyazdani42/nvim-web-devicons' " optional, for file icons
 Plug 'kyazdani42/nvim-tree.lua'
+Plug 'nvim-lualine/lualine.nvim'
 
 " Initialize plugin system
 call plug#end()
@@ -48,11 +47,6 @@ let g:wisndowswap_map_keys = 0
 let g:echodoc#enable_at_startup = 1
 let g:echodoc#type = 'floating'
 highlight link EchoDocFloat Pmenu
-
-
-" Airline
-let g:airline_theme='papercolor'
-let g:airline#extensions#keymap#enabled = 0
 
 
 " Vimtex
@@ -120,6 +114,21 @@ vim.keymap.set('n', '<leader>gf', function() return require'telescope.builtin'.l
 -- nvim-tree {{{
 require'nvim-tree'.setup()
 vim.keymap.set('n', '<leader>nt', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
+-- }}}
+
+-- lualine {{{
+local function show_trailing_whitespace()
+  local space = vim.fn.search([[\s\+$]], 'nwc')
+  return space ~= 0 and "TW:"..space or ""
+end
+require 'lualine'.setup {
+  options = {
+    theme = 'papercolor_light',
+  },
+  sections = {
+    lualine_b = { show_trailing_whitespace },
+  },
+}
 -- }}}
 
 -- diffview {{{
