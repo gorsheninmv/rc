@@ -35,7 +35,7 @@ local options = {
   autoindent = true,
 
   -- font
-  guifont = 'FuraCode Nerd Font:h11',
+  guifont = 'Fira Code:h11',
 
   -- background
   background = 'light',
