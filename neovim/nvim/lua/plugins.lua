@@ -178,6 +178,7 @@ nvim_lsp.rls.setup { on_attach = on_attach }
 nvim_lsp.tsserver.setup { on_attach = on_attach }
 nvim_lsp.texlab.setup { on_attach = on_attach }
 nvim_lsp.fsautocomplete.setup {
+    on_attach = on_attach,
     cmd = { "fsautocomplete", "--background-service-enabled" },
     settings = {
       FSharp = {
