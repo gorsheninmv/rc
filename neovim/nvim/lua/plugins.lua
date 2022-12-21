@@ -1,69 +1,87 @@
-vim.api.nvim_exec([=[
-" Specify a directory for plugins
-" - For Neovim: ~/.local/share/nvim/plugged
-" - Avoid using standard Vim directory names like 'plugin'
-call plug#begin('~/.local/share/nvim/plugged')
+local ensure_packer = function()
+  local fn = vim.fn
+  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+  if fn.empty(fn.glob(install_path)) > 0 then
+    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+    vim.cmd [[packadd packer.nvim]]
+    return true
+  end
+  return false
+end
 
-Plug 'jlanzarotta/bufexplorer'
-Plug 'majutsushi/tagbar'
-Plug 'Yggdroot/indentLine'
-Plug 'tpope/vim-surround'
-Plug 'jpalardy/vim-slime'
-Plug 'wlangstroth/vim-racket'
-Plug 'junegunn/rainbow_parentheses.vim'
-Plug 'wesQ3/vim-windowswap'
-Plug 'vim-scripts/TagHighlight'
-Plug 'NLKNguyen/papercolor-theme'
-Plug 'lervag/vimtex'
-Plug 'tpope/vim-commentary'
-Plug 'neovim/nvim-lspconfig'
-Plug 'hrsh7th/nvim-compe'
-Plug 'alec-gibson/nvim-tetris'
-Plug 'PhilT/vim-fsharp'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'sindrets/diffview.nvim'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.x' }
-Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
-Plug '~/tmp/whid'
-Plug 'kyazdani42/nvim-web-devicons' " optional, for file icons
-Plug 'kyazdani42/nvim-tree.lua'
-Plug 'nvim-lualine/lualine.nvim'
+local packer_bootstrap = ensure_packer()
 
-" Initialize plugin system
-call plug#end()
+require('packer').startup(function(use)
+  use 'wbthomason/packer.nvim'
+
+  use 'jlanzarotta/bufexplorer'
+  use 'majutsushi/tagbar'
+  use 'Yggdroot/indentLine'
+  use 'tpope/vim-surround'
+  use 'jpalardy/vim-slime'
+  use 'wlangstroth/vim-racket'
+  use 'junegunn/rainbow_parentheses.vim'
+  use 'wesQ3/vim-windowswap'
+  use 'vim-scripts/TagHighlight'
+  use 'NLKNguyen/papercolor-theme'
+  use 'lervag/vimtex'
+  use 'tpope/vim-commentary'
+  use 'neovim/nvim-lspconfig'
+  use 'hrsh7th/nvim-compe'
+  use 'alec-gibson/nvim-tetris'
+  use 'PhilT/vim-fsharp'
+  use 'nvim-lua/plenary.nvim'
+  use 'sindrets/diffview.nvim'
+  use 'nvim-lua/plenary.nvim'
+  use {
+    'nvim-telescope/telescope.nvim',
+    tag = '0.1.x',
+    requires = { 'nvim-lua/plenary.nvim' }
+  }
+  use {
+    'nvim-telescope/telescope-fzf-native.nvim',
+    run = 'make'
+  }
+  use {
+    'nvim-tree/nvim-tree.lua',
+    requires = { 'nvim-tree/nvim-web-devicons' }
+  }
+  use {
+    'nvim-lualine/lualine.nvim',
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+  }
+
+  -- Automatically set up your configuration after cloning packer.nvim
+  -- Put this at the end after all plugins
+  if packer_bootstrap then
+    require('packer').sync()
+  end
+end)
 
 
-
-" Vim-slime
-let g:slime_target = "tmux"
-
-
-" WindowSwap
-let g:wisndowswap_map_keys = 0
+-- Vim-slime
+vim.g.slime_target = 'tmux'
 
 
-" Echodoc
-let g:echodoc#enable_at_startup = 1
-let g:echodoc#type = 'floating'
-highlight link EchoDocFloat Pmenu
+-- WindowSwap
+vim.g.wisndowswap_map_keys = 0
 
 
-" Vimtex
-let g:tex_flavor = 'latex'
-let g:vimtex_view_method = 'mupdf'
+-- Echodoc
+vim.g['echodoc#enable_at_startup'] = 1
+vim.g['echodoc#type'] = 'floating'
+vim.cmd[[highlight link EchoDocFloat Pmenu]]
 
-]=], true)
 
-vim.api.nvim_exec([[
+-- Vimtex
+vim.g.tex_flavor = 'latex'
+vim.g.vimtex_view_method = 'mupdf'
 
-" Window Swap
-nnoremap <silent><leader>s :call WindowSwap#EasyWindowSwap()<CR>
+-- Window Swap
+vim.keymap.set('n', '<leader>s', vim.fn['WindowSwap#EasyWindowSwap'])
 
-" Tagbar
-nnoremap <silent><F9> :TagbarToggle<CR>
-
-]], true)
+-- Tagbar
+vim.keymap.set('n', '<F9>', '<cmd>TagbarToggle<cr>')
 
 local utils = require 'utils'
 local execcmd = utils.execcmd
@@ -170,27 +188,28 @@ local on_attach = function(client, bufnr)
   buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
   -- mappings {{{
+  vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, { buffer=0 })
+  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { buffer=0 })
+  vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition, { buffer=0 })
+  vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer=0 })
+  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, { buffer=0 })
+  vim.keymap.set('n', '<leader>ed', vim.diagnostic.open_float, { buffer=0 })
+  vim.keymap.set('n', 'gr', vim.lsp.buf.references, { buffer=0 })
+
   local opts = { noremap=true, silent=true }
-  buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
   buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
   buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
   buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
   buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
-  buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
   buf_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-  buf_set_keymap('n', '<leader>ed', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
   buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
   buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
   buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
 
   -- Set some keybinds conditional on server capabilities
-  if client.resolved_capabilities.document_formatting then
+  if client.server_capabilities.document_formatting then
     buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
-  elseif client.resolved_capabilities.document_range_formatting then
+  elseif client.server_capabilities.document_range_formatting then
     buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.range_formatting()<CR>', opts)
   end
   -- }}}
@@ -201,6 +220,7 @@ end
 nvim_lsp.pyright.setup { on_attach = on_attach }
 nvim_lsp.rls.setup { on_attach = on_attach }
 nvim_lsp.tsserver.setup { on_attach = on_attach }
+nvim_lsp.denols.setup { on_attach = on_attach }
 nvim_lsp.texlab.setup { on_attach = on_attach }
 nvim_lsp.fsautocomplete.setup {
     on_attach = on_attach,
