@@ -30,7 +30,6 @@ require('packer').startup(function(use)
   use 'hrsh7th/nvim-compe'
   use 'alec-gibson/nvim-tetris'
   use 'PhilT/vim-fsharp'
-  use 'nvim-lua/plenary.nvim'
   use 'sindrets/diffview.nvim'
   use 'nvim-lua/plenary.nvim'
   use {
@@ -49,6 +48,27 @@ require('packer').startup(function(use)
   use {
     'nvim-lualine/lualine.nvim',
     requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+  }
+  use 'nanotee/sqls.nvim'
+
+  -- Debugging
+  use {
+    "mfussenegger/nvim-dap",
+    opt = true,
+    -- event = "BufReadPre",
+    keys = { [[<leader>d]] },
+    module = { "dap" },
+    wants = { "nvim-dap-virtual-text", "DAPInstall.nvim", "nvim-dap-ui" },
+    requires = {
+      "alpha2phi/DAPInstall.nvim",
+      "theHamsta/nvim-dap-virtual-text",
+      "rcarriga/nvim-dap-ui",
+      "nvim-telescope/telescope-dap.nvim",
+      { "jbyuki/one-small-step-for-vimkind", module = "osv" },
+    },
+    config = function()
+      require("config.dap").setup()
+    end,
   }
 
   -- Automatically set up your configuration after cloning packer.nvim
@@ -230,6 +250,22 @@ nvim_lsp.fsautocomplete.setup {
         keywordsAutocomplete = true,
       },
     },
+}
+nvim_lsp.sqls.setup {
+  on_attach = function(client, bufnr)
+    require('sqls').on_attach(client, bufnr)
+    on_attach(client, bufnr)
+  end,
+  settings = {
+    sqls = {
+      connections = {
+        {
+          driver = 'postgresql',
+          dataSourceName = 'host=localhost port=5432 user=postgres password=11111 dbname=postgres sslmode=disable',
+        }
+      }
+    }
+  }
 }
 -- }}}
 
