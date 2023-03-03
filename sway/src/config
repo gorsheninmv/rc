@@ -13,7 +13,7 @@ set $right l
 
 # Terminal emulator
 #set $term ~/tmp/alacritty-debug
-set $term alacritty
+set $term wezterm
 
 # Scripts directory
 set $scripts ~/.local/bin/sway/scripts
