@@ -153,7 +153,16 @@ vim.keymap.set('n', '<leader>gf', function() return require'telescope.builtin'.l
 -- }}}
 
 -- nvim-tree {{{
-require'nvim-tree'.setup()
+require'nvim-tree'.setup({
+  sync_root_with_cwd = true,
+  view = {
+    mappings = {
+      list = {
+        { key = 'u', action = 'dir_up' },
+      },
+    },
+  },
+})
 vim.keymap.set('n', '<leader>nt', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
 -- }}}
 

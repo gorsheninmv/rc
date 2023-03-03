@@ -10,6 +10,8 @@ require'functions'
 require'options'
 require'mappings'
 
+require 'config.toggleterm'
+
 local auto_trim_end_group = vim.api.nvim_create_augroup('auto_trim_end', { clear = true })
 vim.api.nvim_create_autocmd('BufWritePre', {
   pattern = '*',
