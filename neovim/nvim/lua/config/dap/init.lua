@@ -52,6 +52,7 @@ end
 
 local function configure_debuggers()
   require("config.dap.csharp").setup()
+  require("config.dap.deno").setup()
 end
 
 function M.setup()

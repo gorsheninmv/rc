@@ -1,18 +1,10 @@
-local ensure_packer = function()
-  local fn = vim.fn
-  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
-  if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
-    vim.cmd [[packadd packer.nvim]]
-    return true
-  end
-  return false
-end
-
-local packer_bootstrap = ensure_packer()
+vim.cmd [[packadd packer.nvim]]
 
 require('packer').startup(function(use)
-  use 'wbthomason/packer.nvim'
+  use {
+    'wbthomason/packer.nvim',
+    opt = true
+  }
 
   use 'jlanzarotta/bufexplorer'
   use 'majutsushi/tagbar'
@@ -24,7 +16,7 @@ require('packer').startup(function(use)
   use 'wesQ3/vim-windowswap'
   use 'vim-scripts/TagHighlight'
   use 'NLKNguyen/papercolor-theme'
-  use 'lervag/vimtex'
+  use { 'lervag/vimtex', ft = { 'tex' } }
   use 'tpope/vim-commentary'
   use 'neovim/nvim-lspconfig'
   use 'hrsh7th/nvim-compe'
@@ -32,6 +24,7 @@ require('packer').startup(function(use)
   use 'PhilT/vim-fsharp'
   use 'sindrets/diffview.nvim'
   use 'nvim-lua/plenary.nvim'
+  use 'vim-test/vim-test'
   use {
     'nvim-telescope/telescope.nvim',
     tag = '0.1.x',
@@ -49,25 +42,37 @@ require('packer').startup(function(use)
     'nvim-lualine/lualine.nvim',
     requires = { 'kyazdani42/nvim-web-devicons', opt = true }
   }
+  use {
+      'williamboman/mason.nvim',
+      config = function()
+          require('mason').setup()
+      end,
+  }
   use 'nanotee/sqls.nvim'
 
   -- Debugging
   use {
     "mfussenegger/nvim-dap",
     opt = true,
-    -- event = "BufReadPre",
     keys = { [[<leader>d]] },
-    module = { "dap" },
-    wants = { "nvim-dap-virtual-text", "DAPInstall.nvim", "nvim-dap-ui" },
+    module = { 'dap' },
     requires = {
       "alpha2phi/DAPInstall.nvim",
+      'mxsdev/nvim-dap-vscode-js',
       "theHamsta/nvim-dap-virtual-text",
       "rcarriga/nvim-dap-ui",
       "nvim-telescope/telescope-dap.nvim",
       { "jbyuki/one-small-step-for-vimkind", module = "osv" },
     },
+    wants = {
+      'DAPInstall.nvim',
+      'nvim-dap-vscode-js',
+      'nvim-dap-virtual-text',
+      'nvim-dap-ui'
+    },
     config = function()
-      require("config.dap").setup()
+      local dap = require('config.dap')
+      dap.setup()
     end,
   }
   use {"akinsho/toggleterm.nvim", tag = '*', config = function()
@@ -252,7 +257,6 @@ end
 nvim_lsp.pyright.setup { on_attach = on_attach }
 nvim_lsp.rls.setup { on_attach = on_attach }
 nvim_lsp.tsserver.setup { on_attach = on_attach }
-nvim_lsp.denols.setup { on_attach = on_attach }
 nvim_lsp.texlab.setup { on_attach = on_attach }
 nvim_lsp.fsautocomplete.setup {
     on_attach = on_attach,
@@ -279,12 +283,19 @@ nvim_lsp.sqls.setup {
     }
   }
 }
+nvim_lsp.denols.setup {
+  on_attach = on_attach,
+  root_dir = nvim_lsp.util.root_pattern("deno.json"),
+  init_options = {
+    lint = true,
+  },
+}
 -- }}}
 
 -- lua {{{
 USER = vim.fn.expand('$USER')
 local sumneko_binary = '/usr/bin/lua-language-server'
-nvim_lsp.sumneko_lua.setup {
+nvim_lsp.lua_ls.setup {
     on_attach = on_attach,
     cmd = { sumneko_binary, '-E', '/usr/share/lua-language-server/main.lua' },
     settings = {

@@ -64,7 +64,8 @@ for_window [title="mpv"] floating enable, border none
 bindsym --to-code {
 
     # start a terminal
-    $mod+Return exec DRI_PRIME=1 $term
+    # $mod+Return exec DRI_PRIME=1 $term
+    $mod+Return exec $term
 
     # kill focused window
     $mod+Shift+q kill
