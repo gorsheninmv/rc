@@ -49,7 +49,6 @@ packer.startup {
     use 'vim-test/vim-test'
     use {
       'nvim-telescope/telescope.nvim',
-      tag = '0.1.x',
       requires = { 'nvim-lua/plenary.nvim' }
     }
     use {
@@ -72,7 +71,7 @@ packer.startup {
     }
     use 'nanotee/sqls.nvim'
 
-    -- Debugging
+    -- debug {{{
     use {
       "mfussenegger/nvim-dap",
       opt = true,
@@ -97,6 +96,8 @@ packer.startup {
         dap.setup()
       end,
     }
+    -- }}}
+
     use {
       "akinsho/toggleterm.nvim",
       tag = '*',
@@ -104,11 +105,13 @@ packer.startup {
         require("toggleterm").setup()
       end
     }
+
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
     if packer_bootstrap then
       require('packer').sync()
     end
+
   end,
   config = {
     display = {

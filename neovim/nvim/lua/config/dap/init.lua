@@ -55,10 +55,19 @@ local function configure_debuggers()
   require("config.dap.deno").setup()
 end
 
+local function set_keymaps()
+  local dap = require 'dap'
+  vim.keymap.set('n', '<leader>db', dap.toggle_breakpoint)
+  vim.keymap.set('n', '<leader>dc', dap.continue)
+  vim.keymap.set('n', '<leader>do', dap.step_over)
+  vim.keymap.set('n', '<leader>di', dap.step_into)
+end
+
 function M.setup()
   configure() -- Configuration
   configure_exts() -- Extensions
   configure_debuggers() -- Debugger
+  set_keymaps()
 end
 
 configure_debuggers()
