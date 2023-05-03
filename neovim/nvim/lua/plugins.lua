@@ -1,91 +1,121 @@
+local ensure_packer = function()
+  local fn = vim.fn
+  local install_path = fn.stdpath('data')..'/site/pack/packer/opt/packer.nvim'
+  if fn.empty(fn.glob(install_path)) > 0 then
+    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+    vim.cmd [[packadd packer.nvim]]
+    return true
+  end
+  return false
+end
+
+local packer_bootstrap = ensure_packer()
+
 vim.cmd [[packadd packer.nvim]]
 
-require('packer').startup(function(use)
-  use {
-    'wbthomason/packer.nvim',
-    opt = true
-  }
+vim.cmd [[
+  augroup packer_user_config
+  autocmd!
+  autocmd BufWritePost plugins.lua source <afile> | PackerSync
+]]
 
-  use 'jlanzarotta/bufexplorer'
-  use 'majutsushi/tagbar'
-  use 'Yggdroot/indentLine'
-  use 'tpope/vim-surround'
-  use 'jpalardy/vim-slime'
-  use 'wlangstroth/vim-racket'
-  use 'junegunn/rainbow_parentheses.vim'
-  use 'wesQ3/vim-windowswap'
-  use 'vim-scripts/TagHighlight'
-  use 'NLKNguyen/papercolor-theme'
-  use { 'lervag/vimtex', ft = { 'tex' } }
-  use 'tpope/vim-commentary'
-  use 'neovim/nvim-lspconfig'
-  use 'hrsh7th/nvim-compe'
-  use 'alec-gibson/nvim-tetris'
-  use 'PhilT/vim-fsharp'
-  use 'sindrets/diffview.nvim'
-  use 'nvim-lua/plenary.nvim'
-  use 'vim-test/vim-test'
-  use {
-    'nvim-telescope/telescope.nvim',
-    tag = '0.1.x',
-    requires = { 'nvim-lua/plenary.nvim' }
-  }
-  use {
-    'nvim-telescope/telescope-fzf-native.nvim',
-    run = 'make'
-  }
-  use {
-    'nvim-tree/nvim-tree.lua',
-    requires = { 'nvim-tree/nvim-web-devicons' }
-  }
-  use {
-    'nvim-lualine/lualine.nvim',
-    requires = { 'kyazdani42/nvim-web-devicons', opt = true }
-  }
-  use {
-      'williamboman/mason.nvim',
+local packer = require 'packer'
+
+packer.startup {
+  function(use)
+    use {
+      'wbthomason/packer.nvim',
+      opt = true
+    }
+
+    use 'jlanzarotta/bufexplorer'
+    use 'majutsushi/tagbar'
+    use 'Yggdroot/indentLine'
+    use 'tpope/vim-surround'
+    use 'jpalardy/vim-slime'
+    use 'wlangstroth/vim-racket'
+    use 'junegunn/rainbow_parentheses.vim'
+    use 'wesQ3/vim-windowswap'
+    use 'vim-scripts/TagHighlight'
+    use 'NLKNguyen/papercolor-theme'
+    use { 'lervag/vimtex', ft = { 'tex' } }
+    use 'tpope/vim-commentary'
+    use 'neovim/nvim-lspconfig'
+    use 'hrsh7th/nvim-compe'
+    use 'alec-gibson/nvim-tetris'
+    use 'PhilT/vim-fsharp'
+    use 'sindrets/diffview.nvim'
+    use 'nvim-lua/plenary.nvim'
+    use 'vim-test/vim-test'
+    use {
+      'nvim-telescope/telescope.nvim',
+      tag = '0.1.x',
+      requires = { 'nvim-lua/plenary.nvim' }
+    }
+    use {
+      'nvim-telescope/telescope-fzf-native.nvim',
+      run = 'make'
+    }
+    use {
+      'nvim-tree/nvim-tree.lua',
+      requires = { 'nvim-tree/nvim-web-devicons' }
+    }
+    use {
+      'nvim-lualine/lualine.nvim',
+      requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+    }
+    use {
+        'williamboman/mason.nvim',
+        config = function()
+            require('mason').setup()
+        end,
+    }
+    use 'nanotee/sqls.nvim'
+
+    -- Debugging
+    use {
+      "mfussenegger/nvim-dap",
+      opt = true,
+      keys = { [[<leader>d]] },
+      module = { 'dap' },
+      requires = {
+        "alpha2phi/DAPInstall.nvim",
+        'mxsdev/nvim-dap-vscode-js',
+        "theHamsta/nvim-dap-virtual-text",
+        "rcarriga/nvim-dap-ui",
+        "nvim-telescope/telescope-dap.nvim",
+        { "jbyuki/one-small-step-for-vimkind", module = "osv" },
+      },
+      wants = {
+        'DAPInstall.nvim',
+        'nvim-dap-vscode-js',
+        'nvim-dap-virtual-text',
+        'nvim-dap-ui'
+      },
       config = function()
-          require('mason').setup()
+        local dap = require('config.dap')
+        dap.setup()
       end,
+    }
+    use {
+      "akinsho/toggleterm.nvim",
+      tag = '*',
+      config = function()
+        require("toggleterm").setup()
+      end
+    }
+    -- Automatically set up your configuration after cloning packer.nvim
+    -- Put this at the end after all plugins
+    if packer_bootstrap then
+      require('packer').sync()
+    end
+  end,
+  config = {
+    display = {
+      open_fn = require('packer.util').float
+    }
   }
-  use 'nanotee/sqls.nvim'
-
-  -- Debugging
-  use {
-    "mfussenegger/nvim-dap",
-    opt = true,
-    keys = { [[<leader>d]] },
-    module = { 'dap' },
-    requires = {
-      "alpha2phi/DAPInstall.nvim",
-      'mxsdev/nvim-dap-vscode-js',
-      "theHamsta/nvim-dap-virtual-text",
-      "rcarriga/nvim-dap-ui",
-      "nvim-telescope/telescope-dap.nvim",
-      { "jbyuki/one-small-step-for-vimkind", module = "osv" },
-    },
-    wants = {
-      'DAPInstall.nvim',
-      'nvim-dap-vscode-js',
-      'nvim-dap-virtual-text',
-      'nvim-dap-ui'
-    },
-    config = function()
-      local dap = require('config.dap')
-      dap.setup()
-    end,
-  }
-  use {"akinsho/toggleterm.nvim", tag = '*', config = function()
-    require("toggleterm").setup()
-  end}
-
-  -- Automatically set up your configuration after cloning packer.nvim
-  -- Put this at the end after all plugins
-  if packer_bootstrap then
-    require('packer').sync()
-  end
-end)
-
+}
 
 -- Vim-slime
 vim.g.slime_target = 'tmux'
