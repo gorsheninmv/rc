@@ -190,20 +190,6 @@ vim.keymap.set('n', '<leader>ff', function() return require'telescope.builtin'.f
 vim.keymap.set('n', '<leader>gf', function() return require'telescope.builtin'.live_grep() end)
 -- }}}
 
--- nvim-tree {{{
-require'nvim-tree'.setup({
-  sync_root_with_cwd = true,
-  view = {
-    mappings = {
-      list = {
-        { key = 'u', action = 'dir_up' },
-      },
-    },
-  },
-})
-vim.keymap.set('n', '<leader>nt', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
--- }}}
-
 -- lualine {{{
 local lualine_colors = {
   red = '#ca1243',
@@ -300,9 +286,9 @@ nvim_lsp.fsautocomplete.setup {
       },
     },
 }
-nvim_lsp.sqls.setup {
+nvim_lsp.sqlls.setup {
   on_attach = function(client, bufnr)
-    require('sqls').on_attach(client, bufnr)
+    require('sqlls').on_attach(client, bufnr)
     on_attach(client, bufnr)
   end,
   settings = {
