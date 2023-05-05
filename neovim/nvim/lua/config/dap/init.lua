@@ -61,6 +61,7 @@ local function set_keymaps()
   vim.keymap.set('n', '<leader>dc', dap.continue)
   vim.keymap.set('n', '<leader>do', dap.step_over)
   vim.keymap.set('n', '<leader>di', dap.step_into)
+  vim.keymap.set('n', '<leader>dt', dap.terminate)
 end
 
 function M.setup()
