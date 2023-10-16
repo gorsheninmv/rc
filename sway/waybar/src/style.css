@@ -56,7 +56,8 @@ window#waybar.hidden {
 #tray,
 #mode,
 #custom-layout,
-#idle_inhibitor {
+#custom-pomo,
+#idle_inhitor {
     padding: 0 10px;
     margin: 0 4px;
     color: #000000;

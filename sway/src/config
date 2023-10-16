@@ -53,7 +53,6 @@ exec swayidle \
 
 # For window event handlers {{{
 for_window [app_id="launcher"] floating enable, border none
-for_window [class="zoom"] floating enable, border none, focus, resize set width 30 ppt height 70 ppt
 for_window [title="countdown"] floating enable
 for_window [title="mpv"] floating enable, border none
 # }}}
@@ -244,5 +243,20 @@ exec dropbox
 #exec sway-inact-win-transparency
 exec blueman-applet
 # }}}
+
+# ~/.config/sway/config.d/zoom.us.conf
+# 
+# Zoom Meeting App
+# 
+# Default for all windows is non-floating.
+# 
+# For pop up notification windows that don't use notifications api
+for_window [app_id="zoom" title="^zoom$"] border none, floating enable
+# For specific Zoom windows
+for_window [app_id="zoom" title="^(Zoom|About)$"] border pixel, floating enable
+for_window [app_id="zoom" title="Settings"] floating enable, floating_minimum_size 960 x 700
+# Open Zoom Meeting windows on a new workspace (a bit hacky)
+for_window [app_id="zoom" title="Zoom Meeting(.*)?"] workspace next_on_output --create, move container to workspace current, floating disable, inhibit_idle open
+
 
 include /etc/sway/config.d/*
