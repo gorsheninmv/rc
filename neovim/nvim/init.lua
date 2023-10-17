@@ -10,10 +10,6 @@ require'functions'
 require'options'
 require'mappings'
 
-require 'config.toggleterm'
-require 'config.vim-test'
-require 'config.nvim-tree'
-
 local auto_trim_end_group = vim.api.nvim_create_augroup('auto_trim_end', { clear = true })
 vim.api.nvim_create_autocmd('BufWritePre', {
   pattern = '*',
@@ -53,7 +49,4 @@ augroup makefiles
 augroup end
 
 let g:python3_host_prog = '/usr/bin/python3'
-
-" Greeting
-echo "(>^.^<)"
 ]], true)

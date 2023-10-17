@@ -10,5 +10,4 @@ toggleterm.setup {
   persist_size = true,
   direction = 'float',
   autochdir = false,
-
 }

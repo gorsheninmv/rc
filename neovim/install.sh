@@ -15,4 +15,3 @@ fi
 ln -s "$FOLDERPATH" "$LINKPATH"
 
 echo "script completed!"
-

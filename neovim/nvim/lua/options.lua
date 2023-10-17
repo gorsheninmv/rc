@@ -24,6 +24,7 @@ local options = {
   undofile = true,
   backspace = 'indent,eol,start',
   completeopt = 'menuone,noselect',
+  termguicolors = true,
 
   -- text formatting
   modelines = 5,

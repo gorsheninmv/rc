@@ -27,26 +27,88 @@ packer.startup {
       'wbthomason/packer.nvim',
       opt = true
     }
-
-    use 'jlanzarotta/bufexplorer'
-    use 'majutsushi/tagbar'
-    use 'Yggdroot/indentLine'
-    use 'tpope/vim-surround'
-    use 'jpalardy/vim-slime'
-    use 'wlangstroth/vim-racket'
-    use 'junegunn/rainbow_parentheses.vim'
-    use 'wesQ3/vim-windowswap'
-    use 'vim-scripts/TagHighlight'
-    use 'NLKNguyen/papercolor-theme'
-    use { 'lervag/vimtex', ft = { 'tex' } }
-    use 'tpope/vim-commentary'
-    use 'neovim/nvim-lspconfig'
-    use 'hrsh7th/nvim-compe'
-    use 'alec-gibson/nvim-tetris'
-    use 'PhilT/vim-fsharp'
-    use 'sindrets/diffview.nvim'
-    use 'nvim-lua/plenary.nvim'
-    use 'vim-test/vim-test'
+    use {
+      'jlanzarotta/bufexplorer',
+      cond = function() return true end,
+    }
+    use {
+      'majutsushi/tagbar',
+      cond = function() return true end,
+    }
+    use {
+      'Yggdroot/indentLine',
+      cond = function() return true end,
+    }
+    use {
+      'tpope/vim-surround',
+      cond = function() return true end,
+    }
+    use {
+      'jpalardy/vim-slime',
+      cond = function() return true end,
+    }
+    use {
+      'wlangstroth/vim-racket',
+      cond = function() return true end,
+    }
+    use {
+      'junegunn/rainbow_parentheses.vim',
+      cond = function() return true end,
+    }
+    use {
+      'wesQ3/vim-windowswap',
+      cond = function() return true end,
+    }
+    use {
+      'vim-scripts/TagHighlight',
+      cond = function() return true end,
+    }
+    use { 
+      'lervag/vimtex',
+      ft = { 'tex' },
+      cond = function() return true end,
+    }
+    use { 
+      'tpope/vim-commentary',
+      cond = function() return true end,
+    }
+    use {
+      'neovim/nvim-lspconfig',
+      cond = function() return true end,
+      after = { 'mason-lspconfig.nvim' },
+      config = function()
+        require('config.lsp')
+      end
+    }
+    use {
+      'hrsh7th/nvim-compe',
+      cond = function() return true end,
+    }
+    use {
+      'alec-gibson/nvim-tetris',
+      cond = function() return true end,
+    }
+    use {
+      'PhilT/vim-fsharp',
+      cond = function() return true end,
+    }
+    use {
+      'sindrets/diffview.nvim',
+      cond = function() return true end,
+      config = function()
+        require('diffview').setup()
+      end,
+    }
+    use {
+      'nvim-lua/plenary.nvim',
+      cond = function() return true end,
+    }
+    use { 
+      'vim-test/vim-test',
+      config = function()
+        require('config.vim-test')
+      end
+    }
     use {
       'nvim-telescope/telescope.nvim',
       requires = { 'nvim-lua/plenary.nvim' }
@@ -57,23 +119,84 @@ packer.startup {
     }
     use {
       'nvim-tree/nvim-tree.lua',
-      requires = { 'nvim-tree/nvim-web-devicons' }
+      requires = { 'nvim-tree/nvim-web-devicons' },
+      cond = function() return true end,
+      config = function()
+        require('config.nvim-tree')
+      end,
     }
     use {
       'nvim-lualine/lualine.nvim',
       requires = { 'kyazdani42/nvim-web-devicons', opt = true }
     }
     use {
-        'williamboman/mason.nvim',
-        config = function()
-            require('mason').setup()
-        end,
+      'williamboman/mason.nvim',
+      cond = function() return true end,
+      config = function()
+        require('mason').setup()
+      end,
     }
-    use 'nanotee/sqls.nvim'
+    use {
+      'williamboman/mason-lspconfig.nvim',
+      cond = function() return true end,
+      after = { 'mason.nvim' },
+      config = function()
+        require('mason-lspconfig').setup {
+          ensure_installed = {'lua_ls'}
+        }
+      end,
+    }
+    use {
+      'nanotee/sqls.nvim',
+      cond = function() return true end,
+    }
+    use {
+      'pappasam/papercolor-theme-slim',
+      cond = function() return true end,
+      config = function()
+        require('colors')
+      end
+    }
+    use {
+      'Mofiqul/dracula.nvim',
+      cond = function() return false end,
+      config = function()
+        vim.cmd[[color dracula]]
+      end
+    }
+    use {
+      'hrsh7th/nvim-cmp',
+      cond = function() return true end,
+      requires = {
+        'hrsh7th/cmp-nvim-lsp',
+        'hrsh7th/cmp-buffer',
+        'hrsh7th/cmp-path',
+        'hrsh7th/cmp-cmdline',
+        'dcampos/nvim-snippy',
+        'dcampos/cmp-snippy',
+        'honza/vim-snippets',
+      },
+      config = function()
+        require('config.nvim-snippy')
+        require('config.nvim-cmp')
+      end
+    }
+    use {
+        'nvim-treesitter/nvim-treesitter',
+        run = function()
+            local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
+            ts_update()
+        end,
+        cond = function() return true end,
+        config = function()
+          require('config.tree-sitter')
+        end
+    }
 
     -- debug {{{
     use {
       "mfussenegger/nvim-dap",
+      cond = function() return true end,
       opt = true,
       keys = { [[<leader>d]] },
       module = { 'dap' },
@@ -101,8 +224,10 @@ packer.startup {
     use {
       "akinsho/toggleterm.nvim",
       tag = '*',
+      cond = function() return true end,
       config = function()
-        require("toggleterm").setup()
+        require('toggleterm').setup()
+        require('config.toggleterm')
       end
     }
 
@@ -119,6 +244,7 @@ packer.startup {
     }
   }
 }
+
 
 -- Vim-slime
 vim.g.slime_target = 'tmux'
@@ -153,36 +279,6 @@ vim.keymap.set('n', '<F10>',
     execcmd('ToggleBufExplorer')
   end,
   { noremap = true, silent = true })
--- }}}
-
--- nvim-compe {{{
-require'compe'.setup {
-  enabled = true;
-  autocomplete = true;
-  debug = false;
-  min_length = 1;
-  preselect = 'enable';
-  throttle_time = 80;
-  source_timeout = 200;
-  incomplete_delay = 400;
-  max_abbr_width = 100;
-  max_kind_width = 100;
-  max_menu_width = 100;
-  documentation = true;
-
-  source = {
-    path = true;
-    buffer = true;
-    calc = true;
-    vsnip = true;
-    nvim_lsp = true;
-    nvim_lua = true;
-    spell = true;
-    tags = true;
-    snippets_nvim = true;
-    treesitter = true;
-  };
-}
 -- }}}
 
 -- telescope {{{
@@ -228,113 +324,4 @@ require 'lualine'.setup {
   },
  },
 }
--- }}}
-
--- diffview {{{
-require'diffview'.setup()
--- }}}
-
--- lsp {{{
-local nvim_lsp = require('lspconfig')
-
-local on_attach = function(client, bufnr)
-  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
-
-  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
-
-  -- mappings {{{
-  vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, { buffer=0 })
-  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { buffer=0 })
-  vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition, { buffer=0 })
-  vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer=0 })
-  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, { buffer=0 })
-  vim.keymap.set('n', '<leader>ed', vim.diagnostic.open_float, { buffer=0 })
-  vim.keymap.set('n', 'gr', vim.lsp.buf.references, { buffer=0 })
-
-  local opts = { noremap=true, silent=true }
-  buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-  buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
-  buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
-  buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
-  buf_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
-  buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
-  buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
-
-  -- Set some keybinds conditional on server capabilities
-  if client.server_capabilities.document_formatting then
-    buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
-  elseif client.server_capabilities.document_range_formatting then
-    buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.range_formatting()<CR>', opts)
-  end
-  -- }}}
-
-end
-
--- others lsp {{{
-nvim_lsp.pyright.setup { on_attach = on_attach }
-nvim_lsp.rls.setup { on_attach = on_attach }
-nvim_lsp.tsserver.setup { on_attach = on_attach }
-nvim_lsp.texlab.setup { on_attach = on_attach }
-nvim_lsp.fsautocomplete.setup {
-    on_attach = on_attach,
-    cmd = { "fsautocomplete" },
-    settings = {
-      FSharp = {
-        keywordsAutocomplete = true,
-      },
-    },
-}
-nvim_lsp.sqlls.setup {
-  on_attach = function(client, bufnr)
-    require('sqlls').on_attach(client, bufnr)
-    on_attach(client, bufnr)
-  end,
-  settings = {
-    sqls = {
-      connections = {
-        {
-          driver = 'postgresql',
-          dataSourceName = 'host=localhost port=5432 user=postgres password=11111 dbname=postgres sslmode=disable',
-        }
-      }
-    }
-  }
-}
-nvim_lsp.denols.setup {
-  on_attach = on_attach,
-  root_dir = nvim_lsp.util.root_pattern("deno.json"),
-  init_options = {
-    lint = true,
-  },
-}
--- }}}
-
--- lua {{{
-USER = vim.fn.expand('$USER')
-local sumneko_binary = '/usr/bin/lua-language-server'
-nvim_lsp.lua_ls.setup {
-    on_attach = on_attach,
-    cmd = { sumneko_binary, '-E', '/usr/share/lua-language-server/main.lua' },
-    settings = {
-        Lua = {
-            runtime = {
-                -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-                version = 'Lua 5.4',
-                -- Setup your lua path
-                path = '/usr/bin/lua'
-            },
-            diagnostics = {
-                -- Get the language server to recognize the `vim` global
-                globals = { 'vim' }
-            },
-            workspace = {
-                -- Make the server aware of Neovim runtime files
-                library = { [vim.fn.expand('$VIMRUNTIME/lua')] = true, [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true }
-            }
-        }
-    }
-}
--- }}}
 -- }}}
