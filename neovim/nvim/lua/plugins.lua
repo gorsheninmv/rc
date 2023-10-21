@@ -246,7 +246,6 @@ packer.startup {
     display = {
       open_fn = require('packer.util').float
     },
-    log = { level = 'debug' },
   }
 }
 
