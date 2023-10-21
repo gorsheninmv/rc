@@ -49,10 +49,13 @@ packer.startup {
     }
     use {
       'wlangstroth/vim-racket',
-      cond = function() return true end,
-    }
-    use {
-      'junegunn/rainbow_parentheses.vim',
+      ft = { 'racket' },
+      requires = {
+        {
+          'junegunn/rainbow_parentheses.vim',
+          ft = { 'racket' },
+        },
+      },
       cond = function() return true end,
     }
     use {
@@ -63,12 +66,12 @@ packer.startup {
       'vim-scripts/TagHighlight',
       cond = function() return true end,
     }
-    use { 
+    use {
       'lervag/vimtex',
       ft = { 'tex' },
       cond = function() return true end,
     }
-    use { 
+    use {
       'tpope/vim-commentary',
       cond = function() return true end,
     }
@@ -81,15 +84,12 @@ packer.startup {
       end
     }
     use {
-      'hrsh7th/nvim-compe',
-      cond = function() return true end,
-    }
-    use {
       'alec-gibson/nvim-tetris',
       cond = function() return true end,
     }
     use {
       'PhilT/vim-fsharp',
+      ft = { 'fs' },
       cond = function() return true end,
     }
     use {
@@ -103,7 +103,7 @@ packer.startup {
       'nvim-lua/plenary.nvim',
       cond = function() return true end,
     }
-    use { 
+    use {
       'vim-test/vim-test',
       config = function()
         require('config.vim-test')
@@ -127,19 +127,22 @@ packer.startup {
     }
     use {
       'nvim-lualine/lualine.nvim',
-      requires = { 'kyazdani42/nvim-web-devicons', opt = true }
-    }
-    use {
-      'williamboman/mason.nvim',
-      cond = function() return true end,
+      requires = { 'kyazdani42/nvim-web-devicons', opt = true },
       config = function()
-        require('mason').setup()
+        require('config.lualine')
       end,
     }
     use {
       'williamboman/mason-lspconfig.nvim',
       cond = function() return true end,
-      after = { 'mason.nvim' },
+      requires = {
+        {
+          'williamboman/mason.nvim',
+          config = function()
+            require('mason').setup()
+          end,
+        },
+      },
       config = function()
         require('mason-lspconfig').setup {
           ensure_installed = {'lua_ls'}
@@ -148,6 +151,7 @@ packer.startup {
     }
     use {
       'nanotee/sqls.nvim',
+      ft = { 'sql' },
       cond = function() return true end,
     }
     use {
@@ -241,7 +245,8 @@ packer.startup {
   config = {
     display = {
       open_fn = require('packer.util').float
-    }
+    },
+    log = { level = 'debug' },
   }
 }
 
@@ -264,11 +269,14 @@ vim.cmd[[highlight link EchoDocFloat Pmenu]]
 vim.g.tex_flavor = 'latex'
 vim.g.vimtex_view_method = 'mupdf'
 
+
 -- Window Swap
 vim.keymap.set('n', '<leader>s', vim.fn['WindowSwap#EasyWindowSwap'])
 
+
 -- Tagbar
 vim.keymap.set('n', '<F9>', '<cmd>TagbarToggle<cr>')
+
 
 local utils = require 'utils'
 local execcmd = utils.execcmd
@@ -284,44 +292,4 @@ vim.keymap.set('n', '<F10>',
 -- telescope {{{
 vim.keymap.set('n', '<leader>ff', function() return require'telescope.builtin'.find_files() end)
 vim.keymap.set('n', '<leader>gf', function() return require'telescope.builtin'.live_grep() end)
--- }}}
-
--- lualine {{{
-local lualine_colors = {
-  red = '#ca1243',
-  grey = '#a0a1a7',
-  black = '#383a42',
-  white = '#f3f3f3',
-  light_green = '#83a598',
-  orange = '#fe8019',
-  green = '#8ec07c',
-}
-
-local function show_trailing_whitespace()
-  local space = vim.fn.search([[\s\+$]], 'nwc')
-  return space ~= 0 and "TW:"..space or ""
-end
-
-require 'lualine'.setup {
-  options = {
-    theme = 'papercolor_light',
-  },
-  sections = {
-    lualine_b = {
-      { show_trailing_whitespace, color = { bg = lualine_colors.orange } },
-      {
-        'diagnostics',
-        source = { 'nvim' },
-        sections = { 'error' },
-        diagnostics_color = { error = { bg = lualine_colors.red, fg = lualine_colors.white } },
-      },
-      {
-        'diagnostics',
-        source = { 'nvim' },
-        sections = { 'warn' },
-        diagnostics_color = { warn = { bg = lualine_colors.orange, fg = lualine_colors.white } },
-      },
-  },
- },
-}
 -- }}}

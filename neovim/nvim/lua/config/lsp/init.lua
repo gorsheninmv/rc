@@ -80,6 +80,11 @@ nvim_lsp.html.setup {
   on_attach = on_attach,
   capabilities = capabilities,
 }
+
+nvim_lsp.emmet_ls.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+}
 -- }}}
 
 -- lua {{{
