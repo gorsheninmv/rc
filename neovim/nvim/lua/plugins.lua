@@ -28,10 +28,6 @@ packer.startup {
       opt = true
     }
     use {
-      'jlanzarotta/bufexplorer',
-      cond = function() return true end,
-    }
-    use {
       'majutsushi/tagbar',
       cond = function() return true end,
     }
@@ -111,7 +107,10 @@ packer.startup {
     }
     use {
       'nvim-telescope/telescope.nvim',
-      requires = { 'nvim-lua/plenary.nvim' }
+      requires = { 'nvim-lua/plenary.nvim' },
+      config = function()
+        require('config.telescope')
+      end,
     }
     use {
       'nvim-telescope/telescope-fzf-native.nvim',
@@ -286,9 +285,4 @@ vim.keymap.set('n', '<F10>',
     execcmd('ToggleBufExplorer')
   end,
   { noremap = true, silent = true })
--- }}}
-
--- telescope {{{
-vim.keymap.set('n', '<leader>ff', function() return require'telescope.builtin'.find_files() end)
-vim.keymap.set('n', '<leader>gf', function() return require'telescope.builtin'.live_grep() end)
 -- }}}
