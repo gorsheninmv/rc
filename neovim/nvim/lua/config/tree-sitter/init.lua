@@ -10,5 +10,8 @@ tree_sitter.setup {
   },
   highlight = {
     enable = true,
+  },
+  autotag = {
+    enable = true,
   }
 }

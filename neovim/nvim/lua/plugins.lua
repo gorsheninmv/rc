@@ -196,6 +196,15 @@ packer.startup {
         end
     }
     use {
+        'windwp/nvim-ts-autotag',
+    }
+    use {
+      "windwp/nvim-autopairs",
+        config = function()
+          require("nvim-autopairs").setup({})
+        end
+    }
+    use {
       'rguruprakash/simple-note.nvim',
       cond = function() return true end,
       requires = {
