@@ -5,6 +5,8 @@ tree_sitter.setup {
     'html',
     'css',
     'lua',
+    'markdown',
+    'markdown_inline',
   },
   highlight = {
     enable = true,
