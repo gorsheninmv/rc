@@ -195,6 +195,16 @@ packer.startup {
           require('config.tree-sitter')
         end
     }
+    use {
+      'rguruprakash/simple-note.nvim',
+      cond = function() return true end,
+      requires = {
+        'nvim-telescope/telescope.nvim'
+      },
+      config = function()
+        require('config.simple-note')
+      end
+    }
 
     -- debug {{{
     use {
