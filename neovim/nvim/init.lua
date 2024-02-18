@@ -9,6 +9,7 @@ require'colors'
 require'functions'
 require'options'
 require'mappings'
+require'config.sungero'
 
 local auto_trim_end_group = vim.api.nvim_create_augroup('auto_trim_end', { clear = true })
 vim.api.nvim_create_autocmd('BufWritePre', {
