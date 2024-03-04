@@ -205,7 +205,7 @@ packer.startup {
         end
     }
     use {
-      'rguruprakash/simple-note.nvim',
+      'gorsheninmv/simple-note.nvim',
       cond = function() return true end,
       requires = {
         'nvim-telescope/telescope.nvim'
