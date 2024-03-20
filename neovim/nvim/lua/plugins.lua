@@ -214,6 +214,17 @@ packer.startup {
         require('config.simple-note')
       end
     }
+    use {
+      'nfrid/markdown-togglecheck',
+      ft = { 'markdown' },
+      cond = function() return true end,
+      requires = {
+        'nfrid/treesitter-utils'
+      },
+      config = function()
+        require('config.markdown-togglecheck')
+      end,
+}
 
     -- debug {{{
     use {
