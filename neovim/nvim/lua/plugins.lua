@@ -224,7 +224,15 @@ packer.startup {
       config = function()
         require('config.markdown-togglecheck')
       end,
-}
+  }
+  use {
+    ft = { 'markdown' },
+    'jghauser/follow-md-links.nvim',
+    cond = function() return true end,
+    config = function()
+      require('config.follow-md-links')
+    end,
+  }
 
     -- debug {{{
     use {
