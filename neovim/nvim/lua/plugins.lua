@@ -228,6 +228,7 @@ packer.startup {
   use {
     ft = { 'markdown' },
     'gorsheninmv/follow-md-links.nvim',
+    branch = 'feat-follow-key',
     cond = function() return true end,
     config = function()
       require('config.follow-md-links')

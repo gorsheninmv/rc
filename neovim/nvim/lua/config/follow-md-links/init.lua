@@ -8,5 +8,6 @@ if not module then
   return
 end
 
-print('hola')
-vim.keymap.set('n', 'gx', module.follow_link)
+module.setup {
+  follow_key = 'gx',
+}
