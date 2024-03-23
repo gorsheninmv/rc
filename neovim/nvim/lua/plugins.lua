@@ -205,7 +205,7 @@ packer.startup {
         end
     }
     use {
-      'gorsheninmv/simple-note.nvim',
+      'rguruprakash/simple-note.nvim',
       cond = function() return true end,
       requires = {
         'nvim-telescope/telescope.nvim'
@@ -227,7 +227,7 @@ packer.startup {
   }
   use {
     ft = { 'markdown' },
-    'jghauser/follow-md-links.nvim',
+    'gorsheninmv/follow-md-links.nvim',
     cond = function() return true end,
     config = function()
       require('config.follow-md-links')
