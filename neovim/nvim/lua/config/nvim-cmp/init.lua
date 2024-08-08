@@ -22,7 +22,8 @@ cmp.setup({
       { name = 'snippy', keyword_length = 2 },
     }, {
       { name = 'buffer', keyword_length = 3 },
-    })
+    }),
+    preselect = cmp.PreselectMode.None,
 })
 
 -- Set configuration for specific filetype.
