@@ -215,6 +215,13 @@ packer.startup {
       end
     }
     use {
+      'sigmasd/deno-nvim',
+      cond = function() return true end,
+      config = function()
+        require('config.deno')
+      end,
+    }
+    use {
       'nfrid/markdown-togglecheck',
       ft = { 'markdown' },
       cond = function() return true end,
@@ -246,7 +253,12 @@ packer.startup {
         "alpha2phi/DAPInstall.nvim",
         'mxsdev/nvim-dap-vscode-js',
         "theHamsta/nvim-dap-virtual-text",
-        "rcarriga/nvim-dap-ui",
+        {
+          "rcarriga/nvim-dap-ui",
+          requires = {
+            "nvim-neotest/nvim-nio",
+          }
+        },
         "nvim-telescope/telescope-dap.nvim",
         { "jbyuki/one-small-step-for-vimkind", module = "osv" },
       },
@@ -254,7 +266,7 @@ packer.startup {
         'DAPInstall.nvim',
         'nvim-dap-vscode-js',
         'nvim-dap-virtual-text',
-        'nvim-dap-ui'
+        'nvim-dap-ui',
       },
       config = function()
         local dap = require('config.dap')
