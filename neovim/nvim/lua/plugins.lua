@@ -273,6 +273,13 @@ packer.startup {
         dap.setup()
       end,
     }
+    use {
+      'leoluz/nvim-dap-go',
+      cond = function() return true end,
+      config = function()
+        require('config.dap.go')
+      end
+    }
     -- }}}
 
     use {
