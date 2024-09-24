@@ -11,3 +11,5 @@ export ZSH_TMUX_UNICODE=true
 export PASSWORD_STORE_DIR=$HOME/Dropbox/pwd
 export EDITOR=nvim
 export GNUPGHOME="$XDG_DATA_HOME"/gnupg
+export NNN_PLUG='f:finder;o:fzopen;p:preview-tui;d:diffs;t:nmount;v:imgview'
+export NNN_FIFO='/tmp/nnn.fifo'
