@@ -334,6 +334,16 @@ vim.keymap.set('n', '<leader>s', vim.fn['WindowSwap#EasyWindowSwap'])
 vim.keymap.set('n', '<F9>', '<cmd>TagbarToggle<cr>')
 
 
+-- IndentLine
+vim.g.indentLine_fileTypeExclude = { 'markdown' }
+
+vim.cmd[[
+augroup filetypedetect
+  autocmd!
+  autocmd BufNewFile,BufRead *.md setlocal conceallevel=0
+augroup END
+]]
+
 local utils = require 'utils'
 local execcmd = utils.execcmd
 
