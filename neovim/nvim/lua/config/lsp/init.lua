@@ -40,7 +40,7 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 -- others lsp {{{
 nvim_lsp.pyright.setup { on_attach = on_attach }
 nvim_lsp.rls.setup { on_attach = on_attach }
-nvim_lsp.tsserver.setup { on_attach = on_attach }
+nvim_lsp.ts_ls.setup { on_attach = on_attach }
 nvim_lsp.texlab.setup { on_attach = on_attach }
 nvim_lsp.fsautocomplete.setup {
     on_attach = on_attach,
