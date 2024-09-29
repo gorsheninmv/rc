@@ -41,3 +41,6 @@ setkmp('i', '<C-h>', '<LEFT>')
 setkmp('i', '<C-j>', '<DOWN>')
 setkmp('i', '<C-k>', '<UP>')
 setkmp('i', '<C-l>', '<RIGHT>')
+
+-- set the parent directory of the current file as the current working directory
+setkmp('n', '<leader>cd', ':lcd %:h<CR>')
