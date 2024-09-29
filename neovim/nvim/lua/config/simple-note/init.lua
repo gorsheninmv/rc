@@ -8,4 +8,11 @@ if not module then
   return
 end
 
+local function openOrCreateTodayNote()
+  local filename = os.date('%Y_%m_%d')
+  vim.cmd('SimpleNoteCreate ' .. filename)
+end
+
+vim.api.nvim_create_user_command('SimpleNoteToday', openOrCreateTodayNote, {})
+
 module.setup { }
