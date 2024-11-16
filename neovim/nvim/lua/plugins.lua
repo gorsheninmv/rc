@@ -216,7 +216,7 @@ packer.startup {
     }
     use {
       'sigmasd/deno-nvim',
-      cond = function() return true end,
+      ft = { 'typescript' },
       config = function()
         require('config.deno')
       end,
@@ -231,42 +231,40 @@ packer.startup {
       config = function()
         require('config.markdown-togglecheck')
       end,
-  }
-  use {
-    ft = { 'markdown' },
-    'gorsheninmv/follow-md-links.nvim',
-    branch = 'feat-follow-key',
-    cond = function() return true end,
-    config = function()
-      require('config.follow-md-links')
-    end,
-  }
+    }
+    use {
+      ft = { 'markdown' },
+      'gorsheninmv/follow-md-links.nvim',
+      branch = 'feat-follow-key',
+      cond = function() return true end,
+      config = function()
+        require('config.follow-md-links')
+      end,
+    }
 
     -- debug {{{
     use {
-      "mfussenegger/nvim-dap",
-      cond = function() return true end,
+      'theHamsta/nvim-dap-virtual-text',
       opt = true,
-      keys = { [[<leader>d]] },
-      module = { 'dap' },
-      requires = {
-        "alpha2phi/DAPInstall.nvim",
-        'mxsdev/nvim-dap-vscode-js',
-        "theHamsta/nvim-dap-virtual-text",
-        {
-          "rcarriga/nvim-dap-ui",
-          requires = {
-            "nvim-neotest/nvim-nio",
-          }
-        },
-        "nvim-telescope/telescope-dap.nvim",
-        { "jbyuki/one-small-step-for-vimkind", module = "osv" },
-      },
+    }
+    use {
+      'rcarriga/nvim-dap-ui',
+      opt = true,
       wants = {
-        'DAPInstall.nvim',
-        'nvim-dap-vscode-js',
+        'nvim-nio',
+      },
+    }
+    use {
+      'nvim-neotest/nvim-nio',
+      opt = true,
+    }
+    use {
+      'mfussenegger/nvim-dap',
+      opt = true,
+      module = { 'dap' },
+      wants = {
         'nvim-dap-virtual-text',
-        'nvim-dap-ui',
+        'nvim-dap-ui'
       },
       config = function()
         local dap = require('config.dap')
@@ -275,10 +273,14 @@ packer.startup {
     }
     use {
       'leoluz/nvim-dap-go',
-      cond = function() return true end,
+      opt = true,
+      keys = { [[<leader>d]] },
+      wants = {
+        'nvim-dap',
+      },
       config = function()
         require('config.dap.go')
-      end
+      end,
     }
     -- }}}
 
