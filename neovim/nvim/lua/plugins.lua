@@ -248,6 +248,13 @@ packer.startup {
       opt = true,
     }
     use {
+      'nvim-telescope/telescope-dap.nvim',
+      opt = true,
+      config = function()
+        require('config.telescope-dap')
+      end,
+    }
+    use {
       'rcarriga/nvim-dap-ui',
       opt = true,
       wants = {
@@ -276,6 +283,7 @@ packer.startup {
       opt = true,
       keys = { [[<leader>d]] },
       wants = {
+        'telescope-dap.nvim',
         'nvim-dap',
       },
       config = function()
