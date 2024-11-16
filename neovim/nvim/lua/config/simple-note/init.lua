@@ -15,4 +15,10 @@ end
 
 vim.api.nvim_create_user_command('SimpleNoteToday', openOrCreateTodayNote, {})
 
-module.setup { }
+home_directory = tostring(vim.fn.expand('~'))
+module.setup {
+  notes_directories = {
+    home_directory .. '/Dropbox/simple-notes/work/',
+    home_directory .. '/Dropbox/simple-notes/personal/'
+  },
+}
