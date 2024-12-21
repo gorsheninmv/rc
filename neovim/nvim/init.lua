@@ -1,53 +1,18 @@
--- tutorial about lua config:
--- https://vonheikemen.github.io/devlog/tools/configuring-neovim-using-lua/
--- type gx to open url
+vim.g.mapleader = ","
 
-vim.g.mapleader = ','
-
-require'plugins'
-require'colors'
-require'functions'
-require'options'
-require'mappings'
-require'config.sungero'
-
-local auto_trim_end_group = vim.api.nvim_create_augroup('auto_trim_end', { clear = true })
-vim.api.nvim_create_autocmd('BufWritePre', {
-  pattern = '*',
-  group = auto_trim_end_group,
+vim.api.nvim_create_autocmd("TermOpen", {
+  group = vim.api.nvim_create_augroup("custom-term-open", { clear = true }),
   callback = function()
-    vim.fn.TrimEndLines()
+    vim.opt.number = false
+    vim.opt.relativenumber = false
+    vim.keymap.set("t", "<c-[>", "<c-\\><c-n>", { silent = true, buffer = true })
   end
 })
 
-vim.api.nvim_exec([[
-" C features
-augroup c_features
-    au!
-    au FileType c inoremap {<CR> {<CR>}<ESC>O
-augroup end
+require("config.opts")
+require("config.maps")
 
-" C features
-augroup ts_features
-    au!
-    au FileType typescript inoremap {<CR> {<CR>}<ESC>O
-augroup end
-
-" Scheme features
-augroup scheme_features
-    au!
-    au FileType BufEnter *.scm :RainbowParentheses setlocal lisp
-augroup end
-
-augroup tex_settings
-    au!
-    au BufRead,BufNewFile *.tex setlocal textwidth=100
-augroup end
-
-augroup makefiles
-    au!
-    au! FileType make set noexpandtab shiftwidth=8 softtabstop=0
-augroup end
-
-let g:python3_host_prog = '/usr/bin/python3'
-]], true)
+-- Make sure to setup `mapleader` and `maplocalleader` before
+-- loading lazy.nvim so that mappings are correct.
+-- This is also a good place to setup other settings (vim.opt)
+require("config.lazy")
