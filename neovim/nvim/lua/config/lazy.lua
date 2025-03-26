@@ -22,15 +22,21 @@ require("lazy").setup({
   spec = {
     {
       "folke/tokyonight.nvim",
-      config = function() vim.cmd.colorscheme("tokyonight-day") end
+      config = function() 
+        require("tokyonight").setup {
+          transparent = true,
+        }
+        vim.cmd.colorscheme("tokyonight-day") 
+      end
     },
     "tpope/vim-surround",
+    "tpope/vim-fugitive",
     -- import your plugins
     { import = "config.plugins" },
   },
   -- Configure any other settings here. See the documentation for more details.
   -- colorscheme that will be used when installing plugins.
-  install = { colorscheme = { "habamax" } },
+  -- install = { colorscheme = { "habamax" } },
   -- automatically check for plugin updates
   checker = { enabled = true },
 })
