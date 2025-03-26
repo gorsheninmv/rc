@@ -8,7 +8,6 @@ config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
 config.window_background_opacity = 0.9
 config.window_decorations = "RESIZE"
 config.show_new_tab_button_in_tab_bar = false
-config.default_prog = { 'pwsh.exe', '-NoLogo' }
 config.keys = {
   {
     key = "|",
@@ -97,6 +96,10 @@ for i = 1, 8 do
     mods = "LEADER",
     action = wz.action.ActivateTab(i - 1),
   })
+end
+
+if wz.target_triple == 'x86_64-pc-windows-msvc' then
+  config.default_prog = { 'pwsh.exe', '-NoLogo' }
 end
 
 local bar = wz.plugin.require("https://github.com/adriankarlen/bar.wezterm")
