@@ -1,0 +1,4 @@
+#!/bin/bash
+
+swaymsg -t command exec "swaymsg exit"
+
