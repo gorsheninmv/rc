@@ -1,7 +1,7 @@
 local wz = require("wezterm")
 
 local config = wz.config_builder()
-config.font = wz.font("FiraCode Nerd Font Mono")
+config.font = wz.font("FiraCode Nerd Font Mono", { weight = "DemiBold" })
 config.font_size = 11
 config.color_scheme = "PaperColorLight (Gogh)"
 config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
