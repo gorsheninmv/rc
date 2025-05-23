@@ -2,6 +2,12 @@
   Use :help lspconfig-all to discover all possible lsp-servers
 --]]
 
+vim.diagnostic.config({
+   virtual_text = {
+     current_line = true,
+   },
+})
+
 local on_attach = function(client, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
