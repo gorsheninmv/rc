@@ -28,17 +28,18 @@ return {
       lsp = {
         dianostic = {
           register = "D",
-        }
+        },
+        format_on_save = true,
       },
     })
 
-    local format_sync_grp = vim.api.nvim_create_augroup("Format", { clear = false })
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      pattern = "*.go",
-      callback = function()
-        require('go.format').goimport()
-      end,
-      group = format_sync_grp,
-    })
+    -- local format_sync_grp = vim.api.nvim_create_augroup("Format", { clear = true })
+    -- vim.api.nvim_create_autocmd("BufWritePre", {
+    --   pattern = "*.go",
+    --   callback = function()
+    --     require('go.format').goimport()
+    --   end,
+    --   group = format_sync_grp,
+    -- })
   end
 }
