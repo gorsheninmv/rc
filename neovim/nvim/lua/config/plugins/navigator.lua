@@ -1,5 +1,6 @@
 return {
-  "ray-x/navigator.lua",
+  "gorsheninmv/navigator.lua",
+  branch = "fix-fmt-au",
   dependencies = {
     { "hrsh7th/nvim-cmp" },
     { "neovim/nvim-lspconfig" },
@@ -13,33 +14,25 @@ return {
       event = { "CmdlineEnter" },
       ft = { "go", "gomod" },
       build = function() require("go.install").update_all_sync() end,
+      opts = {
+        lsp_cfg = true,
+        lsp_inlay_hints = {
+          enable = false,
+        },
+      }
     },
   },
-  config = function()
-    local go, navigator = require("go"), require("navigator")
-    go.setup({
-      lsp_cfg = true,
-      lsp_inlay_hints = {
-        enable = false,
+  opts = {
+    debug = true,
+    lsp = {
+      dianostic = {
+        register = "D",
       },
-    })
-    navigator.setup({
-      debug = true,
-      lsp = {
-        dianostic = {
-          register = "D",
+      format_on_save = {
+        disable = {
+          "lua",
         },
-        format_on_save = true,
       },
-    })
-
-    -- local format_sync_grp = vim.api.nvim_create_augroup("Format", { clear = true })
-    -- vim.api.nvim_create_autocmd("BufWritePre", {
-    --   pattern = "*.go",
-    --   callback = function()
-    --     require('go.format').goimport()
-    --   end,
-    --   group = format_sync_grp,
-    -- })
-  end
+    },
+  },
 }
