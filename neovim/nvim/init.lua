@@ -1,10 +1,11 @@
 vim.g.mapleader = ","
+vim.g.maplocalleader = " "
 
 vim.api.nvim_create_autocmd("TermOpen", {
   group = vim.api.nvim_create_augroup("custom-term-open", { clear = true }),
   callback = function()
-    vim.opt.number = false
-    vim.opt.relativenumber = false
+    vim.opt_local.number = false
+    vim.opt_local.relativenumber = false
     vim.keymap.set("t", "<c-[>", "<c-\\><c-n>", { silent = true, buffer = true })
   end
 })

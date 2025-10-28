@@ -50,3 +50,9 @@ setkmp('n', "<leader>cd", ":lcd %:h<cr>")
 -- move over buffers
 setkmp("n", "<leader>h", function() vim.cmd("bprevious") end)
 setkmp("n", "<leader>l", function() vim.cmd("bnext") end)
+
+-- bottom terminal
+setkmp("n", "<leader>st", function ()
+  local winid = vim.api.nvim_get_current_win()
+  require("bterm"):open(winid)
+end)
