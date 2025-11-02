@@ -1,13 +1,13 @@
 local function enable()
-vim.diagnostic.handlers["quickfix"] = {
-  show = function(_, _, _, _)
-    vim.diagnostic.setqflist({ open = true })
-  end,
+  vim.diagnostic.handlers["quickfix"] = {
+    show = function(_, _, _, _)
+      vim.diagnostic.setqflist({ open = true })
+    end,
 
-  hide = function(_, _)
-    vim.fn.setqflist({}, 'r')
-  end
-}
+    hide = function(_, _)
+      vim.fn.setqflist({}, 'r')
+    end
+  }
 end
 
 local function disable()
@@ -36,4 +36,3 @@ vim.api.nvim_create_user_command(
   qfdiag_toggle,
   {}
 )
-
