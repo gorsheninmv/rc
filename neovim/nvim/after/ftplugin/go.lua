@@ -12,5 +12,3 @@ vim.keymap.set("n", "<localleader>ta", function()
   print("test")
   require("bterm"):exec(winid, cmd)
 end, { buffer = true, noremap = true, silent = true })
-
-vim.lsp.enable('lua_ls')
