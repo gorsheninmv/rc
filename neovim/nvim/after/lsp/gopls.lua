@@ -12,7 +12,7 @@ return {
           },
           gofumpt = true,
           completeUnimported = true,
-          usePlaceholders = false,
+          usePlaceholders = true,
           diagnosticsDelay = "250ms",
           staticcheck = true,
           hints = {

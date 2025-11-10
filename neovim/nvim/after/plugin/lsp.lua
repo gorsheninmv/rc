@@ -54,6 +54,15 @@ local function register_user_commands()
   )
 end
 
+local function register_keymaps()
+  vim.keymap.set(
+    "n",
+    "gd",
+    vim.lsp.buf.definition,
+    { buffer = true }
+  )
+end
+
 vim.api.nvim_create_autocmd("LspAttach", {
   group = g,
   callback = function(args)
@@ -65,5 +74,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
     })
 
     register_user_commands()
+    register_keymaps()
   end
 })

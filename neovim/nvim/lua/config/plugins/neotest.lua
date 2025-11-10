@@ -20,10 +20,10 @@ return {
       },
     },
     config = function()
-      require'nvim-treesitter'.install { 'c', 'lua', 'vim', "vimdoc", "markdown", "go" }
       local config = {
         runner = "gotestsum", -- Optional, but recommended
         testify_enabled = true,
+        warn_test_name_dupes = false,
       }
       require("neotest").setup({
         output = {

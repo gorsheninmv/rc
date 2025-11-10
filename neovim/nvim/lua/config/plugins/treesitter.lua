@@ -10,4 +10,7 @@ return {
     -- TODO: create an issue
     --install_dir = "~/.local/share/nvim/lazy/nvim-treesitter/new"
   },
+  config = function ()
+      require'nvim-treesitter'.install { 'c', 'lua', 'vim', "vimdoc", "markdown", "go" }
+  end
 }
