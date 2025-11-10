@@ -26,9 +26,8 @@ return {
         testify_enabled = true,
       }
       require("neotest").setup({
-        log_level = 0,
-        running = {
-          concurrent = false,
+        output = {
+          enabled = false,
         },
         adapters = {
           require("neotest-golang")(config),
