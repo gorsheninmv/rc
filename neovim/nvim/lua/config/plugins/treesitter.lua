@@ -11,6 +11,6 @@ return {
     --install_dir = "~/.local/share/nvim/lazy/nvim-treesitter/new"
   },
   config = function ()
-      require'nvim-treesitter'.install { 'c', 'lua', 'vim', "vimdoc", "markdown", "go" }
+      require'nvim-treesitter'.install { 'c', 'lua', 'vim', "vimdoc", "markdown", "go", "http" }
   end
 }
