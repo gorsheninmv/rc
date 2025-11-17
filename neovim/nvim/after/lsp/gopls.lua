@@ -10,6 +10,7 @@ return {
             upgrade_dependency = true,
             vendor = true,
           },
+          buildFlags = { "-tags=e2e,integration" },
           gofumpt = true,
           completeUnimported = true,
           usePlaceholders = true,
