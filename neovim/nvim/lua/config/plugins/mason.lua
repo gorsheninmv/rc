@@ -3,8 +3,8 @@ return {
     "mason-org/mason-lspconfig.nvim",
     opts = {
       ensure_installed = {
-        "buf_ls",
         "bashls",
+        "protols",
         "yamlls",
       },
     },
