@@ -8,7 +8,7 @@ vim.treesitter.start()
 
 vim.keymap.set("n", "<localleader>ta", function()
   local winid = vim.api.nvim_get_current_win()
-  local cmd = "gotestsum --format testname -- -fullpath ./..."
+  local cmd = "gotestsum --format testname -- -tags=integration -fullpath ./..."
   require("bterm"):exec(winid, cmd)
 end, { buffer = true, noremap = true, silent = true })
 

@@ -24,6 +24,13 @@ return {
         runner = "gotestsum", -- Optional, but recommended
         testify_enabled = true,
         warn_test_name_dupes = false,
+        go_test_args = { "-tags=e2e,integration" },
+        go_list_args = { "-tags=e2e,integration" },
+        dap_go_opts = {
+          delve = {
+            build_flags = { "-tags=e2e,integration" },
+          },
+        },
       }
       require("neotest").setup({
         output = {
