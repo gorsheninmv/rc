@@ -22,7 +22,7 @@ require("lazy").setup({
   spec = {
     {
       "folke/tokyonight.nvim",
-      config = function() 
+      config = function()
         require("tokyonight").setup {
           transparent = true,
         }
