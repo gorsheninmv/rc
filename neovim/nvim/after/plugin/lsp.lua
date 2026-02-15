@@ -14,42 +14,54 @@ local function register_user_commands()
   vim.api.nvim_buf_create_user_command(
     0,
     "LspRename",
-    vim.lsp.buf.rename,
+    function ()
+      vim.lsp.buf.rename()
+    end,
     {}
   )
 
   vim.api.nvim_buf_create_user_command(
     0,
     "LspCodeAction",
-    vim.lsp.buf.code_action,
+    function ()
+      vim.lsp.buf.code_action()
+    end,
     {}
   )
 
   vim.api.nvim_buf_create_user_command(
     0,
     "LspHover",
-    vim.lsp.buf.hover,
+    function ()
+      vim.lsp.buf.hover()
+    end,
     {}
   )
 
   vim.api.nvim_buf_create_user_command(
     0,
     "LspSignatureHelp",
-    vim.lsp.buf.hover,
+    function ()
+      vim.lsp.buf.signature_help()
+    end,
     {}
   )
 
   vim.api.nvim_buf_create_user_command(
     0,
     "LspCodelense",
-    vim.lsp.codelens.run,
+    function ()
+      vim.lsp.codelens.run()
+    end,
     {}
   )
 
   vim.api.nvim_buf_create_user_command(
     0,
     "LspFormat",
-    vim.lsp.buf.format,
+    function ()
+      vim.lsp.buf.format()
+    end,
     {}
   )
 end
