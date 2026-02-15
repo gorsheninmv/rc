@@ -73,17 +73,17 @@ config.keys = {
     mods = "LEADER",
     action = wz.action.CloseCurrentTab { confirm = true },
   },
-  { 
+  {
     key = 'm',
     mods = 'LEADER',
     action = wz.action.ShowLauncher
   },
-  { 
+  {
     key = 'h',
     mods = 'CTRL|SHIFT',
     action = wz.action.ActivateTabRelative(-1),
   },
-  { 
+  {
     key = 'l',
     mods = 'CTRL|SHIFT',
     action = wz.action.ActivateTabRelative(1),
@@ -102,8 +102,21 @@ if wz.target_triple == 'x86_64-pc-windows-msvc' then
   config.default_prog = { 'pwsh.exe', '-NoLogo' }
 end
 
-local bar = wz.plugin.require("https://github.com/adriankarlen/bar.wezterm")
-bar.apply_to_config(config)
+require('theme').setup(config)
+
+local tabline = wz.plugin.require("https://github.com/michaelbrusegard/tabline.wez")
+tabline.setup({
+  options = {
+    theme = 'GruvboxDark',
+    tabs_enabled = true,
+  },
+  sections = {
+    tab_active = {},
+    tab_inactive = {},
+  },
+
+})
+tabline.apply_to_config(config)
 
 return config
 
