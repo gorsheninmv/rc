@@ -3,7 +3,7 @@ local wz = require("wezterm")
 local config = wz.config_builder()
 config.font = wz.font("FiraCode Nerd Font Mono", { weight = "DemiBold" })
 config.font_size = 11
-config.color_scheme = "PaperColorLight (Gogh)"
+config.color_scheme = "Tokyo Night Light (Gogh)"
 config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
 config.window_background_opacity = 0.9
 config.window_decorations = "RESIZE"
