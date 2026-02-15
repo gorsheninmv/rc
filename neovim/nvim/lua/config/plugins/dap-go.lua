@@ -10,7 +10,17 @@ return {
   config = function()
     local dap, dapui = require('dap'), require('dapui')
     local dapgo = require('dap-go')
-    dapui.setup()
+    dapui.setup({
+      layouts = {
+        {
+          elements = {
+            "scopes",
+          },
+          size = 10,
+          position = "bottom"
+        },
+      },
+    })
     dapgo.setup()
     dap.listeners.before.attach.dapui_config = function()
       dapui.open()
@@ -30,23 +40,28 @@ return {
     -- Include everything after this
 
 
-    vim.keymap.set('n', '<F5>', function() require('dap').continue() end)
-    vim.keymap.set('n', '<F10>', function() require('dap').step_over() end)
-    vim.keymap.set('n', '<F11>', function() require('dap').step_into() end)
-    vim.keymap.set('n', '<F12>', function() require('dap').step_out() end)
-    vim.keymap.set('n', '<Leader>q', function()
+    vim.keymap.set('n', '<leader>dc', function() require('dap').continue() end)
+    vim.keymap.set('n', '<leader>do', function() require('dap').step_over() end)
+    vim.keymap.set('n', '<leader>di', function() require('dap').step_into() end)
+    vim.keymap.set('n', '<leader>dO', function() require('dap').step_out() end)
+    vim.keymap.set('n', '<leader>db', function()
       require('dap').toggle_breakpoint()
     end)
-    vim.keymap.set('n', '<Leader>Q', function()
-      require('dap').set_breakpoint()
-    end)
-    vim.keymap.set('n', '<Leader>lp', function()
+    vim.keymap.set('n', '<leader>dl', function()
       require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: '))
     end)
-    vim.keymap.set('n', '<Leader>dr', function() require('dap').repl.open() end)
-    vim.keymap.set('n', '<Leader>dl', function() require('dap').run_last() end)
+    vim.keymap.set('n', '<leader>dr', function() require('dap').repl.open() end)
+    vim.keymap.set('n', '<leader>dr', function() require('dap').run_last() end)
 
-    vim.keymap.set('n', '<Leader>w', function() dapui.open() end)
-    vim.keymap.set('n', '<Leader>W', function() dapui.close() end)
+    vim.keymap.set('n', '<leader>dw', function() dapui.open() end)
+    vim.keymap.set('n', '<leader>dW', function() dapui.close() end)
+
+    vim.api.nvim_create_user_command("DapStack",
+      function ()
+        dapui.float_element("stacks", { enter = true })
+      end,
+      {}
+    )
+
   end
 }
