@@ -73,6 +73,13 @@ local function register_keymaps()
     vim.lsp.buf.definition,
     { buffer = true }
   )
+
+  vim.keymap.set(
+    "n",
+    "gre",
+    vim.diagnostic.open_float,
+    { buffer = true }
+  )
 end
 
 vim.api.nvim_create_autocmd("LspAttach", {
