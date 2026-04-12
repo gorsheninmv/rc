@@ -36,3 +36,5 @@ end
 vim.o.keymap = 'russian-jcukenwin'
 vim.o.iminsert = 0
 vim.o.imsearch = 0
+
+vim.opt.clipboard:append("unnamedplus")
