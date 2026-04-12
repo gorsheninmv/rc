@@ -47,3 +47,28 @@ vim.keymap.set(
   }
 )
 
+vim.keymap.set(
+  'ia',
+  'tt',
+  function()
+    vim.api.nvim_put({
+      't.Parallel()',
+      'for _, tc := range []struct {',
+      '\tname string',
+      '}{',
+      '\t{',
+      '\t\tname: "test_case",',
+      '\t},',
+      '} {',
+      '\tt.Run(tc.name, func(t *testing.T) {',
+      '\t\tt.Parallel()',
+      '\t})',
+      '}'
+    }, 'l', true, true)
+    return ''
+  end,
+  {
+    noremap = true,
+    buffer = true,
+  }
+)
