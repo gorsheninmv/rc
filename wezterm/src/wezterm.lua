@@ -49,7 +49,7 @@ config.keys = {
     mods = "LEADER",
     action = wz.action.PromptInputLine {
       description = "Enter new name for tab",
-      action = wz.action_callback(function(window, pane, line)
+      action = wz.action_callback(function(window, _, line)
         -- line will be `nil` if they hit escape without entering anything
         -- An empty string if they just hit enter
         -- Or the actual line of text they wrote
@@ -61,7 +61,7 @@ config.keys = {
   },
   { key = "t",
     mods = "LEADER",
-    action = wz.action.ShowTabNavigator 
+    action = wz.action.ShowTabNavigator
   },
   {
     key = "c",
@@ -69,38 +69,11 @@ config.keys = {
     action = wz.action.SpawnTab("CurrentPaneDomain"),
   },
   {
-    key = "x",
-    mods = "LEADER",
-    action = wz.action.CloseCurrentTab { confirm = true },
-  },
-  {
     key = 'm',
     mods = 'LEADER',
     action = wz.action.ShowLauncher
   },
-  {
-    key = 'h',
-    mods = 'CTRL|SHIFT',
-    action = wz.action.ActivateTabRelative(-1),
-  },
-  {
-    key = 'l',
-    mods = 'CTRL|SHIFT',
-    action = wz.action.ActivateTabRelative(1),
-  },
 }
-
-for i = 1, 8 do
-  table.insert(config.keys, {
-    key = tostring(i),
-    mods = "LEADER",
-    action = wz.action.ActivateTab(i - 1),
-  })
-end
-
-if wz.target_triple == 'x86_64-pc-windows-msvc' then
-  config.default_prog = { 'pwsh.exe', '-NoLogo' }
-end
 
 require('theme').setup(config)
 
