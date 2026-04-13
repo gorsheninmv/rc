@@ -28,7 +28,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 local ns = vim.api.nvim_create_namespace("no-usages")
 local function append_virtual_text(bufnr, line, start, stop, source)
-  vim.diagnostic.set(ns, 0, {{
+  vim.diagnostic.set(ns, bufnr, {{
     bufnr = bufnr,
     lnum = line, -- line number (0-indexed)
     col = start,
@@ -45,6 +45,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)
 
     local function analyze(ev)
+        vim.diagnostic.reset(ns, ev.buf)
+
         local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
         -- skip unsupported clients
         if not client:supports_method("textDocument/documentSymbol") then
@@ -55,8 +57,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
           textDocument = vim.lsp.util.make_text_document_params(),
         }, function(_, result, _, _)
           if not result then return end
-
-          vim.api.nvim_buf_clear_namespace(ev.buf, ns, 0, -1)
 
           local function process(symbols)
             for _, sym in ipairs(symbols) do
@@ -78,7 +78,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
                     if refsCount == 0 then
                       local start = sym.selectionRange.start.character
                       local stop = sym.selectionRange["end"].character
-                      vim.notify(vim.inspect(sym.selectionRange))
                       append_virtual_text(ev.buf, line, start, stop, ev.file)
                     end
                   end)
@@ -104,3 +103,4 @@ vim.api.nvim_create_autocmd("LspAttach", {
   end
 }
 )
+
