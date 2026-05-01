@@ -45,6 +45,22 @@ config.keys = {
     action = wz.action.ActivatePaneDirection "Down",
   },
   {
+    key = 'K',
+    mods = 'SHIFT|ALT',
+    action = wz.action.Multiple{
+    	wz.action.MoveTabRelative(-1),
+	wz.action.ShowTabNavigator,
+    },
+  },
+  {
+    key = 'J',
+    mods = 'SHIFT|ALT',
+    action = wz.action.Multiple{
+    	wz.action.MoveTabRelative(1),
+	wz.action.ShowTabNavigator,
+    },
+  },
+  {
     key = "e",
     mods = "LEADER",
     action = wz.action.PromptInputLine {
@@ -61,7 +77,7 @@ config.keys = {
   },
   { key = "t",
     mods = "LEADER",
-    action = wz.action.ShowTabNavigator
+    action = wz.action.ShowTabNavigator,
   },
   {
     key = "c",
