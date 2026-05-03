@@ -8,6 +8,11 @@ config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
 config.window_background_opacity = 0.9
 config.window_decorations = "RESIZE"
 config.show_new_tab_button_in_tab_bar = false
+config.unix_domains = {
+  {
+    name = 'unix',
+  },
+}
 config.keys = {
   {
     key = "|",
@@ -85,9 +90,41 @@ config.keys = {
     action = wz.action.SpawnTab("CurrentPaneDomain"),
   },
   {
-    key = 'm',
-    mods = 'LEADER',
+    key = "m",
+    mods = "LEADER",
     action = wz.action.ShowLauncher
+  },
+  {
+    key = "a",
+    mods = "LEADER",
+    action = wz.action.AttachDomain 'unix',
+  },
+  {
+    key = "d",
+    mods = "LEADER",
+    action = wz.action.DetachDomain { DomainName = "unix" },
+  },
+  {
+    key = "$",
+    mods = "LEADER|SHIFT",
+    action = wz.action.PromptInputLine {
+      description = "Enter new name for session",
+      action = wz.action_callback(
+        function(window, _, line)
+          if line then
+            wz.mux.rename_workspace(
+              window:mux_window():get_workspace(),
+              line
+            )
+          end
+        end
+      ),
+    },
+  },
+  {
+    key = "S",
+    mods = "LEADER",
+    action = wz.action.ShowLauncherArgs { flags = "WORKSPACES" },
   },
 }
 
@@ -106,6 +143,11 @@ tabline.setup({
 
 })
 tabline.apply_to_config(config)
+
+
+local workspace_switcher = wz.plugin.require("https://github.com/MLFlexer/smart_workspace_switcher.wezterm")
+-- workspace_switcher.apply_to_config(config)
+
 
 return config
 
