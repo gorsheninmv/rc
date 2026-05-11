@@ -19,6 +19,13 @@ vim.opt.rtp:prepend(lazypath)
 
 -- Setup lazy.nvim
 require("lazy").setup({
+  performance = {
+    rtp = {
+      paths = {
+        vim.fs.joinpath(vim.fn.stdpath("config"), "private", "after"),
+      },
+    },
+  },
   spec = {
     {
       "folke/tokyonight.nvim",
