@@ -49,7 +49,7 @@ vim.keymap.set(
 
 vim.keymap.set(
   'ia',
-  'tt',
+  'tt,',
   function()
     vim.api.nvim_put({
       't.Parallel()',
