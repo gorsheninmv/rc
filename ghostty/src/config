@@ -1,0 +1,111 @@
+# ═══════════════════════════════════════════════════════════════════
+#  ✦ GHOSTTY — Paper & Ink Light Theme ✦
+#  Aesthetic: Editorial Minimalism · Warm · Eye-friendly
+# ═══════════════════════════════════════════════════════════════════
+
+# ┌─────────────────────────────────────────────────────────────────┐
+# │  TYPOGRAPHY                                                      │
+# │  Clean, legible, with character                                 │
+# └─────────────────────────────────────────────────────────────────┘
+font-family = FiraCode Nerd Font Mono
+font-style = SemiBold
+font-size = 12
+font-thicken = false
+adjust-cell-height = 15%
+
+# CJK/한글 문자 너비 설정
+# Tab0는 한글=2칸, 영문/박스드로잉=1칸 고정폭 폰트
+grapheme-width-method = unicode
+
+# ┌─────────────────────────────────────────────────────────────────┐
+# │  THEME — Catppuccin Latte                                       │
+# │  Warm cream tones · Gentle on the eyes · Sophisticated          │
+# └─────────────────────────────────────────────────────────────────┘
+theme = dark:TokyoNight Night,light:TokyoNight Day
+
+
+# Custom cursor color (Lavender accent from Catppuccin)
+cursor-color = 7287fd
+cursor-text = eff1f5
+
+# Selection with subtle warmth
+selection-background = bcc0cc
+selection-foreground = 4c4f69
+
+# ┌─────────────────────────────────────────────────────────────────┐
+# │  SPATIAL COMPOSITION                                            │
+# │  Generous whitespace · Magazine-like breathing room             │
+# └─────────────────────────────────────────────────────────────────┘
+window-width = 130
+window-height = 38
+window-padding-x = 20
+window-padding-y = 16
+window-padding-balance = true
+window-padding-color = extend
+
+# ┌─────────────────────────────────────────────────────────────────┐
+# │  WINDOW CHROME                                                  │
+# │  Native macOS integration · Clean titlebar                      │
+# └─────────────────────────────────────────────────────────────────┘
+macos-titlebar-style = tabs
+
+# ┌─────────────────────────────────────────────────────────────────┐
+# │  CURSOR & INPUT                                                 │
+# │  Subtle · Non-distracting · Elegant                             │
+# └─────────────────────────────────────────────────────────────────┘
+cursor-style = bar
+cursor-style-blink = false
+mouse-hide-while-typing = true
+
+# ┌─────────────────────────────────────────────────────────────────┐
+# │  CLIPBOARD & INTEGRATION                                        │
+# └─────────────────────────────────────────────────────────────────┘
+clipboard-read = allow
+clipboard-write = allow
+clipboard-paste-protection = false
+copy-on-select = clipboard
+
+# ┌─────────────────────────────────────────────────────────────────┐
+# │  SHELL INTEGRATION                                              │
+# └─────────────────────────────────────────────────────────────────┘
+shell-integration = zsh
+shell-integration-features = cursor,sudo,title
+# shell-integration-features = false
+
+# ┌─────────────────────────────────────────────────────────────────┐
+# │  VISUAL REFINEMENTS                                             │
+# └─────────────────────────────────────────────────────────────────┘
+minimum-contrast = 1.1
+bold-is-bright = false
+unfocused-split-opacity = 0.8
+link-url = true
+
+# ┌─────────────────────────────────────────────────────────────────┐
+# │  PERFORMANCE                                                    │
+# └─────────────────────────────────────────────────────────────────┘
+scrollback-limit = 100000
+image-storage-limit = 320000000
+
+# ┌─────────────────────────────────────────────────────────────────┐
+# │  KEYBINDINGS                                                    │
+# └─────────────────────────────────────────────────────────────────┘
+keybind = ctrl+a>shift+\=new_split:right
+keybind = ctrl+a>-=new_split:down
+keybind = ctrl+a>c=new_tab
+keybind = ctrl+a>z=toggle_split_zoom
+keybind = ctrl+a>h=goto_split:left
+keybind = ctrl+a>j=goto_split:bottom
+keybind = ctrl+a>k=goto_split:top
+keybind = ctrl+a>l=goto_split:right
+
+# ┌─────────────────────────────────────────────────────────────────┐
+# │  QUICK TERMINAL (Drop-down)                                     │
+# └─────────────────────────────────────────────────────────────────┘
+quick-terminal-position = top
+quick-terminal-animation-duration = 0.12
+
+# ┌─────────────────────────────────────────────────────────────────┐
+# │  UX                                                             │
+# └─────────────────────────────────────────────────────────────────┘
+confirm-close-surface = false
+
