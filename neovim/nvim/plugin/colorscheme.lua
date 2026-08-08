@@ -7,7 +7,6 @@ local function set_theme()
   end
 end
 
--- Run once on startup
 set_theme()
 
 -- Listen to the terminal's theme shifts, rather than the option state
